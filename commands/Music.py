@@ -6,6 +6,7 @@ import re
 import discord
 from dateutil.relativedelta import relativedelta
 import DiscordUtils
+from numerize import numerize
 
 music = DiscordUtils.Music()
 
@@ -186,7 +187,18 @@ class Play(commands.Cog):
     async def np(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         song = player.now_playing()
-        await ctx.send(song.name)
+
+        embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+        embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
+        embed.set_thumbnail(url=song.thumbnail)
+        embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
+        embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+        embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
+        embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
+        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            text=f"Song")
+        
+        await ctx.send(embed=embed)
     
     @commands.command()
     async def skip(self, ctx):
