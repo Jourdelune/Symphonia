@@ -15,11 +15,19 @@ class Play(commands.Cog):
         
     @commands.command()
     async def join(self, ctx):
-        await ctx.author.voice.channel.connect() #Joins author's voice channel
+        try:
+            await ctx.author.voice.channel.connect()
+            await ctx.send(":arrow_right: **Songs joined the voice channel.**")
+        except:
+            await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
     
     @commands.command()
     async def leave(self, ctx):
-        await ctx.voice_client.disconnect()
+        try:
+            await ctx.voice_client.disconnect()
+            await ctx.send(":arrow_left: **Songs left the voice channel.**")
+        except:
+            await ctx.send("<:error:805750300450357308> **The bot is not connected to a voice channel.**")
     
     @commands.command()
     async def play(self, ctx, *, url):
@@ -31,7 +39,14 @@ class Play(commands.Cog):
         if not player:
             player = music.create_player(ctx, ffmpeg_error_betterfix=True)
         if not ctx.voice_client.is_playing():
-            await player.queue(url, search=True)
+            try:
+                await player.queue(url, search=True)
+            except:
+                try:
+                    await player.queue(url, bettersearch=True)
+                except:
+                    await ctx.send(f"<:error:805750300450357308> **An error has occurred. Put a correct search.**")
+                    return
             song = await player.play()
             embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
             embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
@@ -52,37 +67,38 @@ class Play(commands.Cog):
             await message.edit(content=None, embed=embed)
 
         else:
-            song = await player.queue(url, search=True)
-            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
-            embed.set_author(name=f"Added to queue", icon_url=ctx.author.avatar_url)
-            embed.set_thumbnail(url=song.thumbnail)
-            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
-            duration=relativedelta(seconds=round(float(song.duration)))
-            if duration.hours != 0:
-                duration=str(duration.hours)+":"+str(duration.minutes)+":"+str(duration.seconds)
-            else:
-                duration=str(duration.minutes)+":"+str(duration.seconds)
-                
-            player = music.get_player(guild_id=ctx.guild.id)
-            all_duration=0
-            position=0
-            for i in player.current_queue():
-                if song.url != i.url:
-                    all_duration=all_duration+i.duration
-                    position+=1
+            try:
+                song = await player.queue(url, search=True)
+                embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+                embed.set_author(name=f"Added to queue", icon_url=ctx.author.avatar_url)
+                embed.set_thumbnail(url=song.thumbnail)
+                embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
+                duration=relativedelta(seconds=round(float(song.duration)))
+                if duration.hours != 0:
+                    duration=str(duration.hours)+":"+str(duration.minutes)+":"+str(duration.seconds)
                 else:
-                    break
-
-            embed.add_field(name="Duration", value=f"{duration}", inline=True)
-            embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
-            embed.add_field(name="position", value=f"{position}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
-                             text=f"Song")
-            
-            
+                    duration=str(duration.minutes)+":"+str(duration.seconds)
                 
-            await message.edit(content=None, embed=embed)
-       
+                player = music.get_player(guild_id=ctx.guild.id)
+                all_duration=0
+                position=0
+                for i in player.current_queue():
+                    if song.url != i.url:
+                        all_duration=all_duration+i.duration
+                        position+=1
+                    else:
+                        break
+
+                embed.add_field(name="Duration", value=f"{duration}", inline=True)
+                embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
+                embed.add_field(name="position", value=f"{position}", inline=True)
+                embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+                             text=f"Song")
+      
+                await message.edit(content=None, embed=embed)
+            except:
+                await ctx.send(f"<:error:805750300450357308> **An error has occurred. Put a correct search.**")
+                return
     
     @play.before_invoke
     async def ensure_voice(self, ctx):
@@ -114,11 +130,16 @@ class Play(commands.Cog):
     @commands.command()
     async def loop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
-        song = await player.toggle_song_loop()
+        try:
+            song = await player.toggle_song_loop()
+        except:
+            await ctx.send(f"<:error:805750300450357308> **Cannot loop music. No music is played.**")
+            return
+            
         if song.is_looping:
-            await ctx.send(f"Enabled loop for {song.name}")
+            await ctx.send(f"<:boucle:805907893714681947> **Enabled loop for** `{song.name}`")
         else:
-            await ctx.send(f"Disabled loop for {song.name}")
+            await ctx.send(f"<:stop_infinis:805908993284243516> **Disabled loop for** `{song.name}`")
     
     @commands.command()
     async def queue(self, ctx):       
@@ -170,8 +191,13 @@ class Play(commands.Cog):
     @commands.command()
     async def skip(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
-        data = await player.skip(force=True)
-        skipped= player.current_queue()
+        try:
+            data = await player.skip(force=True)
+        except:
+            await ctx.send("<:error:805750300450357308> **No music playing.**")
+            return
+        
+        skipped=player.current_queue()
         if len(skipped) >= 2:
             skipped= player.current_queue()
         
