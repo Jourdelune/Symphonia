@@ -45,11 +45,11 @@ class Play(commands.Cog):
                 
             embed.add_field(name="Duration", value=f"{duration}", inline=True)
             embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
-            embed.add_field(name="position", value=f"1", inline=True)
+            embed.add_field(name="position", value=f"0", inline=True)
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
                              text=f"Song")
             
-            await message.edit(embed=embed)
+            await message.edit(content=None, embed=embed)
 
         else:
             song = await player.queue(url, search=True)
@@ -75,13 +75,13 @@ class Play(commands.Cog):
 
             embed.add_field(name="Duration", value=f"{duration}", inline=True)
             embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
-            embed.add_field(name="position", value=f"{position+1}", inline=True)
+            embed.add_field(name="position", value=f"{position}", inline=True)
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
                              text=f"Song")
             
             
                 
-            await message.edit(embed=embed)
+            await message.edit(content=None, embed=embed)
        
     
     @play.before_invoke
@@ -95,15 +95,20 @@ class Play(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
-        song = await player.pause()
-        await ctx.send(f"Paused {song.name}")
+        try:
+            song = await player.pause()
+            await ctx.send(f"<:pause:805844063164039168> **Paused** `{song.name}`")
+        except:
+            await ctx.send(f"<:error:805750300450357308> **No music played**")
     
     @commands.command()
     async def resume(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
-        song = await player.resume()
-        await ctx.send(f"Resumed {song.name}")
-    
+        try:
+            song = await player.resume()
+            await ctx.send(f"<:play:805845139830472714> **Resumed** `{song.name}`")
+        except:
+            await ctx.send(f"<:error:805750300450357308> **No music played**")
 
     
     @commands.command()
@@ -139,8 +144,8 @@ class Play(commands.Cog):
         if len(name) >= 2:
             embed.add_field(name="Next", value=f"**[{name[1]}]({url[1]})** `duration {convert_duration(duration[1])}`", inline=False)
             cmpt=0
-            text=""
-            if len(name) >= 2:
+            text=" "
+            if len(name) > 2:
                 for i in name:
                     if cmpt >= 2:
                         text= text + f"[{name[cmpt]}]({url[cmpt]}) `Position: {cmpt}`, ` duration {convert_duration(duration[cmpt])}`\n\n"
@@ -152,7 +157,8 @@ class Play(commands.Cog):
             all_duration = all_duration+i
 
         embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
-                            text=f"{len(name)} song in Song'Queue. {all_duration} total duration")
+                        text=f"{len(name)} song in Song'Queue. {convert_duration(all_duration)} total duration")
+        
         await ctx.send(embed=embed)
     
     @commands.command()
@@ -165,17 +171,31 @@ class Play(commands.Cog):
     async def skip(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         data = await player.skip(force=True)
-        if len(data) == 2:
-            await ctx.send(f"Skipped from {data[0].name} to {data[1].name}")
+        skipped= player.current_queue()
+        if len(skipped) >= 2:
+            skipped= player.current_queue()
+        
+            embed = discord.Embed(color=embed_color(), description=f"**:track_next: Skipped!**")
+            embed.set_thumbnail(url=skipped[1].thumbnail)
+            embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
+            embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+                            text=f"Song")
+            
+            await ctx.send(embed=embed)
         else:
-            await ctx.send(f"Skipped {data[0].name}")
+            await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
 
     
     @commands.command()
     async def remove(self, ctx, index):
         player = music.get_player(guild_id=ctx.guild.id)
-        song = await player.remove_from_queue(int(index))
-        await ctx.send(f"Removed {song.name} from queue")
+        try:
+            song = await player.remove_from_queue(int(index))
+        except:
+            await ctx.send(f"<:error:805750300450357308> **Bad Index**\n`do remove [index] and index is an integer (position of the music in the queue)`")
+            return
+        await ctx.send(f":wastebasket: **Removed** `{song.name}` **from queue**")
       
   
             
