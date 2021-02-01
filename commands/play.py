@@ -1,0 +1,186 @@
+from discord.ext import tasks, commands
+import asyncio
+import discord
+from utils.utils import *
+import re
+import discord
+from dateutil.relativedelta import relativedelta
+import DiscordUtils
+
+music = DiscordUtils.Music()
+
+class Play(commands.Cog):
+    def __init__(self, client):
+        self.bot = client
+        
+    @commands.command()
+    async def join(self, ctx):
+        await ctx.author.voice.channel.connect() #Joins author's voice channel
+    
+    @commands.command()
+    async def leave(self, ctx):
+        await ctx.voice_client.disconnect()
+    
+    @commands.command()
+    async def play(self, ctx, *, url):
+        if not ctx.author.voice:
+            return
+        
+        message = await ctx.send(f"<:search:805751542920773633> **currently researching** `{url}`.")
+        player = music.get_player(guild_id=ctx.guild.id)
+        if not player:
+            player = music.create_player(ctx, ffmpeg_error_betterfix=True)
+        if not ctx.voice_client.is_playing():
+            await player.queue(url, search=True)
+            song = await player.play()
+            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
+            embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
+            embed.set_thumbnail(url=song.thumbnail)
+            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
+            duration=relativedelta(seconds=round(float(song.duration)))
+            if duration.hours != 0:
+                duration=str(duration.hours)+":"+str(duration.minutes)+":"+str(duration.seconds)
+            else:
+                duration=str(duration.minutes)+":"+str(duration.seconds)
+                
+            embed.add_field(name="Duration", value=f"{duration}", inline=True)
+            embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
+            embed.add_field(name="position", value=f"1", inline=True)
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+                             text=f"Song")
+            
+            await message.edit(embed=embed)
+
+        else:
+            song = await player.queue(url, search=True)
+            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
+            embed.set_author(name=f"Added to queue", icon_url=ctx.author.avatar_url)
+            embed.set_thumbnail(url=song.thumbnail)
+            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
+            duration=relativedelta(seconds=round(float(song.duration)))
+            if duration.hours != 0:
+                duration=str(duration.hours)+":"+str(duration.minutes)+":"+str(duration.seconds)
+            else:
+                duration=str(duration.minutes)+":"+str(duration.seconds)
+                
+            player = music.get_player(guild_id=ctx.guild.id)
+            all_duration=0
+            position=0
+            for i in player.current_queue():
+                if song.url != i.url:
+                    all_duration=all_duration+i.duration
+                    position+=1
+                else:
+                    break
+
+            embed.add_field(name="Duration", value=f"{duration}", inline=True)
+            embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
+            embed.add_field(name="position", value=f"{position+1}", inline=True)
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+                             text=f"Song")
+            
+            
+                
+            await message.edit(embed=embed)
+       
+    
+    @play.before_invoke
+    async def ensure_voice(self, ctx):
+        if ctx.voice_client is None:
+            if ctx.author.voice:
+                await ctx.author.voice.channel.connect()
+            else:
+                await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
+ 
+    @commands.command()
+    async def pause(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.pause()
+        await ctx.send(f"Paused {song.name}")
+    
+    @commands.command()
+    async def resume(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.resume()
+        await ctx.send(f"Resumed {song.name}")
+    
+
+    
+    @commands.command()
+    async def loop(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.toggle_song_loop()
+        if song.is_looping:
+            await ctx.send(f"Enabled loop for {song.name}")
+        else:
+            await ctx.send(f"Disabled loop for {song.name}")
+    
+    @commands.command()
+    async def queue(self, ctx):       
+        player = music.get_player(guild_id=ctx.guild.id)
+        name = []
+        duration = []
+        url = []
+        
+        if player is None:
+            await ctx.send("<:error:805750300450357308> **Queue is empty.**")
+            return
+        
+        for song in player.current_queue():
+            name.append(song.name)
+            duration.append(song.duration)
+            url.append(song.url)
+            
+        embed = discord.Embed(color=embed_color(), title=f"Queue")
+        embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
+        
+        embed.add_field(name="In progress", value=f"**[{name[0]}]({url[0]})** ` duration {convert_duration(duration[0])}`", inline=False)
+
+        if len(name) >= 2:
+            embed.add_field(name="Next", value=f"**[{name[1]}]({url[1]})** `duration {convert_duration(duration[1])}`", inline=False)
+            cmpt=0
+            text=""
+            if len(name) >= 2:
+                for i in name:
+                    if cmpt >= 2:
+                        text= text + f"[{name[cmpt]}]({url[cmpt]}) `Position: {cmpt}`, ` duration {convert_duration(duration[cmpt])}`\n\n"
+                    cmpt+=1
+                embed.add_field(name="After", value=f"{text}", inline=False)
+           
+        all_duration=0
+        for i in duration:
+            all_duration = all_duration+i
+
+        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+                            text=f"{len(name)} song in Song'Queue. {all_duration} total duration")
+        await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def np(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = player.now_playing()
+        await ctx.send(song.name)
+    
+    @commands.command()
+    async def skip(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        data = await player.skip(force=True)
+        if len(data) == 2:
+            await ctx.send(f"Skipped from {data[0].name} to {data[1].name}")
+        else:
+            await ctx.send(f"Skipped {data[0].name}")
+
+    
+    @commands.command()
+    async def remove(self, ctx, index):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.remove_from_queue(int(index))
+        await ctx.send(f"Removed {song.name} from queue")
+      
+  
+            
+    
+
+        
+def setup(client):
+    client.add_cog(Play(client))
