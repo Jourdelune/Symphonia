@@ -9,21 +9,12 @@ import DiscordUtils
 from numerize import numerize
 
 music = DiscordUtils.Music()
-player_ctx=[]
+server_replay=[]
+
 class Play(commands.Cog):
     def __init__(self, client):
         self.bot = client
-        self.check_while.start()
-        
-    
-    @tasks.loop(seconds=5.0)
-    async def check_while(self):
-        for ctx in player_ctx:
-            a=ctx.voice_client.is_playing()
-            if a is False:
-                print(f"dont play {ctx.guild.name}")
-                in_progress(ctx.guild.id, song.duration, reset=True)
-               
+                    
         
     @commands.command()
     async def join(self, ctx):
@@ -44,8 +35,6 @@ class Play(commands.Cog):
     
     @commands.command()
     async def play(self, ctx, *, url):
-        if (ctx in player_ctx) is False:
-            player_ctx.append(ctx)
         if not ctx.author.voice:
             return
         
@@ -115,7 +104,7 @@ class Play(commands.Cog):
                 await ctx.send(f"<:error:805750300450357308> **An error has occurred. Put a correct search.**")
                 return
             
-        in_progress(ctx.guild.id, song.duration, player)
+        
         
         
     @play.before_invoke
@@ -149,6 +138,9 @@ class Play(commands.Cog):
     @commands.command()
     async def loop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
+        if (ctx.guild.id in server_replay):
+            await ctx.send(f"<:error:805750300450357308> **You cannot set a loop on a replay.**")
+            return
         try:
             song = await player.toggle_song_loop()
         except:
@@ -157,8 +149,12 @@ class Play(commands.Cog):
             
         if song.is_looping:
             await ctx.send(f"<:boucle:805907893714681947> **Enabled loop for** `{song.name}`")
+            
+            
         else:
             await ctx.send(f"<:stop_infinis:805908993284243516> **Disabled loop for** `{song.name}`")
+            
+            
     
     @commands.command()
     async def queue(self, ctx):       
@@ -205,21 +201,24 @@ class Play(commands.Cog):
     async def np(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         song = player.now_playing()
-
-        embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
-        embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
-        embed.set_thumbnail(url=song.thumbnail)
-        embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
-        embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
-        embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
-        embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
-        embed.add_field(name="Durée restante", value=f"{in_progress(ctx.guild.id, song.duration, player)}", inline=True)
+        try:
+            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+            embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
+            embed.set_thumbnail(url=song.thumbnail)
+            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
+            embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+            embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
+            embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
         
-        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
-            text=f"Song")
         
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+                text=f"Song")
+        except:
+            await ctx.send("<:error:805750300450357308> **No musique played.**")
+            return
+            
         await ctx.send(embed=embed)
-        in_progress(id, song.duration, player)
+        
     
     @commands.command()
     async def skip(self, ctx):
@@ -238,25 +237,55 @@ class Play(commands.Cog):
             embed.set_thumbnail(url=skipped[1].thumbnail)
             embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
             embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
-            in_progress(id, skipped[1].duration, player)
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
                             text=f"Song")
             
             await ctx.send(embed=embed)
         else:
             await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
-        if (ctx in player_ctx) is False:
-            player_ctx.append(ctx)
-    
+
     @commands.command()
     async def remove(self, ctx, index):
         player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.current_queue()
         try:
             song = await player.remove_from_queue(int(index))
         except:
             await ctx.send(f"<:error:805750300450357308> **Bad Index**\n`do remove [index] and index is an integer (position of the music in the queue)`")
             return
         await ctx.send(f":wastebasket: **Removed** `{song.name}` **from queue**")
+        
+        
+    @commands.command()
+    async def replay(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = player.now_playing()
+        if not song.is_looping:
+            song = await player.toggle_song_loop()
+            server_replay.append(ctx.guild.id)
+        else:
+            await ctx.send("<:error:805750300450357308> **You cannot replay music that has not been looped. Deactivate the loop if necessary:** `loop`")
+            return
+        embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+        embed.set_author(name=f":rewind: Replay", icon_url=ctx.author.avatar_url)
+        embed.set_thumbnail(url=song.thumbnail)
+        embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
+        embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+        embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
+        embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
+        
+        
+        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            text=f"Song")
+           
+        await ctx.send(embed=embed)
+        await asyncio.sleep(song.duration)
+       
+        if song.is_looping:
+            await player.toggle_song_loop()
+           
+            del server_replay[server_replay.index(ctx.guild.id)]
+        
       
   
             

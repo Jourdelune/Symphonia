@@ -45,36 +45,7 @@ def database_host():
 def database_password():
     return "123Nousironsaubois*"
 
-progress = {}
-duration=[]
-in_playing = {}
-def in_progress(id, duration, play=None, pause=None, reset=False):
-    if reset==True:
-        in_playing[id]=None
-        progress[id]=None
-        return None
-    name=play.current_queue()[0].name
-    try:
-        if name != in_playing[id]:
-            in_playing[id]=name
-            progress[id]=time.time()+duration
-    except:
-        in_playing[id]=name
-        progress[id]=time.time()+duration
-         
-    try:
-        a=progress[id]
-        
-    except:
-        a=0
-        
-    if time.time() > a:
-        progress[id]=time.time()+duration
-    else:
-        b=time.time()
-    
-    pourcent=progress[id]-time.time()
-    return pourcent
+
     
 def embed_color():
     return discord.Colour.from_rgb(4, 230, 209)
