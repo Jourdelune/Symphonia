@@ -10,7 +10,7 @@ class OnReady(commands.Cog):
     async def on_ready(self):
         print('Logged in as {0} ({0.id})'.format(self.client.user))
         print('------')
-        await self.client.change_presence(status=discord.Status.online, activity=discord.Game(name="songs Bot | !help"))
+        await self.client.change_presence(status=discord.Status.online, activity=discord.Game(name="songs Bot | s!help"))
 
          
 

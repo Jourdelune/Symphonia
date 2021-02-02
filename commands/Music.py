@@ -9,16 +9,28 @@ import DiscordUtils
 from numerize import numerize
 
 music = DiscordUtils.Music()
-
+player_ctx=[]
 class Play(commands.Cog):
     def __init__(self, client):
         self.bot = client
+        self.check_while.start()
+        
+    
+    @tasks.loop(seconds=5.0)
+    async def check_while(self):
+        for ctx in player_ctx:
+            a=ctx.voice_client.is_playing()
+            if a is False:
+                print(f"dont play {ctx.guild.name}")
+                in_progress(ctx.guild.id, song.duration, reset=True)
+               
         
     @commands.command()
     async def join(self, ctx):
         try:
             await ctx.author.voice.channel.connect()
             await ctx.send(":arrow_right: **Songs joined the voice channel.**")
+            
         except:
             await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
     
@@ -32,6 +44,8 @@ class Play(commands.Cog):
     
     @commands.command()
     async def play(self, ctx, *, url):
+        if (ctx in player_ctx) is False:
+            player_ctx.append(ctx)
         if not ctx.author.voice:
             return
         
@@ -100,12 +114,16 @@ class Play(commands.Cog):
             except:
                 await ctx.send(f"<:error:805750300450357308> **An error has occurred. Put a correct search.**")
                 return
-    
+            
+        in_progress(ctx.guild.id, song.duration, player)
+        
+        
     @play.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
                 await ctx.author.voice.channel.connect()
+                
             else:
                 await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
  
@@ -195,10 +213,13 @@ class Play(commands.Cog):
         embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
         embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
         embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
+        embed.add_field(name="Durée restante", value=f"{in_progress(ctx.guild.id, song.duration, player)}", inline=True)
+        
         embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
             text=f"Song")
         
         await ctx.send(embed=embed)
+        in_progress(id, song.duration, player)
     
     @commands.command()
     async def skip(self, ctx):
@@ -217,13 +238,15 @@ class Play(commands.Cog):
             embed.set_thumbnail(url=skipped[1].thumbnail)
             embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
             embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
+            in_progress(id, skipped[1].duration, player)
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
                             text=f"Song")
             
             await ctx.send(embed=embed)
         else:
             await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
-
+        if (ctx in player_ctx) is False:
+            player_ctx.append(ctx)
     
     @commands.command()
     async def remove(self, ctx, index):

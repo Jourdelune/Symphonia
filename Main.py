@@ -6,13 +6,29 @@ import discord
 from utils.utils import *
 import os
   
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+  
+def get_prefix(client, message):
+    data = str(read_database(table_name="config", data_in="prefix", data=f"WHERE guild_id={message.guild.id}"))
+    if data != "None":
+        return str(
+            read_database(table_name="config", data_in="prefix", data=f"WHERE guild_id={message.guild.id}"))
+    else:
+        try:
+            write_in_database(table_name="config", data_in_name="guild_id", data_in=message.guild.id,
+                                    data_for_write_name="prefix", data_for_write="s!")
+
+            return str(read_database(table_name="config", data_in="prefix",
+                                           data=f"WHERE guild_id={message.guild.id}"))
+        except:
+            pass
+            
+bot = commands.Bot(command_prefix=get_prefix, intents=discord.Intents.all())
 bot.remove_command("help")
 
 create_table = CreateTable()
 
 try:
-    posts = Utils.read_database('Bot', 'connexion')
+    posts = read_database('Bot', 'connexion')
 except:
     write_database_for_one_value('Bot', 'connexion', f'{datetime.date.today()}0')
 

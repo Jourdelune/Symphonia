@@ -14,6 +14,6 @@ class CreateTable(object):
         cursor = conn.cursor(buffered=True)
 
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS Queue(server VARCHAR(255), liste VARCHAR(255))") 
+            "CREATE TABLE IF NOT EXISTS config(guild_id VARCHAR(255), prefix VARCHAR(255))") 
         conn.commit()
         conn.close()
