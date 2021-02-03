@@ -78,7 +78,7 @@ class Play(commands.Cog):
             embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
             embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
             embed.add_field(name="position", value=f"0", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
                              text=f"Song")
             
             await message.edit(content=None, embed=embed)
@@ -102,7 +102,7 @@ class Play(commands.Cog):
             embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
             embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
             embed.add_field(name="position", value=f"{position}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
                              text=f"Song")
             await message.edit(content=None, embed=embed)
             
@@ -129,7 +129,7 @@ class Play(commands.Cog):
         mode_pause(ctx, "on")
         try:
             song = await player.pause()
-            await ctx.send(f"<:pause:805844063164039168> **Paused** `{song.name}`")
+            await ctx.send(f"<:pause:806603967769477151> **Paused** `{song.name}`")
         except:
             await ctx.send(f"<:error:805750300450357308> **No music played**")
             
@@ -148,7 +148,7 @@ class Play(commands.Cog):
         mode_pause(ctx, "off")
         try:
             song = await player.resume()
-            await ctx.send(f"<:play:805845139830472714> **Resumed** `{song.name}`")
+            await ctx.send(f"<:play:806603537986617355> **Resumed** `{song.name}`")
         except:
             await ctx.send(f"<:error:805750300450357308> **No music played**")
 
@@ -210,7 +210,7 @@ class Play(commands.Cog):
         for i in duration:
             all_duration = all_duration+i
 
-        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
                         text=f"{len(name)} song in Song'Queue. {convert_duration(all_duration)} total duration")
         
         await ctx.send(embed=embed)
@@ -244,7 +244,7 @@ class Play(commands.Cog):
             embed.add_field(name="temps", value=f"{convert_duration(playing_duration(ctx, song.duration))}", inline=True)
         
         
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
                 text=f"Song")
         except:
             await ctx.send("<:error:805750300450357308> **No musique played.**")
@@ -272,7 +272,7 @@ class Play(commands.Cog):
             embed.set_thumbnail(url=skipped[1].thumbnail)
             embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
             embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
                             text=f"Song")
             
             await ctx.send(embed=embed)
@@ -310,7 +310,7 @@ class Play(commands.Cog):
         embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
         
         
-        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
             text=f"Song")
            
         await ctx.send(embed=embed)
