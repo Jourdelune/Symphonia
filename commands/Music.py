@@ -7,11 +7,14 @@ import discord
 from dateutil.relativedelta import relativedelta
 import DiscordUtils
 from numerize import numerize
+import mysql.connector
 
 music = DiscordUtils.Music()
+
 server_replay=[]
 list_ctx=[]
 last_name={}
+
 class Play(commands.Cog):
     def __init__(self, client):
         self.bot = client
@@ -43,25 +46,7 @@ class Play(commands.Cog):
             else:
                 reset_duration(ctx)
                 
-            
         
-        
-    @commands.command()
-    async def join(self, ctx):
-        try:
-            await ctx.author.voice.channel.connect()
-            await ctx.send(":arrow_right: **Songs joined the voice channel.**")
-            
-        except:
-            await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
-    
-    @commands.command()
-    async def leave(self, ctx):
-        try:
-            await ctx.voice_client.disconnect()
-            await ctx.send(":arrow_left: **Songs left the voice channel.**")
-        except:
-            await ctx.send("<:error:805750300450357308> **The bot is not connected to a voice channel.**")
     
     @commands.command()
     async def play(self, ctx, *, url):
@@ -317,9 +302,7 @@ class Play(commands.Cog):
            
             del server_replay[server_replay.index(ctx.guild.id)]
         
-      
-  
-            
+    
     
 
         

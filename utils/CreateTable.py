@@ -16,4 +16,8 @@ class CreateTable(object):
         cursor.execute(
             "CREATE TABLE IF NOT EXISTS config(guild_id VARCHAR(255), prefix VARCHAR(255))") 
         conn.commit()
+        
+        cursor.execute(
+            "CREATE TABLE IF NOT EXISTS Playlist(user_id BIGINT, title VARCHAR(255), url VARCHAR(255), thumbnail VARCHAR(255), autor VARCHAR(255))") 
+        conn.commit()
         conn.close()

@@ -50,11 +50,19 @@ final_duration={}
 def playing_duration(ctx, duration):
     try:
         final=final_duration[ctx.guild.id]-time.time()
+        if final < 0:
+            print("reset")
+            del final_duration[ctx.guild.id]
+         
+        final=final_duration[ctx.guild.id]-time.time()
         return final
     except:
         final_duration[ctx.guild.id] = time.time()+duration
         final=final_duration[ctx.guild.id]-time.time()
+       
         return final
+            
+        
     
 def reset_duration(ctx):
     try:
