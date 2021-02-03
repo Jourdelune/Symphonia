@@ -230,7 +230,7 @@ class Play(commands.Cog):
                     else:
                         final=final+"▬"
                     error+=1     
-            embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**\n\n`{convert_duration(playing_duration(ctx, song.duration))}/{convert_duration(song.duration)}`  **|{"".join(reversed(final))}|**""")  
+            embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**\n`{convert_duration(playing_duration(ctx, song.duration))}/{convert_duration(song.duration)}`\n\n**|{"".join(reversed(final))}|**""")  
             embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
             embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
