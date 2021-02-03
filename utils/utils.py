@@ -45,20 +45,37 @@ def database_host():
 def database_password():
     return "123Nousironsaubois*"
 
-
+pause_mode={}
+final_pause={}
+def mode_pause(ctx, mode=None):
+    if mode=="on":
+        if not (ctx.guild.id in pause_mode):
+            pause_mode[ctx.guild.id]=time.time()
+    if mode=="off":
+        final_pause[ctx.guild.id]=time.time()-pause_mode[ctx.guild.id]
+        del pause_mode[ctx.guild.id]
+        
+    if (ctx.guild.id in pause_mode):
+        return time.time()-pause_mode[ctx.guild.id]
+    
+    if (ctx.guild.id in final_pause):
+        return final_pause[ctx.guild.id]
+    
+    else:
+        return 0
+        
 final_duration={}
 def playing_duration(ctx, duration):
     try:
         final=final_duration[ctx.guild.id]-time.time()
         if final < 0:
-            print("reset")
             del final_duration[ctx.guild.id]
          
-        final=final_duration[ctx.guild.id]-time.time()
+        final=final_duration[ctx.guild.id]-time.time()+mode_pause(ctx)
         return final
     except:
         final_duration[ctx.guild.id] = time.time()+duration
-        final=final_duration[ctx.guild.id]-time.time()
+        final=final_duration[ctx.guild.id]-time.time()+mode_pause(ctx)
        
         return final
             
@@ -67,7 +84,7 @@ def playing_duration(ctx, duration):
 def reset_duration(ctx):
     try:
         del final_duration[ctx.guild.id]
-        print("reset")
+       
     except:
         pass
    

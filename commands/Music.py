@@ -14,6 +14,7 @@ music = DiscordUtils.Music()
 server_replay=[]
 list_ctx=[]
 last_name={}
+statut_musique=[]
 
 class Play(commands.Cog):
     def __init__(self, client):
@@ -39,8 +40,11 @@ class Play(commands.Cog):
                 if song.music_id != song_object:
                     reset_duration(ctx)
                     last_name[ctx.guild.id]=song.music_id
-                else: 
-                    playing_duration(ctx, song.duration)
+                else:
+                    if (ctx.guild.id in statut_musique):
+                        playing_duration(ctx, song.duration, pause=True)
+                    else:
+                        playing_duration(ctx, song.duration)
                     
                 
             else:
@@ -118,15 +122,23 @@ class Play(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
+        mode_pause(ctx, "on")
         try:
             song = await player.pause()
             await ctx.send(f"<:pause:805844063164039168> **Paused** `{song.name}`")
         except:
             await ctx.send(f"<:error:805750300450357308> **No music played**")
-    
+            
+        if not (ctx.guild.id in statut_musique):
+            statut_musique.append(ctx.guild.id)
+        
     @commands.command()
     async def resume(self, ctx):
+        if (ctx.guild.id in statut_musique):
+            statut_musique.remove(ctx.guild.id)
+            
         player = music.get_player(guild_id=ctx.guild.id)
+        mode_pause(ctx, "off")
         try:
             song = await player.resume()
             await ctx.send(f"<:play:805845139830472714> **Resumed** `{song.name}`")
