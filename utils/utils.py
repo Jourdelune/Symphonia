@@ -45,6 +45,12 @@ def database_host():
 def database_password():
     return "123Nousironsaubois*"
 
+def check_mode_pause(ctx):
+    if (ctx.guild.id in pause_mode):
+        return True
+    else:
+        return False
+    
 pause_mode={}
 final_pause={}
 def mode_pause(ctx, mode=None):

@@ -42,7 +42,7 @@ class Play(commands.Cog):
                     last_name[ctx.guild.id]=song.music_id
                 else:
                     if (ctx.guild.id in statut_musique):
-                        playing_duration(ctx, song.duration, pause=True)
+                        playing_duration(ctx, song.duration)
                     else:
                         playing_duration(ctx, song.duration)
                     
@@ -122,6 +122,10 @@ class Play(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
+        verif=check_mode_pause(ctx)
+        if verif == True:
+            await ctx.send(f"<:pause:805844063164039168> **Music already paused.**")
+            return
         mode_pause(ctx, "on")
         try:
             song = await player.pause()
@@ -136,7 +140,10 @@ class Play(commands.Cog):
     async def resume(self, ctx):
         if (ctx.guild.id in statut_musique):
             statut_musique.remove(ctx.guild.id)
-            
+        verif=check_mode_pause(ctx)
+        if verif == False:
+            await ctx.send(f"<:pause:805844063164039168> **music already being played.**")
+            return
         player = music.get_player(guild_id=ctx.guild.id)
         mode_pause(ctx, "off")
         try:
