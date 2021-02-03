@@ -46,7 +46,24 @@ def database_password():
     return "123Nousironsaubois*"
 
 
+final_duration={}
+def playing_duration(ctx, duration):
+    try:
+        final=final_duration[ctx.guild.id]-time.time()
+        return final
+    except:
+        final_duration[ctx.guild.id] = time.time()+duration
+        final=final_duration[ctx.guild.id]-time.time()
+        return final
     
+def reset_duration(ctx):
+    try:
+        del final_duration[ctx.guild.id]
+        print("reset")
+    except:
+        pass
+   
+     
 def embed_color():
     return discord.Colour.from_rgb(4, 230, 209)
 

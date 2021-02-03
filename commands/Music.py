@@ -10,11 +10,41 @@ from numerize import numerize
 
 music = DiscordUtils.Music()
 server_replay=[]
-
+list_ctx=[]
+last_name={}
 class Play(commands.Cog):
     def __init__(self, client):
         self.bot = client
+        self.check_time.start()
                     
+    @tasks.loop(seconds=0.5)
+    async def check_time(self):
+        for ctx in list_ctx:
+            if ctx.voice_client.is_playing:
+                player = music.get_player(guild_id=ctx.guild.id)
+                try:
+                    song = player.current_queue()[0]
+                except:
+                    return
+                if (ctx.guild.id in last_name):
+                    song_object=last_name[ctx.guild.id]
+                else:
+                    last_name[ctx.guild.id]=song.music_id
+                
+                song_object=last_name[ctx.guild.id]
+              
+                if song.music_id != song_object:
+                    reset_duration(ctx)
+                    last_name[ctx.guild.id]=song.music_id
+                else: 
+                    a=playing_duration(ctx, song.duration)
+                    print(a)
+                
+            else:
+                reset_duration(ctx)
+                
+            
+        
         
     @commands.command()
     async def join(self, ctx):
@@ -35,6 +65,9 @@ class Play(commands.Cog):
     
     @commands.command()
     async def play(self, ctx, *, url):
+        if not (ctx in list_ctx):
+            list_ctx.append(ctx)
+            
         if not ctx.author.voice:
             return
         
@@ -46,23 +79,14 @@ class Play(commands.Cog):
             try:
                 await player.queue(url, search=True)
             except:
-                try:
-                    await player.queue(url, bettersearch=True)
-                except:
-                    await ctx.send(f"<:error:805750300450357308> **An error has occurred. Put a correct search.**")
-                    return
+                await player.queue(url, bettersearch=True)
+                
             song = await player.play()
             embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
             embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
-            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
-            duration=relativedelta(seconds=round(float(song.duration)))
-            if duration.hours != 0:
-                duration=str(duration.hours)+":"+str(duration.minutes)+":"+str(duration.seconds)
-            else:
-                duration=str(duration.minutes)+":"+str(duration.seconds)
-                
-            embed.add_field(name="Duration", value=f"{duration}", inline=True)
+            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
+            embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
             embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
             embed.add_field(name="position", value=f"0", inline=True)
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
@@ -71,38 +95,28 @@ class Play(commands.Cog):
             await message.edit(content=None, embed=embed)
 
         else:
-            try:
-                song = await player.queue(url, search=True)
-                embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
-                embed.set_author(name=f"Added to queue", icon_url=ctx.author.avatar_url)
-                embed.set_thumbnail(url=song.thumbnail)
-                embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
-                duration=relativedelta(seconds=round(float(song.duration)))
-                if duration.hours != 0:
-                    duration=str(duration.hours)+":"+str(duration.minutes)+":"+str(duration.seconds)
+            song = await player.queue(url, search=True)
+            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+            embed.set_author(name=f"Added to queue", icon_url=ctx.author.avatar_url)
+            embed.set_thumbnail(url=song.thumbnail)
+            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
+            player = music.get_player(guild_id=ctx.guild.id)
+            all_duration=0
+            position=0
+            for i in player.current_queue():
+                if song.url != i.url:
+                    all_duration=all_duration+i.duration
+                    position+=1
                 else:
-                    duration=str(duration.minutes)+":"+str(duration.seconds)
-                
-                player = music.get_player(guild_id=ctx.guild.id)
-                all_duration=0
-                position=0
-                for i in player.current_queue():
-                    if song.url != i.url:
-                        all_duration=all_duration+i.duration
-                        position+=1
-                    else:
-                        break
+                    break
 
-                embed.add_field(name="Duration", value=f"{duration}", inline=True)
-                embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
-                embed.add_field(name="position", value=f"{position}", inline=True)
-                embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
+            embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+            embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
+            embed.add_field(name="position", value=f"{position}", inline=True)
+            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/ee1b4512c41ca4d2d70cefb7342bbbc6.png?size=256",
                              text=f"Song")
-      
-                await message.edit(content=None, embed=embed)
-            except:
-                await ctx.send(f"<:error:805750300450357308> **An error has occurred. Put a correct search.**")
-                return
+            await message.edit(content=None, embed=embed)
+            
             
         
         
