@@ -282,7 +282,7 @@ class Play(commands.Cog):
     @commands.command()
     async def remove(self, ctx, index):
         player = music.get_player(guild_id=ctx.guild.id)
-        song = await player.current_queue()
+        song = player.current_queue()
         try:
             song = await player.remove_from_queue(int(index))
         except:

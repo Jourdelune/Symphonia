@@ -1,0 +1,1051 @@
+/*Fork of W3.CSS (https://www.w3schools.com/w3css/) by FloX (https://www.flo-x.fr/} */
+
+
+html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+
+/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}summary{display:list-item}
+audio,canvas,progress,video{display:inline-block}progress{vertical-align:baseline}
+audio:not([controls]){display:none;height:0}[hidden],template{display:none}
+a{background-color:transparent}a:active,a:hover{outline-width:0}
+abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+b,strong{font-weight:bolder}dfn{font-style:italic}mark{background:#ff0;color:#000}
+small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-0.25em}sup{top:-0.5em}figure{margin:1em 40px}img{border-style:none}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}
+button,input,select,textarea,optgroup{font:inherit;margin:0}optgroup{font-weight:bold}
+button,input{overflow:visible}button,select{text-transform:none}
+button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}
+button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
+legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}
+[type=checkbox],[type=radio]{padding:0}
+[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+/* End extract */
+
+/* FloX Basic HTML*/
+html,body{font-family:Verdana,sans-serif;font-size:15px;line-height:1.5}html{overflow-x:hidden}
+h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}.flox-serif{font-family:serif}
+h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin:10px 0}.flox-wide{letter-spacing:4px}
+hr{border:0;border-top:1px solid #eee;margin:20px 0}
+
+
+/* FloX Image*/
+.flox-image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}
+
+/* FloX Table*/
+.flox-table,.flox-table-all{
+    border-collapse:collapse;border-spacing:0;width:100%;display:table
+}
+.flox-table-all{
+    border:1px solid #ccc
+}
+.flox-bordered tr,.flox-table-all tr{
+    border-bottom:1px solid #ddd
+}
+.flox-striped tbody tr:nth-child(even){
+    background-color:#f1f1f1
+}
+.flox-table-all tr:nth-child(odd){
+    background-color:#fff
+}
+.flox-table-all tr:nth-child(even){
+    background-color:#f1f1f1
+}
+.flox-hoverable tbody tr:hover,.flox-ul.flox-hoverable li:hover{
+    background-color:#ccc
+}.flox-centered tr th,.flox-centered tr td{
+    text-align:center
+}
+.flox-table td,.flox-table th,.flox-table-all td,.flox-table-all th{
+    padding:8px 8px;display:table-cell;text-align:left;vertical-align:top
+}
+.flox-table th:first-child,.flox-table td:first-child,.flox-table-all th:first-child,.flox-table-all td:first-child{
+    padding-left:16px
+}
+
+
+/* FloX Button*/
+.flox-btn,.flox-button{
+    border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap
+}
+.flox-btn:hover{
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+}
+.flox-btn,.flox-button{
+    -webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none
+}   
+.flox-btn.flox-disabled:hover,.flox-btn:disabled:hover{
+    box-shadow:none
+}
+
+/* FloX Disabled */
+.flox-disabled,.flox-btn:disabled,.flox-button:disabled{
+    cursor:not-allowed;opacity:0.3
+}
+.flox-disabled *,:disabled *{
+    pointer-events:none;
+}
+.flox-hide{
+    display: none;
+}
+
+
+
+.flox-badge,.flox-tag{
+    background-color:#000;color:#fff;display:inline-block;padding-left:8px;padding-right:8px;text-align:center
+}
+.flox-badge{border-radius:50%
+    }
+.flox-ul{
+    list-style-type:none;padding:0;margin:0
+}
+.flox-ul li{
+    padding:8px 16px;border-bottom:1px solid #ddd
+}
+.flox-ul li:last-child{
+    border-bottom:none
+}
+.flox-tooltip,.flox-display-container{
+    position:relative
+}
+.flox-tooltip .flox-text{
+    display:none
+}
+.flox-tooltip:hover .flox-text{
+    display:inline-block
+}
+.flox-ripple:active{
+    opacity:0.5
+}
+.flox-ripple{
+    transition:opacity 0s
+}
+
+/* FloX Forms*/
+.flox-input{
+    padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%
+}
+.flox-select{
+    padding:9px 0;width:100%;border:none;border-bottom:1px solid #ccc
+}
+.flox-dropdown-click,.flox-dropdown-hover{
+    position:relative;display:inline-block;cursor:pointer
+}
+.flox-dropdown-hover:hover .flox-dropdown-content{
+    display:block
+}
+.flox-dropdown-hover:first-child,.flox-dropdown-click:hover{
+    background-color:#ccc;color:#000
+}
+.flox-dropdown-hover:hover > .flox-button:first-child,.flox-dropdown-click:hover > .flox-button:first-child{
+    background-color:#ccc;color:#000
+}
+.flox-dropdown-content{
+    cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:1
+}
+.flox-check,.flox-radio{
+    width:24px;height:24px;position:relative;top:6px
+}
+
+
+/* FloX Block */
+.flox-sidebar{
+    height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto
+}
+.flox-bar-block .flox-dropdown-hover,.flox-bar-block .flox-dropdown-click{
+    width:100%
+}
+.flox-bar-block .flox-dropdown-hover .flox-dropdown-content,.flox-bar-block .flox-dropdown-click .flox-dropdown-content{
+    min-width:100%
+}
+.flox-bar-block .flox-dropdown-hover .flox-button,.flox-bar-block .flox-dropdown-click .flox-button{
+    width:100%;text-align:left;padding:8px 16px
+}
+
+/* FloX Modal */
+.flox-main,#main{
+    transition:margin-left .4s
+}
+.flox-modal{
+    z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)
+}
+.flox-modal-content{
+    margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px
+}
+
+
+/* FloX Bar */
+.flox-bar{
+    width:100%;overflow:hidden
+}
+.flox-center .flox-bar{
+    display:inline-block;width:auto
+}
+.flox-bar .flox-bar-item{
+    padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0
+}
+.flox-bar .flox-dropdown-hover,.flox-bar .flox-dropdown-click{
+    position:static;float:left
+}
+.flox-bar .flox-button{
+    white-space:normal
+}
+.flox-bar-block .flox-bar-item{
+    width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0
+}
+.flox-bar-block.flox-center .flox-bar-item{
+    text-align:center
+}
+.flox-block{
+    display:block;width:100%
+}
+.flox-sidebar{
+    height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto
+}
+
+/* FloX Responsive */
+.flox-responsive{
+    display:block;overflow-x:auto
+}
+.flox-container:after,.flox-container:before,.flox-panel:after,.flox-panel:before,.flox-row:after,.flox-row:before,.flox-row-padding:after,.flox-row-padding:before,
+.flox-cell-row:before,.flox-cell-row:after,.flox-clear:after,.flox-clear:before,.flox-bar:before,.flox-bar:after{
+    content:"";display:table;clear:both
+}
+.flox-col,.flox-half,.flox-third,.flox-twothird,.flox-threequarter,.flox-quarter{
+    float:left;width:100%
+}
+.flox-col.s1{
+    width:8.33333%
+}
+.flox-col.s2{
+    width:16.66666%
+}
+.flox-col.s3{
+    width:24.99999%
+}
+.flox-col.s4{
+    width:33.33333%
+}
+.flox-col.s5{
+    width:41.66666%
+}
+.flox-col.s6{
+    width:49.99999%
+}
+.flox-col.s7{
+    width:58.33333%
+}
+.flox-col.s8{
+    width:66.66666%
+}
+.flox-col.s9{
+    width:74.99999%
+}
+.flox-col.s10{
+    width:83.33333%
+}
+.flox-col.s11{
+    width:91.66666%
+}
+.flox-col.s12{
+    width:99.99999%
+}
+@media (min-width:601px){
+    .flox-col.m1{
+        width:8.33333%
+    }.flox-col.m2{
+        width:16.66666%
+    }
+    .flox-col.m3,.flox-quarter{
+        width:24.99999%
+    }
+    .flox-col.m4,.flox-third{
+        width:33.33333%
+    }
+    .flox-col.m5{
+        width:41.66666%
+    }
+    .flox-col.m6,.flox-half{
+        width:49.99999%
+    }
+    .flox-col.m7{
+        width:58.33333%
+    }
+    .flox-col.m8,.flox-twothird{
+        width:66.66666%
+    }
+    .flox-col.m9,.flox-threequarter{
+        width:74.99999%
+    }
+    .flox-col.m10{
+        width:83.33333%
+    }
+    .flox-col.m11{
+        width:91.66666%
+    }
+    .flox-col.m12{
+        width:99.99999%
+    }
+}
+@media (min-width:993px){
+    .flox-col.l1{
+        width:8.33333%
+    }
+    .flox-col.l2{
+        width:16.66666%
+    }
+    .flox-col.l3{
+        width:24.99999%
+    }
+    .flox-col.l4{
+        width:33.33333%
+    }
+    .flox-col.l5{
+        width:41.66666%
+    }
+    .flox-col.l6{
+        width:49.99999%
+    }
+    .flox-col.l7{
+        width:58.33333%
+    }
+    .flox-col.l8{
+        width:66.66666%
+    }
+    .flox-col.l9{
+        width:74.99999%
+    }
+    .flox-col.l10{
+        width:83.33333%
+    }
+    .flox-col.l11{
+        width:91.66666%
+    }
+    .flox-col.l12{
+        width:99.99999%
+    }
+}   
+.flox-rest{
+    overflow:hidden
+}
+.flox-stretch{
+    margin-left:-16px;margin-right:-16px
+}
+.flox-content,.flox-auto{
+    margin-left:auto;margin-right:auto
+}
+.flox-content{
+    max-width:980px
+}
+.flox-auto{
+    max-width:1140px
+}
+.flox-cell-row{
+    display:table;width:100%
+}
+.flox-cell{
+    display:table-cell
+}
+.flox-cell-top{
+    vertical-align:top
+}
+.flox-cell-middle{
+    vertical-align:middle
+}.flox-cell-bottom{
+    vertical-align:bottom
+}
+.flox-hide{
+    display:none!important
+}
+.flox-show-block,.flox-show{
+    display:block!important
+}
+.flox-show-inline-block{
+    display:inline-block!important
+}
+@media (max-width:1205px){
+    .flox-auto{max-width:95%
+    }
+}
+@media (max-width:600px){
+    .flox-modal-content{
+        margin:0 10px;width:auto!important
+    }
+    .flox-modal{
+        padding-top:30px
+    }
+    .flox-dropdown-hover.flox-mobile .flox-dropdown-content,.flox-dropdown-click.flox-mobile .flox-dropdown-content{
+        position:relative
+    }	
+    .flox-hide-small{
+        display:none!important}.flox-mobile{display:block;width:100%!important
+    }
+    .flox-bar-item.flox-mobile,.flox-dropdown-hover.flox-mobile,.flox-dropdown-click.flox-mobile{
+        text-align:center
+    }
+    .flox-dropdown-hover.flox-mobile,.flox-dropdown-hover.flox-mobile .flox-btn,.flox-dropdown-hover.flox-mobile .flox-button,.flox-dropdown-click.flox-mobile,.flox-dropdown-click.flox-mobile .flox-btn,.flox-dropdown-click.flox-mobile .flox-button{
+        width:100%
+    }
+}
+@media (max-width:768px){
+    .flox-modal-content{
+        width:500px
+    }
+    .flox-modal{
+        padding-top:50px
+    }
+}
+@media (min-width:993px){
+    .flox-modal-content{
+        width:900px
+    }
+    .flox-hide-large{
+        display:none!important
+    }
+    .flox-sidebar.flox-collapse{
+        display:block!important
+    }
+}
+@media (max-width:992px) and (min-width:601px){
+    .flox-hide-medium{display:none!important
+    }
+}
+@media (max-width:992px){
+    .flox-sidebar.flox-collapse{
+        display:none
+    }
+    .flox-main{
+        margin-left:0!important;margin-right:0!important
+    }
+    .flox-auto{
+        max-width:100%
+    }
+}
+
+/* FloX Display */
+.flox-top,.flox-bottom{
+    position:fixed;width:100%;z-index:1
+}
+.flox-top{
+    top:0
+}
+.flox-bottom{
+    bottom:0
+}
+.flox-overlay{
+    position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2
+}
+.flox-display-topleft{
+    position:absolute;left:0;top:0
+}
+.flox-display-topright{
+    position:absolute;right:0;top:0
+}
+.flox-display-bottomleft{
+    position:absolute;left:0;bottom:0
+}
+.flox-display-bottomright{
+    position:absolute;right:0;bottom:0
+}
+.flox-display-middle{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)
+}
+.flox-display-left{
+    position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)
+}
+.flox-display-right{
+    position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)
+}
+.flox-display-topmiddle{
+    position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)
+}
+.flox-display-bottommiddle{
+    position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)
+}
+.flox-display-container:hover .flox-display-hover{
+    display:block
+}
+.flox-display-container:hover span.flox-display-hover{
+    display:inline-block
+}
+.flox-display-hover{
+    display:none
+}
+.flox-display-position{
+    position:absolute
+}
+
+
+/* FloX Page */
+.flox-circle{
+    border-radius:50%
+}
+.flox-round-small{
+    border-radius:2px
+}
+.flox-round,.flox-round-medium{
+    border-radius:4px
+}
+.flox-round-large{
+    border-radius:8px
+}
+.flox-round-xlarge{
+    border-radius:16px
+}
+.flox-round-xxlarge{
+    border-radius:32px
+}
+.flox-row-padding,.flox-row-padding>.flox-half,.flox-row-padding>.flox-third,.flox-row-padding>.flox-twothird,.flox-row-padding>.flox-threequarter,.flox-row-padding>.flox-quarter,.flox-row-padding>.flox-col{
+    padding:0 8px
+}
+.flox-container,.flox-panel{
+    padding:0.01em 16px
+}.flox-panel{
+    margin-top:16px;margin-bottom:16px
+}
+.flox-code,.flox-codespan{
+    font-family:Consolas,"courier new";font-size:16px
+}
+.flox-code{
+    width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word
+}
+.flox-codespan{
+    color:crimson;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%
+}
+.flox-card,.flox-card-2{
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
+}
+.flox-card-4,.flox-hover-shadow:hover{
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)
+}
+
+
+/* FloX Animation */
+.flox-spin{
+    animation:flox-spin 2s infinite linear}@keyframes flox-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}
+}
+.flox-animate-fading{
+    animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}
+}
+.flox-animate-opacity{
+    animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}
+}
+.flox-animate-top{
+    position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}
+}
+.flox-animate-left{
+    position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}
+}
+.flox-animate-right{
+    position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}
+}
+.flox-animate-bottom{
+    position:relative;animation:animatebottom 0.4s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}
+}
+.flox-animate-zoom {
+    animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}
+}
+.flox-animate-input{
+    transition:width 0.4s ease-in-out}.flox-animate-input:focus{width:100%!important
+}
+
+/* FloX Effect */
+.flox-opacity,.flox-hover-opacity:hover{
+    opacity:0.60
+}
+.flox-opacity-off,.flox-hover-opacity-off:hover{
+    opacity:1
+}
+.flox-opacity-max{
+    opacity:0.25
+}
+.flox-opacity-min{
+    opacity:0.75
+}
+.flox-greyscale-max,.flox-grayscale-max,.flox-hover-greyscale:hover,.flox-hover-grayscale:hover{
+    filter:grayscale(100%)
+}
+.flox-greyscale,.flox-grayscale{
+    filter:grayscale(75%)
+}
+.flox-greyscale-min,.flox-grayscale-min{
+    filter:grayscale(50%)
+}
+.flox-sepia{
+    filter:sepia(75%)
+}
+.flox-sepia-max,.flox-hover-sepia:hover{
+    filter:sepia(100%)
+}
+.flox-sepia-min{
+    filter:sepia(50%)
+}
+.flox-tiny{
+    font-size:10px!important
+}
+.flox-small{
+    font-size:12px!important
+}
+.flox-medium{
+    font-size:15px!important
+}
+.flox-large{
+    font-size:18px!important
+}
+.flox-xlarge{
+    font-size:24px!important
+}
+.flox-xxlarge{
+    font-size:36px!important
+}
+.flox-xxxlarge{
+    font-size:48px!important
+}
+.flox-jumbo{
+    font-size:64px!important
+}
+
+/* FloX Text Align */
+.flox-left-align{
+    text-align:left!important
+}
+.flox-right-align{
+    text-align:right!important
+}
+.flox-justify{
+    text-align:justify!important
+}
+.flox-center{
+    text-align:center!important
+}
+
+
+/* FloX Border */
+.flox-border-0{
+    border:0!important
+}
+.flox-border{
+    border:1px solid #ccc!important
+}
+.flox-border-top{
+    border-top:1px solid #ccc!important
+}.flox-border-bottom{
+    border-bottom:1px solid #ccc!important
+}
+.flox-border-left{
+    border-left:1px solid #ccc!important
+}
+.flox-border-right{
+    border-right:1px solid #ccc!important
+}
+
+
+/* FloX Bar */
+.flox-topbar{
+    border-top:6px solid #ccc!important
+}
+.flox-bottombar{
+    border-bottom:6px solid #ccc!important
+}
+.flox-leftbar{
+    border-left:6px solid #ccc!important
+}
+.flox-rightbar{
+    border-right:6px solid #ccc!important
+}
+.flox-section,.flox-code{
+    margin-top:16px!important;margin-bottom:16px!important
+}
+
+
+/* FloX Margin */
+.flox-margin{
+    margin:16px!important
+}
+.flox-margin-top{
+    margin-top:16px!important
+} 
+.flox-margin-bottom{
+    margin-bottom:16px!important
+} 
+
+/* FloX Padding */
+.flox-margin-left{
+    margin-left:16px!important
+}
+.flox-margin-right{
+    margin-right:16px!important
+}
+.flox-padding-small{
+    padding:4px 8px!important
+}
+.flox-padding{
+    padding:8px 16px!important
+}
+.flox-padding-large{
+    padding:12px 24px!important
+}
+.flox-padding-16{
+    padding-top:16px!important;padding-bottom:16px!important
+}
+.flox-padding-24{
+    padding-top:24px!important;padding-bottom:24px!important
+}
+.flox-padding-32{
+    padding-top:32px!important;padding-bottom:32px!important
+}
+.flox-padding-48{
+    padding-top:48px!important;padding-bottom:48px!important
+}
+.flox-padding-64{
+    padding-top:64px!important;padding-bottom:64px!important
+}
+.flox-padding-top-64{
+    padding-top:64px!important
+}.flox-padding-top-48{
+    padding-top:48px!important
+}
+.flox-padding-top-32{
+    padding-top:32px!important
+}.flox-padding-top-24{
+    padding-top:24px!important
+}
+
+/* FloX Dock */
+.flox-left{
+    float:left!important
+}
+.flox-right{
+    float:right!important
+}
+
+/* FloX Hover */
+.flox-button:hover{
+    color:#000!important;background-color:#ccc!important
+}
+.flox-transparent,.flox-hover-none:hover{
+    background-color:transparent!important
+}
+.flox-hover-none:hover{
+    box-shadow:none!important
+}
+
+
+/* FloX Colors */
+.flox-amber,.flox-hover-amber:hover{
+    color:#000!important;background-color:#ffc107!important}
+.flox-aqua,.flox-hover-aqua:hover{
+    color:#000!important;background-color:#00ffff!important}
+.flox-blue,.flox-hover-blue:hover{
+    color:#fff!important;background-color:#2196F3!important
+}
+.flox-light-blue,.flox-hover-light-blue:hover{
+    color:#000!important;background-color:#87CEEB!important
+}
+.flox-brown,.flox-hover-brown:hover{
+    color:#fff!important;background-color:#795548!important
+}
+.flox-cyan,.flox-hover-cyan:hover{
+    color:#000!important;background-color:#00bcd4!important
+}
+.flox-blue-grey,.flox-hover-blue-grey:hover,.flox-blue-gray,.flox-hover-blue-gray:hover{
+    color:#fff!important;background-color:#607d8b!important
+}
+.flox-green,.flox-hover-green:hover{
+    color:#fff!important;background-color:#4CAF50!important
+}
+.flox-light-green,.flox-hover-light-green:hover{color:#000!important;background-color:#8bc34a!important}
+.flox-indigo,.flox-hover-indigo:hover{
+    color:#fff!important;background-color:#3f51b5!important
+}
+.flox-khaki,.flox-hover-khaki:hover{
+    color:#000!important;background-color:#f0e68c!important
+}
+.flox-lime,.flox-hover-lime:hover{
+    color:#000!important;background-color:#cddc39!important
+}
+.flox-orange,.flox-hover-orange:hover{
+    color:#000!important;background-color:#ff9800!important
+}
+.flox-deep-orange,.flox-hover-deep-orange:hover{
+    color:#fff!important;background-color:#ff5722!important
+}
+.flox-pink,.flox-hover-pink:hover{
+    color:#fff!important;background-color:#e91e63!important
+}
+.flox-purple,.flox-hover-purple:hover{
+    color:#fff!important;background-color:#9c27b0!important
+}
+.flox-deep-purple,.flox-hover-deep-purple:hover{
+    color:#fff!important;background-color:#673ab7!important
+}
+.flox-red,.flox-hover-red:hover{
+    color:#fff!important;background-color:#f44336!important
+}
+.flox-sand,.flox-hover-sand:hover{
+    color:#000!important;background-color:#fdf5e6!important
+}
+.flox-teal,.flox-hover-teal:hover{
+    color:#fff!important;background-color:#009688!important
+}
+.flox-yellow,.flox-hover-yellow:hover{
+    color:#000!important;background-color:#ffeb3b!important
+}
+.flox-white,.flox-hover-white:hover{
+    color:#000!important;background-color:#fff!important
+}
+.flox-black,.flox-hover-black:hover{
+    color:#fff!important;background-color:#000!important
+}
+.flox-grey,.flox-hover-grey:hover,.flox-gray,.flox-hover-gray:hover{
+    color:#000!important;background-color:#9e9e9e!important
+}
+.flox-light-grey,.flox-hover-light-grey:hover,.flox-light-gray,.flox-hover-light-gray:hover{
+    color:#000!important;background-color:#f1f1f1!important
+}
+.flox-dark-grey,.flox-hover-dark-grey:hover,.flox-dark-gray,.flox-hover-dark-gray:hover{
+    color:#fff!important;background-color:#616161!important
+}
+.flox-pale-red,.flox-hover-pale-red:hover{
+    color:#000!important;background-color:#ffdddd!important
+}
+.flox-pale-green,.flox-hover-pale-green:hover{
+    color:#000!important;background-color:#ddffdd!important
+}
+.flox-pale-yellow,.flox-hover-pale-yellow:hover{
+    color:#000!important;background-color:#ffffcc!important
+}
+.flox-pale-blue,.flox-hover-pale-blue:hover{
+    color:#000!important;background-color:#ddffff!important
+}
+.flox-text-amber,.flox-hover-text-amber:hover{
+    color:#ffc107!important
+}
+.flox-text-aqua,.flox-hover-text-aqua:hover{
+    color:#00ffff!important
+}
+.flox-text-blue,.flox-hover-text-blue:hover{
+    color:#2196F3!important
+}
+.flox-text-light-blue,.flox-hover-text-light-blue:hover{
+    color:#87CEEB!important
+}
+.flox-text-brown,.flox-hover-text-brown:hover{
+    color:#795548!important
+}
+.flox-text-cyan,.flox-hover-text-cyan:hover{
+    color:#00bcd4!important
+}
+.flox-text-blue-grey,.flox-hover-text-blue-grey:hover,.flox-text-blue-gray,.flox-hover-text-blue-gray:hover{
+    color:#607d8b!important
+}
+.flox-text-green,.flox-hover-text-green:hover{
+    color:#4CAF50!important
+}
+.flox-text-light-green,.flox-hover-text-light-green:hover{
+    color:#8bc34a!important
+}
+.flox-text-indigo,.flox-hover-text-indigo:hover{
+    color:#3f51b5!important
+}
+.flox-text-khaki,.flox-hover-text-khaki:hover{
+    color:#b4aa50!important
+}
+.flox-text-lime,.flox-hover-text-lime:hover{
+    color:#cddc39!important
+}
+.flox-text-orange,.flox-hover-text-orange:hover{
+    color:#ff9800!important
+}
+.flox-text-deep-orange,.flox-hover-text-deep-orange:hover{
+    color:#ff5722!important
+}
+.flox-text-pink,.flox-hover-text-pink:hover{
+    color:#e91e63!important
+}
+.flox-text-purple,.flox-hover-text-purple:hover{
+    color:#9c27b0!important
+}
+.flox-text-deep-purple,.flox-hover-text-deep-purple:hover{
+    color:#673ab7!important
+}
+.flox-text-red,.flox-hover-text-red:hover{
+    color:#f44336!important
+}
+.flox-text-sand,.flox-hover-text-sand:hover{
+    color:#fdf5e6!important
+}
+.flox-text-teal,.flox-hover-text-teal:hover{
+    color:#009688!important
+}
+.flox-text-yellow,.flox-hover-text-yellow:hover{
+    color:#d2be0e!important
+}
+.flox-text-white,.flox-hover-text-white:hover{
+    color:#fff!important
+}
+.flox-text-black,.flox-hover-text-black:hover{
+    color:#000!important
+}
+.flox-text-grey,.flox-hover-text-grey:hover,.flox-text-gray,.flox-hover-text-gray:hover{
+    color:#757575!important
+}
+.flox-text-light-grey,.flox-hover-text-light-grey:hover,.flox-text-light-gray,.flox-hover-text-light-gray:hover{
+    color:#f1f1f1!important
+}
+.flox-text-dark-grey,.flox-hover-text-dark-grey:hover,.flox-text-dark-gray,.flox-hover-text-dark-gray:hover{
+    color:#3a3a3a!important
+}
+.flox-border-amber,.flox-hover-border-amber:hover{
+    border-color:#ffc107!important
+}
+.flox-border-aqua,.flox-hover-border-aqua:hover{
+    border-color:#00ffff!important
+}
+.flox-border-blue,.flox-hover-border-blue:hover{
+    border-color:#2196F3!important
+}
+.flox-border-light-blue,.flox-hover-border-light-blue:hover{
+    border-color:#87CEEB!important
+}
+.flox-border-brown,.flox-hover-border-brown:hover{
+    border-color:#795548!important
+}
+.flox-border-cyan,.flox-hover-border-cyan:hover{
+    border-color:#00bcd4!important
+}
+.flox-border-blue-grey,.flox-hover-border-blue-grey:hover,.flox-border-blue-gray,.flox-hover-border-blue-gray:hover{
+    border-color:#607d8b!important
+}
+.flox-border-green,.flox-hover-border-green:hover{
+    border-color:#4CAF50!important
+}
+.flox-border-light-green,.flox-hover-border-light-green:hover{
+    border-color:#8bc34a!important
+}
+.flox-border-indigo,.flox-hover-border-indigo:hover{
+    border-color:#3f51b5!important
+}
+.flox-border-khaki,.flox-hover-border-khaki:hover{
+    border-color:#f0e68c!important
+}
+.flox-border-lime,.flox-hover-border-lime:hover{
+    border-color:#cddc39!important
+}
+.flox-border-orange,.flox-hover-border-orange:hover{
+    border-color:#ff9800!important
+}
+.flox-border-deep-orange,.flox-hover-border-deep-orange:hover{
+    border-color:#ff5722!important
+}
+.flox-border-pink,.flox-hover-border-pink:hover{
+    border-color:#e91e63!important
+}
+.flox-border-purple,.flox-hover-border-purple:hover{
+    border-color:#9c27b0!important
+}
+.flox-border-deep-purple,.flox-hover-border-deep-purple:hover{
+    border-color:#673ab7!important
+}
+.flox-border-red,.flox-hover-border-red:hover{
+    border-color:#f44336!important
+}
+.flox-border-sand,.flox-hover-border-sand:hover{
+    border-color:#fdf5e6!important
+}
+.flox-border-teal,.flox-hover-border-teal:hover{
+    border-color:#009688!important
+}
+.flox-border-yellow,.flox-hover-border-yellow:hover{
+    border-color:#ffeb3b!important
+}
+.flox-border-white,.flox-hover-border-white:hover{
+    border-color:#fff!important
+}
+.flox-border-black,.flox-hover-border-black:hover{
+    border-color:#000!important
+}
+.flox-border-grey,.flox-hover-border-grey:hover,.flox-border-gray,.flox-hover-border-gray:hover{
+    border-color:#9e9e9e!important
+}
+.flox-border-light-grey,.flox-hover-border-light-grey:hover,.flox-border-light-gray,.flox-hover-border-light-gray:hover{
+    border-color:#f1f1f1!important
+}
+.flox-border-dark-grey,.flox-hover-border-dark-grey:hover,.flox-border-dark-gray,.flox-hover-border-dark-gray:hover{
+    border-color:#616161!important
+}
+.flox-border-pale-red,.flox-hover-border-pale-red:hover{
+    border-color:#ffe7e7!important
+}
+.flox-border-pale-green,.flox-hover-border-pale-green:hover{
+    border-color:#e7ffe7!important
+}
+.flox-border-pale-yellow,.flox-hover-border-pale-yellow:hover{
+    border-color:#ffffcc!important}.flox-border-pale-blue,.flox-hover-border-pale-blue:hover{border-color:#e7ffff!important
+}
+.flox-flat-turquoise{
+    color:#fff;background-color:#1abc9c
+}
+.flox-flat-emerald{
+    color:#fff;background-color:#2ecc71
+}
+.flox-flat-peter-river{
+    color:#fff;background-color:#3498db
+}
+.flox-flat-amethyst{
+    color:#fff;background-color:#9b59b6
+}
+.flox-flat-wet-asphalt{
+    color:#fff;background-color:#34495e
+}
+.flox-flat-green-sea{
+    color:#fff;background-color:#16a085
+}
+.flox-flat-nephritis{
+    color:#fff;background-color:#27ae60
+}
+.flox-flat-belize-hole{
+    color:#fff;background-color:#2980b9
+}
+.flox-flat-wisteria{
+    color:#fff;background-color:#8e44ad
+}
+.flox-flat-midnight-blue{
+    color:#fff;background-color:#2c3e50
+}
+.flox-flat-sun-flower{
+    color:#fff;background-color:#f1c40f
+}
+.flox-flat-carrot{
+    color:#fff;background-color:#e67e22
+}
+.flox-flat-alizarin{
+    color:#fff;background-color:#e74c3c
+}
+.flox-flat-clouds{
+    color:#000;background-color:#ecf0f1
+}
+.flox-flat-concrete{
+    color:#fff;background-color:#95a5a6
+}
+.flox-flat-orange{
+    color:#fff;background-color:#f39c12
+}
+.flox-flat-pumpkin{
+    color:#fff;background-color:#d35400
+}
+.flox-flat-pomegranate{
+    color:#fff;background-color:#c0392b
+}
+.flox-flat-silver{
+    color:#000;background-color:#bdc3c7
+}
+.flox-flat-asbestos{
+    color:#fff;background-color:#7f8c8d
+}
