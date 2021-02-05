@@ -1,5 +1,5 @@
 body {
-	background-color: #36393F;
+	background-color: #605aff;
 	font-family: Roboto,Arial,sans-serif;
 }
 
@@ -10,12 +10,16 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  position: absolute;
   width: 300px;
-  height: 2000px;
+  
+  top: 0px;
+  height: 100%;
   background-color: #2C2F33;
-  box-shadow: 3px 3px 20px black;
+  box-shadow: 1px 1px 20px black;
   
 }
+
 
 li a {
   margin-left: 20px;
@@ -34,14 +38,18 @@ li a {
 
 li a:hover {
     transform: translateX(10px);
+    
 }
 
+.navbar {
+    display: block;
+}
 
 .bouton {
   margin-left: 38px;
   opacity: 1;
   text-decoration: none;
-  background-color: white;
+  background: white;
   color: black;
   padding: 10px 16px;
   font-weight: 50px;
@@ -50,3 +58,31 @@ li a:hover {
   border-radius: 50px;
 }
 
+h1 {
+    opacity: 1;
+    vertical-align: text-top;
+    position: relative;
+    margin-left: 350px;
+    top: -450px;
+    font-size: 64px;
+    color: white;
+    font-weight: bold;
+    
+}
+
+.logo_img {
+   display: block;
+   position: relative;
+   left: 55%;
+   top: 100px;
+}
+
+@media only screen and (max-width: 1725px) {
+  .logo_img {
+    display: flex;
+    position: relative;
+    left: 0px !important;
+    top: 100px;
+    z-index: -1;
+  }
+}
