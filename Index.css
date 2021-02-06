@@ -2,6 +2,7 @@ body {
 background-color: #D18F8E;
 }
 .page1 {
+        
 	background: linear-gradient(180deg, #10162C, #D2908F);
 	background-repeat: no-repaeat;
 	background-size: cover;
@@ -28,7 +29,7 @@ ul {
   position: absolute;
   width: 300px;
   opacity: 0.90;
- 
+  z-index: 2;
   height: 100%;
   background-color: #2C2F33;
   box-shadow: 1px 1px 20px black;
@@ -58,6 +59,7 @@ li a:hover {
 
 .navbar {
     display: block;
+    z-index: 2 !important;
     
 }
 
@@ -74,6 +76,25 @@ li a:hover {
   border-radius: 50px;
 }
 
+.bottom1 {
+    position: relative;
+    margin-left: 350px;
+    top: -400px;
+    font-size: 35px;
+    color: white !important;
+    background-color: #4946FF !important;
+    font-weight: bold;
+    padding: 10px 36px;
+    transition: .5s background-color;
+}
+
+.bottom1:hover {
+transform: translateX(10px);
+color: white !important;
+background-color: #D45AFF !important;
+    
+}
+
 h1 {
     opacity: 1;
     vertical-align: text-top;
@@ -83,6 +104,7 @@ h1 {
     font-size: 64px;
     color: white;
     font-weight: bold;
+    z-index: 2;
     text-shadow: 0 0 10px #1A1C31
     
 }
@@ -104,7 +126,7 @@ h1 {
     }
 }
  
-@keyframes zoominoutsinglefeatured {
+@-webkit-keyframes zoominoutsinglefeatured {
     
     0% {
         transform: scale(1,1);
@@ -118,7 +140,7 @@ h1 {
 }
 
 .logo_img {
-    animation: zoominoutsinglefeatured 1s infinite ;
+    -webkit-animation: zoominoutsinglefeatured 1s infinite ;
     
 }
 .logo_img2 {
@@ -133,7 +155,7 @@ h1 {
     position: relative;
     left: 0px !important;
     top: 100px;
-    z-index: -1;
+    z-index: 1;
     width:600px;
     animation: rotating 2s linear infinite;
   }
@@ -141,32 +163,44 @@ h1 {
     position: absolute;
    left: 0px !important;
    top: 100px;
-   z-index: -1;
+   z-index: 1;
    width:600px;
   }
   
-  
+
 }
 .perf {
   opacity: 1;
   background-color: #2C2F33;
   top: 100%;
-  height: 100% !important;
+  height: 300px !important;
   width: 100%;
   display: inline-flex;
   z-index: 2;
+  box-shadow: 0px 0px 0px white !important;
+  
 }
 .text {
+
   text-align: center;
   margin-left: 20px;
   display: block;
   font-size: 18px;
   font-weight: bold;
   color: white;
-  padding: 0px 12%;
+  padding: 0px 5%;
   text-decoration: none;
   position: relative;
-  left: 0px !important;
+  
   top: 50px;
+
+}
+
+
+.premium {
+  z-index: 3;
+  height: 300px !important;
+  width: 100%;
+  background-color: white;
 
 }
