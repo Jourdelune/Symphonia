@@ -266,9 +266,9 @@ class Play(commands.Cog):
     
     @commands.command()
     async def np(self, ctx):
-        player = music.get_player(guild_id=ctx.guild.id)
-        song = player.now_playing()
         try:
+            player = music.get_player(guild_id=ctx.guild.id)
+            song = player.now_playing()
             pourcent = (playing_duration(ctx, int(song.duration))*100)/int(song.duration)
         
             barre="▬"*int((int(pourcent)/5))
@@ -290,7 +290,7 @@ class Play(commands.Cog):
             embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
             embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
             embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
-            embed.add_field(name="temps", value=f"{convert_duration(playing_duration(ctx, song.duration))}", inline=True)
+            embed.add_field(name="time", value=f"{convert_duration(playing_duration(ctx, song.duration))}", inline=True)
         
         
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
@@ -382,9 +382,6 @@ class Play(commands.Cog):
                     await player.stop()
                     ctx=dict_ctx[member.guild.id]
                     ctx.voice_client.cleanup()
-                   
-    
-       
         
     
         
