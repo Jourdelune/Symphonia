@@ -246,21 +246,24 @@ class Play(commands.Cog):
         try:
             player = music.get_player(guild_id=ctx.guild.id)
             song = player.now_playing()
-            pourcent = (playing_duration(ctx, int(song.duration))*100)/int(song.duration)
+            try:
+                pourcent = (playing_duration(ctx, int(song.duration))*100)/int(song.duration)
         
-            barre="▬"*int((int(pourcent)/5))
-            final=""
-            error=0
-            for i in list(range(20)):
-                try:
-                    final=final+barre[i]
-                except:
-                    if error == 0:
-                        final=final+":nottub_oidar:"
-                    else:
-                        final=final+"▬"
-                    error+=1     
-            embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**\n`{convert_duration(playing_duration(ctx, song.duration))}/{convert_duration(song.duration)}`\n\n**|{"".join(reversed(final))}|**""")  
+                barre="▬"*int((int(pourcent)/5))
+                final=""
+                error=0
+                for i in list(range(20)):
+                    try:
+                        final=final+barre[i]
+                    except:
+                        if error == 0:
+                            final=final+":nottub_oidar:"
+                        else:
+                            final=final+"▬"
+                        error+=1     
+                embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**\n`{convert_duration(playing_duration(ctx, song.duration))}/{convert_duration(song.duration)}`\n\n**|{"".join(reversed(final))}|**""")  
+            except:
+                embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**""")
             embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
             embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
@@ -272,13 +275,10 @@ class Play(commands.Cog):
         
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
                 text=f"Song")
+            await ctx.send(embed=embed)
         except:
             await ctx.send("<:error:805750300450357308> **No musique played.**")
             return
-        
-                
-        
-        await ctx.send(embed=embed)
     
    
     
