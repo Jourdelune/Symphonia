@@ -99,11 +99,13 @@ class Play(commands.Cog):
             except:
                 await player.queue(url, bettersearch=True)
             
-            try:  
-                song = await player.play()
-            except:
-                await ctx.voice_client.connect()
-                song = await player.play()
+            
+            song = await player.play()
+            
+                
+            
+                
+           
                 
             embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
             embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
@@ -154,6 +156,12 @@ class Play(commands.Cog):
             else:
                 await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
         else:
+            if ctx.voice_client.channel is None:
+                if ctx.author.voice:
+                    await ctx.author.voice.channel.connect()
+                else:
+                    await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
+                
             if not ctx.voice_client.is_playing():
                 try:
                     await ctx.author.voice.channel.connect()
@@ -373,9 +381,8 @@ class Play(commands.Cog):
                 if player != None:
                     await player.stop()
                     ctx=dict_ctx[member.guild.id]
-                    await ctx.voice_client.disconnect()
-                    await player.close()
-                    print("stop")
+                    ctx.voice_client.cleanup()
+                   
     
        
         
