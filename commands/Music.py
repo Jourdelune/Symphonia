@@ -71,11 +71,7 @@ class Play(commands.Cog):
             await ctx.send("<:error:805750300450357308> **The bot is not connected to a voice channel.**")
         
     @commands.command()
-    async def play(self, ctx, *, url):
-        if ctx.voice_client is None:
-            if ctx.author.voice:
-                await ctx.author.voice.channel.connect()
-                
+    async def play(self, ctx, *, url):             
         if not (ctx in list_ctx):
             list_ctx.append(ctx)
         if not (ctx in dict_ctx):
@@ -88,7 +84,6 @@ class Play(commands.Cog):
         if not player:
             player = music.create_player(ctx, ffmpeg_error_betterfix=True)
         if not ctx.voice_client.is_playing():
-            
             try:
                 await player.queue(url, search=True)
             except:
@@ -145,24 +140,11 @@ class Play(commands.Cog):
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
-                
-                await ctx.author.voice.channel.connect()
+                await ctx.author.voice.channel.connect(timeout=None)
                 
             else:
                 await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
-        else:
-            if ctx.voice_client.channel is None:
-                if ctx.author.voice:
-                    await ctx.author.voice.channel.connect()
-                else:
-                    await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
-                
-            if not ctx.voice_client.is_playing():
-                try:
-                    await ctx.author.voice.channel.connect()
-                except:
-                    pass
-                
+        
     @commands.command()
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
@@ -297,7 +279,8 @@ class Play(commands.Cog):
                 
         
         await ctx.send(embed=embed)
-        
+    
+   
     
     @commands.command()
     async def skip(self, ctx):
@@ -376,8 +359,9 @@ class Play(commands.Cog):
                 if player != None:
                     await player.stop()
                     ctx=dict_ctx[member.guild.id]
-                    await ctx.voice_client.disconnect()
-                    ctx.voice_client.cleanup()
+                    
+                    if ctx.voice_client is not None:
+                        ctx.voice_client.cleanup()
         
     
         
