@@ -65,11 +65,6 @@ class Play(commands.Cog):
     @commands.command()
     async def leave(self, ctx):
         try:
-            player = music.get_player(guild_id=ctx.guild.id)
-            await player.stop()
-        except:
-            pass
-        try:
             await ctx.voice_client.disconnect()
             await ctx.send(":arrow_left: **Songs left the voice channel.**")
         except:
@@ -381,6 +376,7 @@ class Play(commands.Cog):
                 if player != None:
                     await player.stop()
                     ctx=dict_ctx[member.guild.id]
+                    await ctx.voice_client.disconnect()
                     ctx.voice_client.cleanup()
         
     
