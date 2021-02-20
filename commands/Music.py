@@ -12,6 +12,7 @@ import mysql.connector
 music = DiscordUtils.Music()
 
 server_replay=[]
+dict_ctx={}
 list_ctx=[]
 last_name={}
 statut_musique=[]
@@ -24,6 +25,8 @@ class Play(commands.Cog):
     @tasks.loop(seconds=0.5)
     async def check_time(self):
         for ctx in list_ctx:
+            if ctx.voice_client is None:
+                return
             if ctx.voice_client.is_playing:
                 player = music.get_player(guild_id=ctx.guild.id)
                 try:
@@ -51,12 +54,37 @@ class Play(commands.Cog):
                 reset_duration(ctx)
                 
         
-    
+  
+        
+    @commands.command()
+    async def stop(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        await player.stop()
+        await ctx.send("Music Stopped")
+        
+    @commands.command()
+    async def leave(self, ctx):
+        try:
+            player = music.get_player(guild_id=ctx.guild.id)
+            await player.stop()
+        except:
+            pass
+        try:
+            await ctx.voice_client.disconnect()
+            await ctx.send(":arrow_left: **Songs left the voice channel.**")
+        except:
+            await ctx.send("<:error:805750300450357308> **The bot is not connected to a voice channel.**")
+        
     @commands.command()
     async def play(self, ctx, *, url):
+        if ctx.voice_client is None:
+            if ctx.author.voice:
+                await ctx.author.voice.channel.connect()
+                
         if not (ctx in list_ctx):
             list_ctx.append(ctx)
-            
+        if not (ctx in dict_ctx):
+            dict_ctx[ctx.guild.id]=ctx
         if not ctx.author.voice:
             return
         
@@ -65,12 +93,18 @@ class Play(commands.Cog):
         if not player:
             player = music.create_player(ctx, ffmpeg_error_betterfix=True)
         if not ctx.voice_client.is_playing():
+            
             try:
                 await player.queue(url, search=True)
             except:
                 await player.queue(url, bettersearch=True)
+            
+            try:  
+                song = await player.play()
+            except:
+                await ctx.voice_client.connect()
+                song = await player.play()
                 
-            song = await player.play()
             embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
             embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
@@ -114,11 +148,18 @@ class Play(commands.Cog):
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
+                
                 await ctx.author.voice.channel.connect()
                 
             else:
                 await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
- 
+        else:
+            if not ctx.voice_client.is_playing():
+                try:
+                    await ctx.author.voice.channel.connect()
+                except:
+                    pass
+                
     @commands.command()
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
@@ -320,10 +361,25 @@ class Play(commands.Cog):
             await player.toggle_song_loop()
            
             del server_replay[server_replay.index(ctx.guild.id)]
+    
+    
+    
+    @commands.Cog.listener()
+    async def on_voice_state_update(self, member, before, after):
+        if after.channel is None:
+            if member.id == 805082505320333383:
+                player = music.get_player(guild_id=member.guild.id)
+              
+                if player != None:
+                    await player.stop()
+                    ctx=dict_ctx[member.guild.id]
+                    await ctx.voice_client.disconnect()
+                    await player.close()
+                    print("stop")
+    
+       
         
     
-    
-
         
 def setup(client):
     client.add_cog(Play(client))

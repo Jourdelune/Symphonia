@@ -89,9 +89,8 @@ li a:hover {
 }
 
 .bottom1:hover {
-transform: translateX(10px);
-color: white !important;
-background-color: #D45AFF !important;
+    color: white !important;
+    background-color: #D45AFF !important;
     
 }
 
@@ -173,7 +172,7 @@ h1 {
   opacity: 1;
   background-color: #2C2F33;
   top: 100%;
-  height: 300px !important;
+  height: 1000px !important;
   width: 100%;
   display: inline-flex;
   z-index: 2;
@@ -197,10 +196,20 @@ h1 {
 }
 
 
-.premium {
-  z-index: 3;
-  height: 300px !important;
-  width: 100%;
-  background-color: white;
+.bottom2 {
+position: relative;
+transition: .5s background-color;
+margin-left: 50px;
+top: 900px;
+background-color: #4946FF !important;
+font-weight: bold;
+color: white !important;
+padding: 10px 36px;
+}
 
+
+.bottom2:hover {
+    color: white !important;
+    background-color: #D45AFF !important;
+    
 }
