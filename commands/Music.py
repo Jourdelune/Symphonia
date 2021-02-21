@@ -134,7 +134,7 @@ class Play(commands.Cog):
             
             
         
-        
+
         
     @play.before_invoke
     async def ensure_voice(self, ctx):
@@ -150,12 +150,12 @@ class Play(commands.Cog):
         player = music.get_player(guild_id=ctx.guild.id)
         verif=check_mode_pause(ctx)
         if verif == True:
-            await ctx.send(f"<:pause:805844063164039168> **Music already paused.**")
+            await ctx.send(f":pause_button: **Music already paused.**")
             return
         mode_pause(ctx, "on")
         try:
             song = await player.pause()
-            await ctx.send(f"<:pause:806603967769477151> **Paused** `{song.name}`")
+            await ctx.send(f":pause_button: **Paused** `{song.name}`")
         except:
             await ctx.send(f"<:error:805750300450357308> **No music played**")
             
@@ -168,13 +168,13 @@ class Play(commands.Cog):
             statut_musique.remove(ctx.guild.id)
         verif=check_mode_pause(ctx)
         if verif == False:
-            await ctx.send(f"<:pause:805844063164039168> **music already being played.**")
+            await ctx.send(f":arrow_forward: **music already being played.**")
             return
         player = music.get_player(guild_id=ctx.guild.id)
         mode_pause(ctx, "off")
         try:
             song = await player.resume()
-            await ctx.send(f"<:play:806603537986617355> **Resumed** `{song.name}`")
+            await ctx.send(f":arrow_forward: **Resumed** `{song.name}`")
         except:
             await ctx.send(f"<:error:805750300450357308> **No music played**")
 
@@ -192,11 +192,11 @@ class Play(commands.Cog):
             return
             
         if song.is_looping:
-            await ctx.send(f"<:boucle:805907893714681947> **Enabled loop for** `{song.name}`")
+            await ctx.send(f":infinity: **Enabled loop for** `{song.name}`")
             
             
         else:
-            await ctx.send(f"<:stop_infinis:805908993284243516> **Disabled loop for** `{song.name}`")
+            await ctx.send(f":infinity: **Disabled loop for** `{song.name}`")
             
             
     

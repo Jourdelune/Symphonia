@@ -16,10 +16,15 @@ class Volume(commands.Cog):
         """Changes the player's volume"""
 
         if ctx.voice_client is None:
-            return await ctx.send("Not connected to a voice channel.")
+            await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
+            return
 
         ctx.voice_client.source.volume = volume / 100
-        await ctx.send("Changed volume to {}%".format(volume))
+        if volume == 0:
+            await ctx.send(":mute: **Changed volume to {}%**".format(volume))
+        else:
+            await ctx.send(":loud_sound: **Changed volume to {}%**".format(volume))
+            
        
         
 def setup(client):
