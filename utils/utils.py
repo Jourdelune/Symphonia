@@ -96,7 +96,7 @@ def reset_duration(ctx):
    
      
 def embed_color():
-    return discord.Colour.from_rgb(236, 90, 40)
+    return discord.Colour.from_rgb(212, 90, 255)
 
 
 def read_database_where(table_name, data_in, data_where, data_where_in):

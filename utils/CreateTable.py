@@ -18,6 +18,6 @@ class CreateTable(object):
         conn.commit()
         
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS Playlist(user_id BIGINT, title VARCHAR(255), url VARCHAR(255), thumbnail VARCHAR(255), autor VARCHAR(255))") 
+            "CREATE TABLE IF NOT EXISTS music_guild(guild_id BIGINT, rgb VARCHAR(255), channel_id BIGINT, comportement_custom VARCHAR(255))") 
         conn.commit()
         conn.close()

@@ -10,8 +10,10 @@ class OnCommand(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if "cooldown" in str(error):
-            embed = discord.Embed(color=discord.Colour.red(), title=":bell: Cooldown", description=f"**{str(error)}**")
+            embed = discord.Embed(color=discord.Colour.red(), title=":alarm_clock: Cooldown", description=f"**{str(error)}**")
             await ctx.send(embed=embed)
+        else:
+            raise error
             
     
 

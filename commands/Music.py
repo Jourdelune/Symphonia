@@ -8,6 +8,7 @@ from dateutil.relativedelta import relativedelta
 import DiscordUtils
 from numerize import numerize
 import mysql.connector
+import random
 
 music = DiscordUtils.Music()
 
@@ -57,12 +58,14 @@ class Play(commands.Cog):
   
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def stop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         await player.stop()
-        await ctx.send("Music Stopped")
+        await ctx.send(":no_entry: **Music Stopped**")
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def leave(self, ctx):
         try:
             await ctx.voice_client.disconnect()
@@ -82,6 +85,11 @@ class Play(commands.Cog):
         
         message = await ctx.send(f"<:search:805751542920773633> **currently researching** `{url}`.")
         player = music.get_player(guild_id=ctx.guild.id)
+        if player is not None:
+            if len(player.current_queue()) >= 9:
+                await ctx.send("<:error:805750300450357308> **The maximum tail is 9 songs.**")
+                return
+            
         if not player:
             player = music.create_player(ctx, ffmpeg_error_betterfix=True)
         if not ctx.voice_client.is_playing():
@@ -95,13 +103,6 @@ class Play(commands.Cog):
             except:
                 await ctx.author.voice.channel.connect(timeout=None)
                 song = await player.play()
-           
-                
-            
-                
-            
-                
-           
                 
             embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
             embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
@@ -110,7 +111,7 @@ class Play(commands.Cog):
             embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
             embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
             embed.add_field(name="position", value=f"0", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
                              text=f"Song")
             
             await message.edit(content=None, embed=embed)
@@ -134,7 +135,7 @@ class Play(commands.Cog):
             embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
             embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
             embed.add_field(name="position", value=f"{position}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
                              text=f"Song")
             await message.edit(content=None, embed=embed)
             
@@ -152,6 +153,7 @@ class Play(commands.Cog):
                 await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         verif=check_mode_pause(ctx)
@@ -169,6 +171,7 @@ class Play(commands.Cog):
             statut_musique.append(ctx.guild.id)
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def resume(self, ctx):
         if (ctx.guild.id in statut_musique):
             statut_musique.remove(ctx.guild.id)
@@ -186,6 +189,7 @@ class Play(commands.Cog):
 
     
     @commands.command()
+    @commands.cooldown(rate=1, per=3, type=commands.BucketType.user)
     async def loop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         if (ctx.guild.id in server_replay):
@@ -205,8 +209,34 @@ class Play(commands.Cog):
             await ctx.send(f":infinity: **Disabled loop for** `{song.name}`")
             
             
-    
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
+    async def shuffle(self, ctx):
+        try:
+            message = await ctx.send(":revolving_hearts: ** loading shuffle.**")
+            player = music.get_player(guild_id=ctx.guild.id)
+            liste_music = []
+            cmpt=0
+            for song in player.current_queue():
+                if cmpt+1 == 1:
+                    cmpt+=1
+                    pass
+                else:
+                    liste_music.append(song.url)
+                    song = await player.remove_from_queue(cmpt)
+                    cmpt+=1
+            random.shuffle(liste_music)
+            for song in liste_music:
+                song = await player.queue(song, search=False)
+            
+            await message.edit(content=":revolving_hearts: ** queue shuffle!**")
+        except:
+            await ctx.send(f"<:error:805750300450357308> **No music played**")
+            
+        
+        
+    @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def queue(self, ctx):       
         player = music.get_player(guild_id=ctx.guild.id)
         name = []
@@ -242,12 +272,13 @@ class Play(commands.Cog):
         for i in duration:
             all_duration = all_duration+i
 
-        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
+        embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
                         text=f"{len(name)} song in Song'Queue. {convert_duration(all_duration)} total duration")
         
         await ctx.send(embed=embed)
     
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def np(self, ctx):
         try:
             player = music.get_player(guild_id=ctx.guild.id)
@@ -279,7 +310,7 @@ class Play(commands.Cog):
             embed.add_field(name="time", value=f"{convert_duration(playing_duration(ctx, song.duration))}", inline=True)
         
         
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
                 text=f"Song")
             await ctx.send(embed=embed)
         except:
@@ -289,6 +320,7 @@ class Play(commands.Cog):
    
     
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def skip(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         try:
@@ -305,7 +337,7 @@ class Play(commands.Cog):
             embed.set_thumbnail(url=skipped[1].thumbnail)
             embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
             embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
+            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
                             text=f"Song")
             
             await ctx.send(embed=embed)
@@ -313,6 +345,7 @@ class Play(commands.Cog):
             await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def remove(self, ctx, index):
         player = music.get_player(guild_id=ctx.guild.id)
         song = player.current_queue()
@@ -325,6 +358,7 @@ class Play(commands.Cog):
         
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def replay(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         song = player.now_playing()
@@ -343,7 +377,7 @@ class Play(commands.Cog):
         embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
         
         
-        embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
+        embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
             text=f"Song")
            
         await ctx.send(embed=embed)
@@ -358,17 +392,15 @@ class Play(commands.Cog):
     
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
-        print("detect")
         if after.channel is None:
             if member.id == 805082505320333383:
                 player = music.get_player(guild_id=member.guild.id)
-                print("test")
                 if player != None:
                     await player.stop()
                     ctx=dict_ctx[member.guild.id]
                     
                     if ctx.voice_client is not None:
-                        print("ok")
+                   
                         ctx.voice_client.cleanup()
         
     
