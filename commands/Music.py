@@ -71,6 +71,7 @@ class Play(commands.Cog):
             await ctx.send("<:error:805750300450357308> **The bot is not connected to a voice channel.**")
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def play(self, ctx, *, url):             
         if not (ctx in list_ctx):
             list_ctx.append(ctx)
@@ -89,8 +90,13 @@ class Play(commands.Cog):
             except:
                 await player.queue(url, bettersearch=True)
             
-            
-            song = await player.play()
+            try:
+                song = await player.play()
+            except:
+                await ctx.author.voice.channel.connect(timeout=None)
+                song = await player.play()
+           
+                
             
                 
             
@@ -352,15 +358,17 @@ class Play(commands.Cog):
     
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+        print("detect")
         if after.channel is None:
             if member.id == 805082505320333383:
                 player = music.get_player(guild_id=member.guild.id)
-              
+                print("test")
                 if player != None:
                     await player.stop()
                     ctx=dict_ctx[member.guild.id]
                     
                     if ctx.voice_client is not None:
+                        print("ok")
                         ctx.voice_client.cleanup()
         
     

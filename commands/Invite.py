@@ -14,7 +14,7 @@ class Invite(commands.Cog):
     @commands.command()
     async def invite(self, ctx):
         """Invite link"""
-        embed = discord.Embed(color=embed_color(), description="[link song's Bot](https://lolo)")
+        embed = discord.Embed(color=embed_color(), description="[link song's Bot](https://discord.com/oauth2/authorize?client_id=805082505320333383&scope=bot&permissions=70634560)")
         embed.set_author(name=f"Invite song's Bot", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
             
