@@ -22,7 +22,29 @@ class Play(commands.Cog):
     def __init__(self, client):
         self.bot = client
         self.check_time.start()
-                    
+        self.check_member.start()
+    
+    @tasks.loop(seconds=60)
+    async def check_member(self):
+        for ctx in list_ctx:
+            try:
+                if len(ctx.voice_client.channel.members) == 1:
+                    player = music.get_player(guild_id=ctx.guild.id)
+                    if not ctx.voice_client.is_playing():
+                        await ctx.voice_client.disconnect()
+                        await ctx.send(":arrow_left: **Song' Bot left the channel because no music is played and no one is in the vocal.**")
+                    else:
+                        if player.now_playing() is not None:
+                            song = player.now_playing()
+                            if song.is_looping:
+                                await player.stop()
+                                await ctx.voice_client.disconnect()
+                                await ctx.send(":arrow_left: **Song' Bot is disconnected because you have launched a music does not loop without listening to it**")
+            except:
+                list_ctx.remove(ctx)
+                
+          
+          
     @tasks.loop(seconds=0.5)
     async def check_time(self):
         for ctx in list_ctx:
@@ -54,8 +76,6 @@ class Play(commands.Cog):
             else:
                 reset_duration(ctx)
                 
-        
-  
         
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
@@ -400,9 +420,9 @@ class Play(commands.Cog):
                     ctx=dict_ctx[member.guild.id]
                     
                     if ctx.voice_client is not None:
-                   
                         ctx.voice_client.cleanup()
         
+    
     
         
 def setup(client):
