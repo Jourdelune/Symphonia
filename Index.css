@@ -1,10 +1,10 @@
 body {
-background-color: #D18F8E;
+  background-color:  #D2908F;
 }
 .page1 {
-        
+    
 	background: linear-gradient(180deg, #10162C, #D2908F);
-	background-repeat: no-repaeat;
+	background-repeat: no-repeat;
 	background-size: cover;
 	font-family: Roboto,Arial,sans-serif;
 	width: auto;
@@ -148,25 +148,28 @@ h1 {
    top: 100px;
 }
 
-@media only screen and (max-width: 1725px) {
+@media only screen and (max-width: 1334px) {
   .logo_img {
-    display: flex;
-    position: relative;
-    left: 0px !important;
-    top: 100px;
-    z-index: 1;
-    width:600px;
-    animation: rotating 2s linear infinite;
+    display: none;
   }
   .logo_img2 {
-    position: absolute;
-   left: 0px !important;
-   top: 100px;
-   z-index: 1;
-   width:600px;
+    display: none;
   }
-  
+  .bottom1 {display: none;}
+  .bottom2 {display: none;}
+  .navbar{
+    display: none;
+  }
 
+  h1 {
+    display: none;
+    
+}
+
+  .perf {
+    display:table-cell !important;
+    padding: 20px;
+  }
 }
 .perf {
   opacity: 1;
