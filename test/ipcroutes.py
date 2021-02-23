@@ -26,6 +26,7 @@ async def get_guild_count(data):
 @bot_ipc.route() 
 async def get_owner_with_id(data):
     guild = bot.get_guild(int(data.guild_id))
+    print(guild.owner_id)
     return guild.owner_id
 
 @bot_ipc.route() 

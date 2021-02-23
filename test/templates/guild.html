@@ -30,7 +30,7 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
            
-            <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+            <a href="/me" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Commands</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Support</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vote</a>
@@ -53,7 +53,7 @@
 
   <div class="sm:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+      <a href="/me" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Commands</a>
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Support</a>
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Vote</a>
@@ -61,7 +61,140 @@
   </div>
 </nav>
 
+<div style="margin-left: 50px !important; margin-top: 50px"class="pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div class="bg-gray-800 px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
+        <form method="post">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="font-semibold text-lg leading-6 font-medium text-white" id="modal-headline">
+                Change Prefix
+              </h3>
+              <input type="int" id="var1" name="guild" value="{{guild_id}}" hidden>
+              <input class="bg-gray-800 font-semibold text-white" type="text" name="prefix"
+              placeholder="Current prefix: {{prefix}}" maxlength="10"
+              class="focus:outline-none" />
+            </div>
+          </div>
+          <div class="bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="submit" class="font-semibold w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-300 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div style="margin-left: 50px !important; margin-top: 50px, background-color: #36393F !important;"class="active pl-6 inline-block align-bottom bg-transparent rounded-lg text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div class="bg-transparent px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
+        <form method="post">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg leading-6 font-semibold text-white" id="modal-headline">
+                Message
+              </h3>
+              <p class="font-medium text-white">Enable or disable message shortcuts to avoid polluting the chatroom</p>
+            </div>
+          </div>
+          <div class="bg-transparent px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <div class="flex items-center justify-center w-full mb-24 bg-transparent">
+            
+          <form method="post" id="dataform" value="lol1" name="b">
+          <label method="post" onchange="myFunction()" 
+            for="toogleA" name="New" value="new_value"
+            class="flex items-center cursor-pointer bg-transparent">
+            <div class="relative bg-transparent">
+ 
+              <input id="toogleA" type="checkbox" name="New" value="new_value" class="hidden bg-transparent"/>
+   
+              <div 
+              class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inne bg-transparent"></div>
+     
+              <div 
+                class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0 bg-transparent"></div>
+              </div>
+
+              
+            </label>
+            </form>
+              <form method="post" name="yes" value="bob" id="lol"><input type="int" id="var1" name="guild" value="{{guild_id}}" hidden>
+              <input type="int" id="var2" name="edit_comport" value="yes" hidden>
+            </form>
+            <script>
+              function myFunction(form) {
+                var form = document.getElementById("lol");
+                var var1 = document.getElementById("var1");
+                var var2 = document.getElementById("var2");
+     
+                form.submit(); 
+              }
+              </script>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-left: 50px !important; margin-top: 50px"class="pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div class="bg-gray-800 px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
+        <form method="post">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="font-semibold text-lg leading-6 font-medium text-white" id="modal-headline">
+                Change Nickname
+              </h3>
+              <input type="int" id="var1" name="guild" value="{{guild_id}}" hidden>
+              <input class="bg-gray-800 font-semibold text-white" type="text" name="prefix"
+              placeholder="Current Name: {{prefix}}"
+              class="focus:outline-none" />
+            </div>
+          </div>
+          <div class="bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="submit" class="font-semibold w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-300 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
+{% if comport %}
+<style>
+.toggle__dot {
+  top: -.25rem;
+  left: -.25rem;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
 
+
+.active {
+background-color:  #36393F !important;
+
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(-15%);
+  background-color:  #FFFFFF !important;
+
+}
+
+</style>
+{% else %}
+<style>
+.toggle__dot {
+  top: -.25rem;
+  left: -.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
+</style>
+{% endif %}
 </html>

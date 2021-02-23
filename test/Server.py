@@ -1,6 +1,8 @@
 from quart import Quart, redirect, url_for, render_template, g, request
 from quart_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 from discord.ext.ipc import Client
+from utils.utils import *
+import mysql.connector
 
 app = Quart(__name__)
 web_ipc = Client(host="localhost", port=8765, secret_key="secret_key")
@@ -16,14 +18,57 @@ discord = DiscordOAuth2Session(app)
 
 @app.route('/me/', methods=['POST'])
 @requires_authorization
-async def create():
+async def create_me():
     form = await request.form
     user = await discord.fetch_user()
+    print(form)
     if (str(user.id) in form['user']):
-        return redirect(url_for(".guild", guild=form['guild']))
+        return redirect(url_for(".guild", guild_id=form['guild']))
     else:
         return redirect(url_for(".me"))
     
+@app.route('/guild/', methods=['POST'])
+@requires_authorization
+async def create_guild():
+    value=None
+    form = await request.form
+    user = await discord.fetch_user()
+    try:
+        write_in_database(table_name="config", data_in_name="guild_id", data_in=form['guild'],
+                            data_for_write_name="prefix", data_for_write=form['prefix'])
+    except:
+        pass
+
+    form = await request.form
+    try:
+        if form['edit_comport'] is not None:
+            conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                       password=database_password(),
+                                       database=database_name())
+
+            cursor = conn.cursor()
+            cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={form['guild']}""")
+            value = cursor.fetchone()
+            if value is not None:
+                value=value[0]
+                if value == "True":
+                    write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                                data_for_write_name="comportement_custom", data_for_write="False")
+                    value=False
+                elif value == "False":
+                    write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                                data_for_write_name="comportement_custom", data_for_write="True")
+                    value=True
+            else:
+                write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                                data_for_write_name="comportement_custom", data_for_write="True")
+                value=True
+            
+            conn.close()
+    except:
+        pass
+
+    return redirect(url_for(".guild", guild_id=form['guild'], comport=value))
     
     
 @app.route("/login/")
@@ -42,13 +87,38 @@ async def callback():
 async def redirect_unauthorized(e):
     return redirect(url_for("login"))
 
-@app.route("/guild")
+
+@app.route("/guild/")
 @requires_authorization
-async def guild():
+async def guild():       
     user = await discord.fetch_user()
-    guild_list = await web_ipc.request("get_owner_with_id", guild_id=request.args['guild'])
-    if guild_list == user.id:
-        return await render_template('guild.html', user=user)
+    guild_list = await web_ipc.request("get_owner_with_id", guild_id=request.args['guild_id'])
+    if int(guild_list) == int(user.id):
+        conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                       password=database_password(),
+                                       database=database_name())
+        cursor = conn.cursor()
+        cursor.execute(f"""SELECT prefix FROM config WHERE  guild_id={request.args['guild_id']}""")
+        prefix=cursor.fetchone()
+        if prefix is not None:
+            prefix = prefix[0]
+        else:
+            write_in_database(table_name="config", data_in_name="guild_id", data_in=request.args['guild_id'],
+                                    data_for_write_name="prefix", data_for_write="s!")
+            prefix="s!"  
+        conn.close()
+        try:
+            if request.args['comport'] is not None:
+                if request.args['comport'] == "True":
+                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, comport=request.args['comport'])
+                else:
+                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix)
+            else:
+                return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix)
+        except:
+            return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix)
+            
+        
     else:
         return redirect(url_for(".me"))
         

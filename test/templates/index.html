@@ -30,7 +30,7 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
            
-            <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+            <a href="/me" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Commands</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Support</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vote</a>
@@ -53,7 +53,7 @@
 
   <div class="sm:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+      <a href="/me" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Commands</a>
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Support</a>
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Vote</a>
@@ -62,9 +62,9 @@
 </nav>
 
 
-<div class="flex flex-col p-8 grid grid-cols-1 md:grid-cols-4 ">
+<div class="flex flex-col pl-8 grid grid-cols-1 md:grid-cols-4 ">
   {% for guilds in no_guild %}
-  <div class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 -my-2 overflow-visible h-24 sm:-mx-6 lg:-mx-10 max-w-sm p-24">
+  <div style="margin-left: -110px !important;" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 -my-2 overflow-visible h-24 sm:-mx-6 lg:-mx-10 max-w-sm p-24">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
@@ -111,7 +111,7 @@
   {% endfor %}
 
   {% for guilds in guilds %}
-  <div class="-my-2 overflow-visible h-24 sm:-mx-6 lg:-mx-10 max-w-sm p-24 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 -my-2 overflow-visible h-24 sm:-mx-6 lg:-mx-10 max-w-sm p-24">
+  <div style="margin-left: -110px !important;" class="-my-2 overflow-visible h-24 sm:-mx-6 lg:-mx-10 max-w-sm p-24 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 -my-2 overflow-visible h-24 sm:-mx-6 lg:-mx-10 max-w-sm p-24">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
