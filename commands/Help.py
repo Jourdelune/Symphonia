@@ -18,7 +18,7 @@ class Volume(commands.Cog):
         if verif_channel == True:
             pass
         else:
-            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one")
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
             await ctx.send(embed=embed, delete_after=3.0)
             return
             

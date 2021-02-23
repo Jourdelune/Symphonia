@@ -67,7 +67,7 @@ def get_channel(guild_id, channel_id):
             if int(value[0])==channel_id:
                 return True
             else:
-                return channel_id
+                return int(value[0])
     except:
         print("error")
             
@@ -245,4 +245,3 @@ def logger(type: str, action: str, author: str = None, guild: str = None):
 
     with open('./logs/logs.json', 'a+') as f:
         f.write("\n" + log)
-
