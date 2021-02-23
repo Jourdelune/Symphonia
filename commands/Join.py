@@ -14,6 +14,16 @@ class Join(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def join(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         try:
             await ctx.author.voice.channel.connect()
             await ctx.send(":arrow_right: **Songs joined the voice channel.**")

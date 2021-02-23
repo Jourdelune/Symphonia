@@ -81,6 +81,16 @@ class Play(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def stop(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         await player.stop()
         conn = mysql.connector.connect(host=database_host(), user=database_user(),
@@ -108,6 +118,16 @@ class Play(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def leave(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         try:
             await ctx.voice_client.disconnect()
             await ctx.send(":arrow_left: **Songs left the voice channel.**")
@@ -116,7 +136,17 @@ class Play(commands.Cog):
         
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
-    async def play(self, ctx, *, url):             
+    async def play(self, ctx, *, url):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         if not (ctx in list_ctx):
             list_ctx.append(ctx)
         if not (ctx in dict_ctx):
@@ -160,7 +190,7 @@ class Play(commands.Cog):
             if value == "True":
                 await message.edit(content=f":metal:**New music played!** `{song.title}`")
             else:
-                embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
+                embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"**[{song.title}]({song.url})**")
                 embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
                 embed.set_thumbnail(url=song.thumbnail)
                 embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
@@ -174,7 +204,7 @@ class Play(commands.Cog):
 
         else:
             song = await player.queue(url, search=True)
-            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+            embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"**[{song.title}]({song.url})**")     
             embed.set_author(name=f"Added to queue", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
             embed.add_field(name="Autor", value=f"{song.channel}", inline=True)
@@ -214,6 +244,16 @@ class Play(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def pause(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         verif=check_mode_pause(ctx)
         if verif == True:
@@ -233,6 +273,16 @@ class Play(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def resume(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         if (ctx.guild.id in statut_musique):
             statut_musique.remove(ctx.guild.id)
         verif=check_mode_pause(ctx)
@@ -251,6 +301,16 @@ class Play(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=3, type=commands.BucketType.user)
     async def loop(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         if (ctx.guild.id in server_replay):
             await ctx.send(f"<:error:805750300450357308> **You cannot set a loop on a replay.**")
@@ -273,6 +333,16 @@ class Play(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def shuffle(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         try:
             message = await ctx.send(":revolving_hearts: ** loading shuffle.**")
             player = music.get_player(guild_id=ctx.guild.id)
@@ -298,7 +368,17 @@ class Play(commands.Cog):
         
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
-    async def queue(self, ctx):       
+    async def queue(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         name = []
         duration = []
@@ -313,7 +393,7 @@ class Play(commands.Cog):
             duration.append(song.duration)
             url.append(song.url)
             
-        embed = discord.Embed(color=embed_color(), title=f"Queue")
+        embed = discord.Embed(color=embed_color(ctx.guild.id), title=f"Queue")
         embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
         
         embed.add_field(name="In progress", value=f"**[{name[0]}]({url[0]})** ` duration {convert_duration(duration[0])}`", inline=False)
@@ -341,6 +421,16 @@ class Play(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def np(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         try:
             player = music.get_player(guild_id=ctx.guild.id)
             song = player.now_playing()
@@ -359,9 +449,9 @@ class Play(commands.Cog):
                         else:
                             final=final+"▬"
                         error+=1     
-                embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**\n`{convert_duration(playing_duration(ctx, song.duration))}/{convert_duration(song.duration)}`\n\n**|{"".join(reversed(final))}|**""")  
+                embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{song.title}]({song.url})**\n`{convert_duration(playing_duration(ctx, song.duration))}/{convert_duration(song.duration)}`\n\n**|{"".join(reversed(final))}|**""")  
             except:
-                embed = discord.Embed(color=embed_color(), description=f"""**[{song.title}]({song.url})**""")
+                embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{song.title}]({song.url})**""")
             embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
             embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
@@ -383,6 +473,16 @@ class Play(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def skip(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         try:
             data = await player.skip(force=True)
@@ -410,7 +510,7 @@ class Play(commands.Cog):
                 emoji = '\N{THUMBS UP SIGN}'
                 await ctx.message.add_reaction(emoji)
             else:
-                embed = discord.Embed(color=embed_color(), description=f"**:track_next: Skipped!**")
+                embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"**:track_next: Skipped!**")
                 embed.set_thumbnail(url=skipped[1].thumbnail)
                 embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
                 embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
@@ -425,6 +525,16 @@ class Play(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def remove(self, ctx, index):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         song = player.current_queue()
         try:
@@ -438,6 +548,16 @@ class Play(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def replay(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         player = music.get_player(guild_id=ctx.guild.id)
         song=None
         try:
@@ -468,7 +588,7 @@ class Play(commands.Cog):
         if value == "True":
             await ctx.send(":rewind: Replay Song actived!")
         else:
-            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+            embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"**[{song.title}]({song.url})**")     
             embed.set_author(name=f"Replay", icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url=song.thumbnail)
             embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        

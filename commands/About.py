@@ -37,8 +37,18 @@ class About(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def about(self, ctx):
+        verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
+        if verif_channel == True:
+            pass
+        else:
+            embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
+            await ctx.send(embed=embed, delete_after=3.0)
+
+            await ctx.send(embed=embed, delete_after=3.0)
+            return
+        
         """About cmd"""
-        embed = discord.Embed(color=embed_color(), title="Song's Bot", description="Song's Bot is a music bot easy to use with a dashboard and a customizable behavior")
+        embed = discord.Embed(color=embed_color(ctx.guild.id), title="Song's Bot", description="Song's Bot is a music bot easy to use with a dashboard and a customizable behavior")
         embed.add_field(name="__Information:__", value=f"**<:arrowright:812991627424825364> Developer:** Jourdelune#8616\n**<:arrowright:812991627424825364> Library:** discord.py 1.6.0\n<:arrowright:812991627424825364> **Uptime:** {convert_duration(time.time()-self.uptime1)}", inline=False)
         embed.add_field(name="__System:__", value=f"**<:arrowright:812991627424825364> CPU usage:** {psutil.cpu_percent()}%\n<:arrowright:812991627424825364> **RAM:** {round(psutil.virtual_memory().used / 1000000)}/{round(psutil.virtual_memory().total / 1000000)}mo\n<:arrowright:812991627424825364> **Ping:** {round(self.client.latency * 1000)}ms", inline=False)
         embed.add_field(name="__Bot:__", value=f"**<:arrowright:812991627424825364> Servers:** {str(len(list(self.client.guilds)))}\n<:arrowright:812991627424825364> **Users:** {len(list(self.client.get_all_members()))}\n<:arrowright:812991627424825364> **Shard:** {self.client.shard_count}", inline=False)

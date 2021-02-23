@@ -32,6 +32,7 @@ async def create_me():
 async def create_guild():
     value=None
     form = await request.form
+
     user = await discord.fetch_user()
     try:
         write_in_database(table_name="config", data_in_name="guild_id", data_in=form['guild'],
@@ -39,8 +40,13 @@ async def create_guild():
     except:
         pass
 
-    form = await request.form
-
+  
+    try:
+        if form["head"] is not None:
+            write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                        data_for_write_name="rgb", data_for_write=form["head"])
+    except:
+        pass
     try:
         if form['channel'] is not None:
             if form['channel'] != "False":
@@ -162,37 +168,29 @@ async def guild():
         except:
             id_channel_fin=None
         try:
-            print(value)
             if value is not None:
                 value=value[0]
-                if value == "True" or False:
-                
+                if value == "True" or False:              
                     if id_channel_fin is not None:
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value, id_channel_fin=id_channel_fin)
                     else:
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value)
                 else:
                     if id_channel_fin is not None:
-                        print("eh eh3")
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
                     else:
-                        print("eh eh4")
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
                 if id_channel_fin is not None:
-                    print("eh eh")
                     return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
                 else:
-                    print("eh eh2")
                     write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=request.args['guild_id'],
                                 data_for_write_name="comportement_custom", data_for_write="False")
                     return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
         except:
             if id_channel_fin is not None:
-                print("eh eh5")
                 return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
-                print("eh eh6")
                 return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
                 
             

@@ -61,7 +61,7 @@
   </div>
 </nav>
 
-<div style="margin-left: 50px !important; margin-top: 50px"class="pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+<div style="margin-left: 50px !important; margin-top: 50px"class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <div class="bg-gray-800 px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
         <form method="post">
           <div class="sm:flex sm:items-start">
@@ -85,7 +85,74 @@
   </div>
 </div>
 
-<div style="margin-left: 50px !important; margin-top: 50px, background-color: #36393F !important;"class="active pl-6 inline-block align-bottom bg-transparent rounded-lg text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+
+<div style="margin-left: 50px !important; margin-top: 50px"class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div class="bg-gray-800 px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
+        <form method="post">
+          <input type="int" id="var1" name="guild" value="{{guild_id}}" hidden>
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="font-semibold text-lg leading-6 font-medium text-white" id="modal-headline">
+                Custom Color
+              </h3>
+              <p class="font-medium text-white">Choose the color of the embeds.</p>
+              <div class="relative bg-transparent">
+                <input class="bg-transparent" type="color" id="head" name="head"
+                value="#D45AFF">
+            </div>
+          </div>
+          <div class="bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <button type="submit" class="font-semibold w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-300 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+              Save
+            </button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-left: 50px !important; margin-top: 50px"class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div class="bg-gray-800 px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
+        <form method="post">
+          <input type="int" id="var1" name="guild" value="{{guild_id}}" hidden>
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="font-semibold text-lg leading-6 font-medium text-white" id="modal-headline">
+                Order channel
+              </h3>
+              <p class="font-medium text-white">Choose the channel where commands can be made.</p>
+              <div class="relative">
+                <select name="channel" id="channel-select" class="block appearance-none w-full border border-green-200 text-green-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  bg-gray-800 ">
+                {% if id_channel_fin %}
+                <option value="{{id_channel_fin[0]}}">#{{id_channel_fin[1]}}</option>
+                {% endif %}
+                <option value="False">#None</option>
+                {% for guild_list in guild_list %}
+                <option value="{{guild_list[0]}}">#{{guild_list[1]}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <button type="submit" class="font-semibold w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-300 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+              Save
+            </button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div style="margin-left: 50px !important; margin-top: 50px, background-color: #36393F !important;"class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 active pl-6 inline-block align-bottom bg-transparent rounded-lg text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <div class="bg-transparent px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
         <form method="post">
           <div class="sm:flex sm:items-start">
@@ -135,48 +202,6 @@
     </div>
   </div>
 </div>
-
-<div style="margin-left: 50px !important; margin-top: 50px"class="pl-6 inline-block align-bottom bg-gray-800 rounded-lg text-left overflow-hidden bg-gray-800 shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-      <div class="bg-gray-800 px-2 pt-5 pb-4 sm:p-4 sm:pb-2">
-        <form method="post">
-          <input type="int" id="var1" name="guild" value="{{guild_id}}" hidden>
-          <div class="sm:flex sm:items-start">
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="font-semibold text-lg leading-6 font-medium text-white" id="modal-headline">
-                Order channel
-              </h3>
-              <p class="font-medium text-white">Choose the channel where commands can be made.</p>
-              <div class="relative">
-                <select name="channel" id="channel-select" class="block appearance-none w-full border border-green-200 text-green-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  bg-gray-800 ">
-                {% if id_channel_fin %}
-                <option value="{{id_channel_fin[0]}}">#{{id_channel_fin[1]}}</option>
-                {% endif %}
-                <option value="False">#None</option>
-                {% for guild_list in guild_list %}
-                <option value="{{guild_list[0]}}">#{{guild_list[1]}}</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button type="submit" class="font-semibold w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-300 text-base font-medium text-white hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
-              Save
-            </button>
-          </div>
-        </form>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
 
 </body>
 

@@ -7,6 +7,7 @@ import discord
 import datetime
 import asyncio
 from dateutil.relativedelta import relativedelta
+import webcolors
 
 requet_member = {}
 list_index=[]
@@ -50,6 +51,26 @@ def check_mode_pause(ctx):
         return True
     else:
         return False
+   
+def get_channel(guild_id, channel_id):
+    conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                password=database_password(),
+                                database=database_name())
+
+    cursor = conn.cursor()
+    cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={guild_id}""")
+    value = cursor.fetchone()
+    try:
+        if str(value[0])=="1":
+            return True
+        else:
+            if int(value[0])==channel_id:
+                return True
+            else:
+                return channel_id
+    except:
+        print("error")
+            
     
 pause_mode={}
 final_pause={}
@@ -95,8 +116,19 @@ def reset_duration(ctx):
         pass
    
      
-def embed_color():
-    return discord.Colour.from_rgb(212, 90, 255)
+def embed_color(guild_id):
+    conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                password=database_password(),
+                                database=database_name())
+
+    cursor = conn.cursor()
+    cursor.execute(f"""SELECT rgb FROM music_guild WHERE guild_id={guild_id}""")
+    value = cursor.fetchone()
+    try:
+        rgb=webcolors.hex_to_rgb(value[0])     
+        return discord.Colour.from_rgb(rgb.red, rgb.green, rgb.blue)
+    except:
+        return discord.Colour(0xD45AFF)
 
 
 
