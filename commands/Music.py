@@ -82,7 +82,26 @@ class Play(commands.Cog):
     async def stop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         await player.stop()
-        await ctx.send(":no_entry: **Music Stopped**")
+        conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                    password=database_password(),
+                                    database=database_name())
+
+        cursor = conn.cursor()
+        cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={ctx.guild.id}""")
+        value = cursor.fetchone()
+        conn.close()
+        if value is None:
+            value = False
+        else:
+            value=value[0]
+            
+        if value == "True":
+            emoji = '\N{NO ENTRY}'
+            await ctx.message.add_reaction(emoji)
+        else:
+            await ctx.send(":no_entry: **Music Stopped**")
+            
+        
         
     @commands.command()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
@@ -112,6 +131,19 @@ class Play(commands.Cog):
             
         if not player:
             player = music.create_player(ctx, ffmpeg_error_betterfix=True)
+        
+        conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                       password=database_password(),
+                                       database=database_name())
+
+        cursor = conn.cursor()
+        cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={ctx.guild.id}""")
+        value = cursor.fetchone()
+        conn.close()
+        if value is None:
+            value = False
+        else:
+            value=value[0]
         if not ctx.voice_client.is_playing():
             try:
                 await player.queue(url, search=True)
@@ -123,18 +155,20 @@ class Play(commands.Cog):
             except:
                 await ctx.author.voice.channel.connect(timeout=None)
                 song = await player.play()
-                
-            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
-            embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
-            embed.set_thumbnail(url=song.thumbnail)
-            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
-            embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
-            embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
-            embed.add_field(name="position", value=f"0", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
-                             text=f"Song")
+            if value == "True":
+                await message.edit(content=f":metal:**New music played!** `{song.title}`")
+            else:
+                embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")
+                embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
+                embed.set_thumbnail(url=song.thumbnail)
+                embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
+                embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+                embed.add_field(name="Estimated time until playing", value=f"0", inline=True)
+                embed.add_field(name="position", value=f"0", inline=True)
+                embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
+                                 text=f"Song")
             
-            await message.edit(content=None, embed=embed)
+                await message.edit(content=None, embed=embed)
 
         else:
             song = await player.queue(url, search=True)
@@ -151,13 +185,15 @@ class Play(commands.Cog):
                     position+=1
                 else:
                     break
-
-            embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
-            embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
-            embed.add_field(name="position", value=f"{position}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
-                             text=f"Song")
-            await message.edit(content=None, embed=embed)
+            if value == "True":
+                await message.edit(content=f":white_check_mark:**Added to queue!** `{song.title}`")
+            else:
+                embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+                embed.add_field(name="time until playing", value=f"{convert_duration(all_duration+song.duration)}", inline=True)
+                embed.add_field(name="position", value=f"{position}", inline=True)
+                embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
+                                 text=f"Song")
+                await message.edit(content=None, embed=embed)
             
             
         
@@ -348,19 +384,35 @@ class Play(commands.Cog):
         except:
             await ctx.send("<:error:805750300450357308> **No music playing.**")
             return
+        conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                    password=database_password(),
+                                    database=database_name())
+
+        cursor = conn.cursor()
+        cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={ctx.guild.id}""")
+        value = cursor.fetchone()
+        conn.close()
+        if value is None:
+            value = False
+        else:
+            value=value[0]
+            
         
         skipped=player.current_queue()
         if len(skipped) >= 2:
             skipped= player.current_queue()
-        
-            embed = discord.Embed(color=embed_color(), description=f"**:track_next: Skipped!**")
-            embed.set_thumbnail(url=skipped[1].thumbnail)
-            embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
-            embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
-            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
+            if value == "True":
+                emoji = '\N{THUMBS UP SIGN}'
+                await ctx.message.add_reaction(emoji)
+            else:
+                embed = discord.Embed(color=embed_color(), description=f"**:track_next: Skipped!**")
+                embed.set_thumbnail(url=skipped[1].thumbnail)
+                embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
+                embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
+                embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
                             text=f"Song")
             
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
         else:
             await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
 
@@ -381,26 +433,47 @@ class Play(commands.Cog):
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def replay(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
-        song = player.now_playing()
+        song=None
+        try:
+            song = player.now_playing()
+        except:
+            await ctx.send("<:error:805750300450357308> **No music playing.**")
+            return
+            
         if not song.is_looping:
             song = await player.toggle_song_loop()
             server_replay.append(ctx.guild.id)
         else:
-            await ctx.send("<:error:805750300450357308> **You cannot replay music that has not been looped. Deactivate the loop if necessary:** `loop`")
+            await ctx.send("<:error:805750300450357308> **You cannot replay music that has not been looped. Skip the song if necessary:** `skip`")
             return
-        embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
-        embed.set_author(name=f":rewind: Replay", icon_url=ctx.author.avatar_url)
-        embed.set_thumbnail(url=song.thumbnail)
-        embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
-        embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
-        embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
-        embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
+        conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                    password=database_password(),
+                                    database=database_name())
+
+        cursor = conn.cursor()
+        cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={ctx.guild.id}""")
+        value = cursor.fetchone()
+        conn.close()
+        if value is None:
+            value = False
+        else:
+            value=value[0]
+            
+        if value == "True":
+            await ctx.send(":rewind: Replay Song actived!")
+        else:
+            embed = discord.Embed(color=embed_color(), description=f"**[{song.title}]({song.url})**")     
+            embed.set_author(name=f"Replay", icon_url=ctx.author.avatar_url)
+            embed.set_thumbnail(url=song.thumbnail)
+            embed.add_field(name="Autor", value=f"{song.channel}", inline=True)        
+            embed.add_field(name="Duration", value=f"{convert_duration(song.duration)}", inline=True)
+            embed.add_field(name="views", value=f"{numerize.numerize(song.views)}", inline=True)
+            embed.add_field(name="loop", value=f"{song.is_looping}", inline=True)
         
-        
-        embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
-            text=f"Song")
+            embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
+                text=f"Song")
            
-        await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
         await asyncio.sleep(song.duration)
        
         if song.is_looping:
