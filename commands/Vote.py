@@ -12,6 +12,7 @@ class Vote(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def vote(self, ctx):
         """Vote link"""
         embed = discord.Embed(color=embed_color(), description="[top.gg link](https://top.gg)")

@@ -12,6 +12,7 @@ class Invite(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def invite(self, ctx):
         """Invite link"""
         embed = discord.Embed(color=embed_color(), description="[link song's Bot](https://discord.com/oauth2/authorize?client_id=805082505320333383&scope=bot&permissions=70634560)")

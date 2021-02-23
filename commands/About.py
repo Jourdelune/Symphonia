@@ -35,6 +35,7 @@ class About(commands.Cog):
         self.compteur=0
         
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def about(self, ctx):
         """About cmd"""
         embed = discord.Embed(color=embed_color(), title="Song's Bot", description="Song's Bot is a music bot easy to use with a dashboard and a customizable behavior")

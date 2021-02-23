@@ -12,6 +12,7 @@ class Support(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def support(self, ctx):
         """Support link"""
         embed = discord.Embed(color=embed_color(), description="[support link](https://discord.gg/qaQtvNmdm5)")

@@ -78,6 +78,7 @@ class Play(commands.Cog):
                 
         
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def stop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
@@ -104,6 +105,7 @@ class Play(commands.Cog):
         
         
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def leave(self, ctx):
         try:
@@ -209,6 +211,7 @@ class Play(commands.Cog):
                 await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
         
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def pause(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
@@ -227,6 +230,7 @@ class Play(commands.Cog):
             statut_musique.append(ctx.guild.id)
         
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def resume(self, ctx):
         if (ctx.guild.id in statut_musique):
@@ -266,6 +270,7 @@ class Play(commands.Cog):
             
             
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def shuffle(self, ctx):
         try:
@@ -417,6 +422,7 @@ class Play(commands.Cog):
             await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
 
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def remove(self, ctx, index):
         player = music.get_player(guild_id=ctx.guild.id)

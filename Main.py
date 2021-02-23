@@ -5,7 +5,7 @@ import datetime
 import discord
 from utils.utils import *
 import os
-  
+
   
 def get_prefix(client, message):
     data = str(read_database(table_name="config", data_in="prefix", data=f"WHERE guild_id={message.guild.id}"))

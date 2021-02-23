@@ -12,6 +12,7 @@ class Join(commands.Cog):
         self.client = client
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def join(self, ctx):
         try:
             await ctx.author.voice.channel.connect()

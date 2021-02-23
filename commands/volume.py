@@ -12,6 +12,7 @@ class Volume(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def volume(self, ctx, volume: int):
         """Changes the player's volume"""
 

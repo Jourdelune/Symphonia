@@ -12,6 +12,7 @@ class Ping(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def ping(self, ctx):
         """Ping link"""
         await ctx.send(f":ping_pong: **Pong!** ```{round(self.client.latency * 1000)}ms```")
