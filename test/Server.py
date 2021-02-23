@@ -40,6 +40,7 @@ async def create_guild():
         pass
 
     form = await request.form
+
     try:
         if form['channel'] is not None:
             if form['channel'] != "False":
@@ -53,14 +54,15 @@ async def create_guild():
                 cursor = conn.cursor()
                 cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={form['guild']}""")
                 value = cursor.fetchone()
-                print("test")
+              
                 if value is not None:
-                    print("delete")
-                    cursor.execute(f"DELETE channel_id FROM music_guild WHERE guild_id={form['guild']}")
+                    
+                    write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                                    data_for_write_name="channel_id", data_for_write="1")
                 conn.close()
                 
     except:
-        pass
+       pass
     try:
         if form['edit_comport'] is not None:
             conn = mysql.connector.connect(host=database_host(), user=database_user(),
@@ -70,7 +72,6 @@ async def create_guild():
             cursor = conn.cursor()
             cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={form['guild']}""")
             value = cursor.fetchone()
-         
             if value is not None:
                 value=value[0]
                 if value == "True":
@@ -80,6 +81,10 @@ async def create_guild():
                 elif value == "False":
                     write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
                                 data_for_write_name="comportement_custom", data_for_write="True")
+                else:
+                    write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                                data_for_write_name="comportement_custom", data_for_write="True")
+                    value=True
                   
             else:
                 write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
@@ -146,36 +151,48 @@ async def guild():
         cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={request.args['guild_id']}""")
         id_channel = cursor.fetchone()
         
-        
-        if id_channel is not None:
-        
-            guild_channel = await web_ipc.request("get_channel", channel_id=id_channel[0])
-            id_channel_fin=[id_channel[0], guild_channel.replace('"',"")]
+    
+        try:
+            if int(id_channel[0]) == 1:
+                id_channel_fin=None
+            else:
+                guild_channel = await web_ipc.request("get_channel", channel_id=id_channel[0])
+                id_channel_fin=[id_channel[0], guild_channel.replace('"',"")]
             
-        else:
+        except:
             id_channel_fin=None
         try:
+            print(value)
             if value is not None:
-                value=value[0]    
-                if value == "True":
+                value=value[0]
+                if value == "True" or False:
+                
                     if id_channel_fin is not None:
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value, id_channel_fin=id_channel_fin)
                     else:
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value)
                 else:
                     if id_channel_fin is not None:
+                        print("eh eh3")
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
                     else:
+                        print("eh eh4")
                         return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
                 if id_channel_fin is not None:
-                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                    print("eh eh")
+                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
                 else:
-                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                    print("eh eh2")
+                    write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=request.args['guild_id'],
+                                data_for_write_name="comportement_custom", data_for_write="False")
+                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
         except:
             if id_channel_fin is not None:
+                print("eh eh5")
                 return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
+                print("eh eh6")
                 return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
                 
             
