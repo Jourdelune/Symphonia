@@ -3,6 +3,7 @@ from quart_discord import DiscordOAuth2Session, requires_authorization, Unauthor
 from discord.ext.ipc import Client
 from utils.utils import *
 import mysql.connector
+import ast
 
 app = Quart(__name__)
 web_ipc = Client(host="localhost", port=8765, secret_key="secret_key")
@@ -21,7 +22,6 @@ discord = DiscordOAuth2Session(app)
 async def create_me():
     form = await request.form
     user = await discord.fetch_user()
-    print(form)
     if (str(user.id) in form['user']):
         return redirect(url_for(".guild", guild_id=form['guild']))
     else:
@@ -41,6 +41,27 @@ async def create_guild():
 
     form = await request.form
     try:
+        if form['channel'] is not None:
+            if form['channel'] != "False":
+                write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
+                                    data_for_write_name="channel_id", data_for_write=form['channel'])
+            else:
+                conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                       password=database_password(),
+                                       database=database_name())
+
+                cursor = conn.cursor()
+                cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={form['guild']}""")
+                value = cursor.fetchone()
+                print("test")
+                if value is not None:
+                    print("delete")
+                    cursor.execute(f"DELETE channel_id FROM music_guild WHERE guild_id={form['guild']}")
+                conn.close()
+                
+    except:
+        pass
+    try:
         if form['edit_comport'] is not None:
             conn = mysql.connector.connect(host=database_host(), user=database_user(),
                                        password=database_password(),
@@ -49,16 +70,17 @@ async def create_guild():
             cursor = conn.cursor()
             cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={form['guild']}""")
             value = cursor.fetchone()
+         
             if value is not None:
                 value=value[0]
                 if value == "True":
                     write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
                                 data_for_write_name="comportement_custom", data_for_write="False")
-                    value=False
+                  
                 elif value == "False":
                     write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
                                 data_for_write_name="comportement_custom", data_for_write="True")
-                    value=True
+                  
             else:
                 write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=form['guild'],
                                 data_for_write_name="comportement_custom", data_for_write="True")
@@ -68,7 +90,7 @@ async def create_guild():
     except:
         pass
 
-    return redirect(url_for(".guild", guild_id=form['guild'], comport=value))
+    return redirect(url_for(".guild", guild_id=form['guild']))
     
     
 @app.route("/login/")
@@ -106,17 +128,56 @@ async def guild():
             write_in_database(table_name="config", data_in_name="guild_id", data_in=request.args['guild_id'],
                                     data_for_write_name="prefix", data_for_write="s!")
             prefix="s!"  
+    
+     
+        guild_list = await web_ipc.request("get_all_channel", guild_id=request.args['guild_id'])
+        
+        guild_list=ast.literal_eval(guild_list)
+        
+        cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={request.args['guild_id']}""")
+        value = cursor.fetchone()
         conn.close()
+        
+        conn = mysql.connector.connect(host=database_host(), user=database_user(),
+                                       password=database_password(),
+                                       database=database_name())
+
+        cursor = conn.cursor()
+        cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={request.args['guild_id']}""")
+        id_channel = cursor.fetchone()
+        
+        
+        if id_channel is not None:
+        
+            guild_channel = await web_ipc.request("get_channel", channel_id=id_channel[0])
+            id_channel_fin=[id_channel[0], guild_channel.replace('"',"")]
+            
+        else:
+            id_channel_fin=None
         try:
-            if request.args['comport'] is not None:
-                if request.args['comport'] == "True":
-                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, comport=request.args['comport'])
+            if value is not None:
+                value=value[0]    
+                if value == "True":
+                    if id_channel_fin is not None:
+                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value, id_channel_fin=id_channel_fin)
+                    else:
+                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value)
                 else:
-                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix)
+                    if id_channel_fin is not None:
+                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                    else:
+                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
-                return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix)
+                if id_channel_fin is not None:
+                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                else:
+                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
         except:
-            return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix)
+            if id_channel_fin is not None:
+                return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+            else:
+                return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                
             
         
     else:

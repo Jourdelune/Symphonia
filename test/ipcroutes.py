@@ -13,6 +13,10 @@ class Bot(commands.Bot):
     
     async def on_ready(self):
         print("Bot ready")
+        
+    async def on_ipc_error(self, endpoint, error):
+        """Called upon an error being raised within an IPC route"""
+        print(endpoint, "raised", error)
 
 bot = Bot(command_prefix="!", case_insensitive=True)
 bot_ipc = Server(bot, "localhost", 8765, "secret_key")
@@ -24,9 +28,23 @@ async def get_guild_count(data):
     return len(bot.guilds)
 
 @bot_ipc.route() 
+async def get_channel(data):
+    channel = bot.get_channel(int(data.channel_id))
+    return channel.name
+
+@bot_ipc.route() 
+async def get_all_channel(data):
+    guild = bot.get_guild(int(data.guild_id))
+    channel_list = []
+    for channel in guild.text_channels:
+        channel_list.append([channel.id, channel.name])
+
+  
+    return channel_list
+
+@bot_ipc.route() 
 async def get_owner_with_id(data):
     guild = bot.get_guild(int(data.guild_id))
-    print(guild.owner_id)
     return guild.owner_id
 
 @bot_ipc.route() 
