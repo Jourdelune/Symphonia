@@ -11,7 +11,7 @@ class Invite(commands.Cog):
         self.client = client
 
 
-    @commands.command()
+    @commands.command(aliases=['i'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def invite(self, ctx):
         verif_channel=get_channel(ctx.guild.id, ctx.channel.id)

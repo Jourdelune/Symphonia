@@ -11,7 +11,7 @@ class Volume(commands.Cog):
         self.client = client
 
 
-    @commands.command()
+    @commands.command(aliases=['h'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def help(self, ctx, *, arg=None):
         verif_channel=get_channel(ctx.guild.id, ctx.channel.id)

@@ -11,7 +11,7 @@ class Join(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(aliases=['j'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def join(self, ctx):
         verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
@@ -21,7 +21,6 @@ class Join(commands.Cog):
             embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
             await ctx.send(embed=embed, delete_after=3.0)
 
-            await ctx.send(embed=embed, delete_after=3.0)
             return
         
         try:

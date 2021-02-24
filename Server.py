@@ -121,6 +121,11 @@ async def redirect_unauthorized(e):
     return redirect(url_for("login"))
 
 
+@app.route("/commands")
+async def commands():
+     return await render_template('commands.html')
+                
+    
 @app.route("/guild/")
 @requires_authorization
 async def guild():       
@@ -143,7 +148,7 @@ async def guild():
      
         guild_list = await web_ipc.request("get_all_channel", guild_id=request.args['guild_id'])
         
-        guild_list=ast.literal_eval(guild_list)
+        guild_list=ast.literal_eval(str(guild_list))
         
         cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={request.args['guild_id']}""")
         value = cursor.fetchone()
@@ -209,7 +214,7 @@ async def me():
     guild_list = await web_ipc.request("get_guild_list")
     for i in guilds:
         if i.is_owner:   
-            if (str(i.id) in guild_list):
+            if (str(i.id) in str(guild_list)):
                 common_guild.append(i)
             else:
                 no_common_guild.append(i)

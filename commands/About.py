@@ -34,7 +34,7 @@ class About(commands.Cog):
     async def check_time(self):
         self.compteur=0
         
-    @commands.command()
+    @commands.command(aliases=['a'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def about(self, ctx):
         verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
@@ -44,7 +44,6 @@ class About(commands.Cog):
             embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
             await ctx.send(embed=embed, delete_after=3.0)
 
-            await ctx.send(embed=embed, delete_after=3.0)
             return
         
         """About cmd"""
