@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2.0.2/dist/tailwind.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='assets/Songs.png') }}" />
+    <link rel="shortcut icon" type="image/jpg" href="https://zupimages.net/up/21/08/wkq6.png" />
     <title>Song's Bot</title>
 </head>
 
@@ -23,15 +22,15 @@
         </button>
       </div>
       <div class="flex-1 flex items-center justify-right sm:items-stretch sm:justify-start">
-        <a href="/">
-            <img class="block lg:hidden h-8 w-auto" src="{{ url_for('static', filename='assets/Songs.png') }}">
-            <img class="hidden lg:block h-8 w-auto" src="{{ url_for('static', filename='assets/Songs.png') }}">
-          </a>
+        <div class="flex-shrink-0 flex items-center">
+          <img class="block lg:hidden h-8 w-auto" src="https://zupimages.net/up/21/08/wkq6.png">
+          <img class="hidden lg:block h-8 w-auto" src="https://zupimages.net/up/21/08/wkq6.png">
+        </div>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
            
-            <a href="/me" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-            <a href="/commands" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Commands</a>
+            <a href="http://songs-bot.tk/me" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+            <a href="http://songs-bot.tk/commands" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Commands</a>
             <a href="https://discord.gg/qaQtvNmdm5" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Support</a>
             <a href="https://top.gg/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vote</a>
           </div>
@@ -48,8 +47,8 @@
 
   <div class="sm:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="/me" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-      <a href="/commands" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Commands</a>
+      <a href="http://songs-bot.tk/me" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+      <a href="http://songs-bot.tk/commands" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Commands</a>
       <a href="https://discord.gg/qaQtvNmdm5" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Support</a>
       <a href="https://top.gg/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vote</a>
     </div>
@@ -74,7 +73,7 @@
 			</div>
     
 			<div class="md:w-3/5 py-6 text-center">
-				<img class="md:w-4/5 z-50" src="{{ url_for('static', filename='assets/note_fond.png') }}">
+				<img class="md:w-4/5 z-50" src="https://nsa40.casimages.com/img/2021/02/24/210224050819121613.png">
 			</div>
 
 		</div>
@@ -202,4 +201,8 @@
 
 </body>
 
+<style>
+body {
+  background-color:  #36393F;
+}</style>
 </html>

@@ -215,8 +215,8 @@ async def me():
     no_common_guild = []
     guilds = await discord.fetch_guilds()
     guild_list = await web_ipc.request("get_guild_list")
-    for i in guilds:
-        if i.is_owner:   
+    for i in guilds:     
+        if i.permissions.value == 2147483647:   
             if (str(i.id) in str(guild_list)):
                 common_guild.append(i)
             else:
