@@ -490,30 +490,14 @@ class Play(commands.Cog):
         else:
             value=value[0]
             
-        
-        skipped=player.current_queue()
-        if len(skipped) >= 2:
-            skipped= player.current_queue()
-            if value == "True":
-                emoji = '\N{THUMBS UP SIGN}'
-                await ctx.message.add_reaction(emoji)
-            else:
-                embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"**:track_next: Skipped!**")
-                try:
-                    embed.set_thumbnail(url=skipped[1].thumbnail)
-                except:
-                    try:
-                        embed.set_thumbnail(url=skipped[0].thumbnail)
-                    except:
-                        pass
-                embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
-                embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
-                embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
-                            text=f"Song")
-            
-                await ctx.send(embed=embed)
+        skipped= player.current_queue()
+        if value == "True":
+            emoji = '\N{THUMBS UP SIGN}'
+            await ctx.message.add_reaction(emoji)
         else:
             await ctx.send(f":track_next: **Skipped** `{data[0].name}`")
+        
+                
 
     @commands.command(aliases=['r'])
     @commands.has_permissions(manage_channels=True)

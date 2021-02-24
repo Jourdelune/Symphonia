@@ -27,6 +27,7 @@ class OnCommand(commands.Cog):
         else:
             channel = self.bot.get_channel(805066193047519236)
             try:
+                raise error
                 await channel.send(f'Error on {ctx.guild.name}: ```{error}```')
             except:
                 raise error
