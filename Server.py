@@ -120,7 +120,10 @@ async def callback():
 async def redirect_unauthorized(e):
     return redirect(url_for("login"))
 
-
+@app.route("/")
+async def index():
+     return await render_template('index.html')
+    
 @app.route("/commands")
 async def commands():
      return await render_template('commands.html')
@@ -219,7 +222,7 @@ async def me():
             else:
                 no_common_guild.append(i)
 
-    return await render_template('index.html', user=user, guilds=common_guild, no_guild=no_common_guild)
+    return await render_template('me.html', user=user, guilds=common_guild, no_guild=no_common_guild)
 
 
 if __name__ == "__main__":

@@ -61,15 +61,20 @@ def get_channel(guild_id, channel_id):
     cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={guild_id}""")
     value = cursor.fetchone()
     try:
-        if str(value[0])=="1":
-            return True
-        else:
-            if int(value[0])==channel_id:
+        if value is not None:
+            if str(value[0])=="1":
                 return True
             else:
-                return int(value[0])
+                if int(value[0])==channel_id:
+                    return True
+                else:
+                    return int(value[0])
+        else:
+            return True
     except:
         print("error")
+        return True
+        
             
     
 pause_mode={}

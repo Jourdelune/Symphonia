@@ -5,7 +5,8 @@ import utils
 import time
 import asyncio
 import DiscordUtils
-
+from utils.utils import *
+import sys
 
 class Join(commands.Cog):
     def __init__(self, client):
@@ -28,7 +29,10 @@ class Join(commands.Cog):
             await ctx.send(":arrow_right: **Songs joined the voice channel.**")
             
         except:
-            await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
+            if ctx.author.voice:
+                await ctx.send("<:error:805750300450357308> **Already connected to the voice.**")
+            else:
+                await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
     
 
     

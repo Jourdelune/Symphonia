@@ -133,6 +133,9 @@ class Play(commands.Cog):
     @commands.command(aliases=['p'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def play(self, ctx, *, url):
+        if len(url) >= 100:
+            await ctx.send("<:error:805750300450357308> **You cannot put more than 100 characters.**")
+            return
         verif_channel=get_channel(ctx.guild.id, ctx.channel.id)
         if verif_channel == True:
             pass
@@ -175,7 +178,11 @@ class Play(commands.Cog):
             try:
                 await player.queue(url, search=True)
             except:
-                await player.queue(url, bettersearch=True)
+                try:
+                    await player.queue(url, bettersearch=True)
+                except:
+                    await message.edit(content="<:error:805750300450357308> **No music found.**")
+                    return
             
             try:
                 song = await player.play()
@@ -492,7 +499,13 @@ class Play(commands.Cog):
                 await ctx.message.add_reaction(emoji)
             else:
                 embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"**:track_next: Skipped!**")
-                embed.set_thumbnail(url=skipped[1].thumbnail)
+                try:
+                    embed.set_thumbnail(url=skipped[1].thumbnail)
+                except:
+                    try:
+                        embed.set_thumbnail(url=skipped[0].thumbnail)
+                    except:
+                        pass
                 embed.add_field(name="Autor", value=f"{skipped[1].channel}", inline=True)       
                 embed.add_field(name="Duration", value=f"{convert_duration(skipped[1].duration)}", inline=True)
                 embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
@@ -534,9 +547,13 @@ class Play(commands.Cog):
             embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You cannot make commands in this channel. Go to this one: <#{verif_channel}>")
             await ctx.send(embed=embed, delete_after=3.0)
             return
+        if not ctx.author.voice:
+            await ctx.send("<:error:805750300450357308> **You are not connected to a voice channel.**")
+            return
         
         player = music.get_player(guild_id=ctx.guild.id)
         song=None
+        
         try:
             song = player.now_playing()
         except:
