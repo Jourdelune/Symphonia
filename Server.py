@@ -22,7 +22,7 @@ discord = DiscordOAuth2Session(app)
 async def create_me():
     form = await request.form
     user = await discord.fetch_user()
-    if (str(user.id) in form['user']):
+    if user.id ==  int(form['user']):
         return redirect(url_for(".guild", guild_id=form['guild']))
     else:
         return redirect(url_for(".me"))
@@ -131,10 +131,16 @@ async def commands():
     
 @app.route("/guild/")
 @requires_authorization
-async def guild():       
+async def guild():
     user = await discord.fetch_user()
-    guild_list = await web_ipc.request("get_owner_with_id", guild_id=request.args['guild_id'])
-    if int(guild_list) == int(user.id):
+    guilds = await discord.fetch_guilds()
+    admin=False
+    for i in guilds:
+        if i.id == int(request.args['guild_id']):
+            if i.permissions.value == 2147483647:
+                admin=True
+
+    if admin:
         conn = mysql.connector.connect(host=database_host(), user=database_user(),
                                        password=database_password(),
                                        database=database_name())
@@ -149,9 +155,11 @@ async def guild():
             prefix="s!"  
     
      
-        guild_list = await web_ipc.request("get_all_channel", guild_id=request.args['guild_id'])
-        
-        guild_list=ast.literal_eval(str(guild_list))
+        await web_ipc.request("get_all_channel", guild_id=request.args['guild_id'])
+        with open('list.json') as f:
+          guild_list = json.load(f)
+     
+
         
         cursor.execute(f"""SELECT comportement_custom FROM music_guild WHERE guild_id={request.args['guild_id']}""")
         value = cursor.fetchone()

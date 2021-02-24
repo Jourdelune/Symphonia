@@ -3,6 +3,7 @@ from discord.ext import commands
 from quart import Quart, redirect, url_for, render_template, g, request
 from quart_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 from discord.ext.ipc import Server
+import json
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
@@ -39,8 +40,9 @@ async def get_all_channel(data):
     for channel in guild.text_channels:
         channel_list.append([channel.id, channel.name])
 
-  
-    return channel_list
+    with open('list.json', 'w') as json_file:
+        json.dump(channel_list, json_file)
+   
 
 @bot_ipc.route() 
 async def get_owner_with_id(data):
