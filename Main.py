@@ -22,6 +22,7 @@ def get_prefix(client, message):
         except:
             pass
             
+
 bot = commands.AutoShardedBot(command_prefix=get_prefix, intents=discord.Intents.all())
 bot.remove_command("help")
 
