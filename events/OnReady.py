@@ -10,7 +10,7 @@ class OnReady(commands.Cog):
     async def on_ready(self):
         print('Logged in as {0} ({0.id})'.format(self.client.user))
         print('------')
-        await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="songs Bot | s!help"))
+        await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="s!help | songs-bot.tk/commands"))
         
 
          
