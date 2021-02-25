@@ -19,7 +19,9 @@ class Bot(commands.Bot):
         """Called upon an error being raised within an IPC route"""
         print(endpoint, "raised", error)
 
-bot = Bot(command_prefix="!", case_insensitive=True)
+bot = Bot(command_prefix="!", case_insensitive=True, help_command=None)
+bot.remove_command("help")
+
 bot_ipc = Server(bot, "localhost", 8765, "secret_key")
 
 
