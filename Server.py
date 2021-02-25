@@ -12,7 +12,7 @@ app.secret_key = b"random bytes representing quart secret key"
 
 app.config["DISCORD_CLIENT_ID"] = 805082505320333383   
 app.config["DISCORD_CLIENT_SECRET"] = "iQrq77S2qOakW4BR7XS7G4qKnKQ0TuDS"              
-app.config["DISCORD_REDIRECT_URI"] = "http://127.0.0.1:5000/callback"                
+app.config["DISCORD_REDIRECT_URI"] = "http://songs-bot.tk/callback"            
 app.config["DISCORD_BOT_TOKEN"] = "ODA1MDgyNTA1MzIwMzMzMzgz.YBVtgg.ie3BSi7q6z2SmEKSymLuA4mNj4Y"    
 
 discord = DiscordOAuth2Session(app)
@@ -234,4 +234,4 @@ async def me():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="185.157.247.229", port=8081)

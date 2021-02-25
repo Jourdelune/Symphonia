@@ -1,6 +1,10 @@
 from discord.ext import tasks, commands
 from utils.utils import *
 import discord
+import psutil
+import sys
+import subprocess
+import os
 
 class OnCommand(commands.Cog):
     def __init__(self, bot):
@@ -31,7 +35,9 @@ class OnCommand(commands.Cog):
                 await channel.send(f'Error on {ctx.guild.name}: ```{error}```')
             except:
                 raise error
-                pass
+                
+               
+                
             
         
             
