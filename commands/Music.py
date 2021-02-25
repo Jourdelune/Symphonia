@@ -90,7 +90,11 @@ class Play(commands.Cog):
             return
         
         player = music.get_player(guild_id=ctx.guild.id)
-        await player.stop()
+        try:
+            await player.stop()
+        except:
+            await ctx.send("<:error:805750300450357308> **No musique played.**")
+            return
         conn = mysql.connector.connect(host=database_host(), user=database_user(),
                                     password=database_password(),
                                     database=database_name())
