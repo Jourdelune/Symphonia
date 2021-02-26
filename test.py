@@ -1,9 +1,10 @@
-import urllib.request
-import urllib.parse
-import re
+import requests
 
-query_string = urllib.parse.urlencode({"search_query" : input()})
-html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
-search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
+url = 'https://botsfordiscord.com/api/bot/805082505320333383'
+myobj = {'server_count': 35}
 
-print("http://www.youtube.com/watch?v=" + search_results[0])
+headers= {'Authorization': '955a0d28ac9a65513c11309d286dd49328f5a7844d774704bb46a6365d288f70c3ea3aff6d6f5d563affbd98327fa0f38c145a97128f5615ee9c406dd8803aff'}
+        
+x = requests.post(url, headers=headers, data = myobj)
+
+print(x.text)

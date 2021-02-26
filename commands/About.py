@@ -8,6 +8,7 @@ from utils.utils import *
 from dateutil.relativedelta import relativedelta
 from numerize import numerize
 import psutil
+import requests
 
 list_user=[]
 
@@ -33,6 +34,12 @@ class About(commands.Cog):
     @tasks.loop(seconds=3600)
     async def check_time(self):
         self.compteur=0
+        url = 'https://botsfordiscord.com/api/bot/805082505320333383'
+        myobj = {'server_count': len(list(self.client.guilds))}
+
+        headers= {'Authorization': '955a0d28ac9a65513c11309d286dd49328f5a7844d774704bb46a6365d288f70c3ea3aff6d6f5d563affbd98327fa0f38c145a97128f5615ee9c406dd8803aff'}
+        
+        x = requests.post(url, headers=headers, data = myobj)
         
     @commands.command(aliases=['a'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
