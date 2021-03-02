@@ -1,10 +1,9 @@
-import requests
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
-url = 'https://botsfordiscord.com/api/bot/805082505320333383'
-myobj = {'server_count': 35}
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="bc1f01e2722747699311b953fb45e8df",
+                                                           client_secret="9a2fa3f8100744d7a984bf67a256b5ad"))
 
-headers= {'Authorization': '955a0d28ac9a65513c11309d286dd49328f5a7844d774704bb46a6365d288f70c3ea3aff6d6f5d563affbd98327fa0f38c145a97128f5615ee9c406dd8803aff'}
-        
-x = requests.post(url, headers=headers, data = myobj)
-
-print(x.text)
+results = sp.search(q='weezer', limit=20)
+for idx, track in enumerate(results['tracks']['items']):
+    print(idx, track['name'])

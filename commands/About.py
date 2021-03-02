@@ -17,6 +17,7 @@ class About(commands.Cog):
         self.client = client
         self.uptime1=time.time()
         self.compteur = 0
+        self.check_time.start()
         
 
     @commands.Cog.listener()

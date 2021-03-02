@@ -115,6 +115,9 @@ async def callback():
     await discord.callback()
     return redirect(url_for(".me"))
 
+@app.route("/discord")
+async def support():
+    return redirect("https://discord.gg/qaQtvNmdm5")
 
 @app.errorhandler(Unauthorized)
 async def redirect_unauthorized(e):
@@ -234,4 +237,4 @@ async def me():
 
 
 if __name__ == "__main__":
-    app.run(host="185.157.247.229", port=8081)
+    app.run()

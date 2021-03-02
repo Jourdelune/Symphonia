@@ -6,7 +6,7 @@ import time
 import asyncio
 from utils.utils import * 
 
-class Volume(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -26,7 +26,7 @@ class Volume(commands.Cog):
         if arg == None:
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="Song's Bot help page", description=f"""Song's Bot is a music bot **easy to use** with **a dashboard** and **a customizable behavior**.\n
             **[Dashboard link](https://songs-bot.tk/me)\n[Documentation link](https://songs-bot.tk/commands)\n[Vote link](https://top.gg)\n[Bot invite](https://discord.com/oauth2/authorize?client_id=805082505320333383&scope=bot&permissions=70634560)\n\n**""")
-            embed.add_field(name="**:notes: Music**", value=f"`play` `search` `replay` `skip` `stop` `pause` `resume` `loop` `queue` `volume` `np` `leave` `join` `remove` `shuffle`\n\n", inline=False)
+            embed.add_field(name="**:notes: Music**", value=f"`play` `search` `replay` `skip` `stop` `pause` `bassboost` `resume` `loop` `queue` `volume` `np` `leave` `join` `remove` `shuffle`\n\n", inline=False)
             embed.add_field(name="**:computer: Song's Bot**", value=f"`invite` `about` `support` `dashboard` `vote` `ping` `help`\n\n", inline=False)
             embed.add_field(name="**:tools: Gestion**", value=f"**[Go to Dashboard](https://songs-bot.tk/me)**\n", inline=False)
             embed.set_footer(icon_url="https://cdn.discordapp.com/avatars/805082505320333383/f0b2ffbe37e3eaae7bd23ec02d666bf1.png?size=256",
@@ -38,7 +38,7 @@ class Volume(commands.Cog):
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="search [search]", description=f"Search videos according to your search.")
             
         elif arg == "replay":
-            embed = discord.Embed(color=embed_color(ctx.guild.id), title="replay", description=f"Re-launch the music currently in progress.")
+            embed = discord.Embed(color=embed_color(ctx.guild.id), title="replay [second]", description=f"moves forward or backward in the music.")
             
         elif arg == "skip":
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="skip", description=f"Skip to next music.")
@@ -59,7 +59,7 @@ class Volume(commands.Cog):
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="Queue", description=f"Displays the music queue.")
             
         elif arg == "volume":
-            embed = discord.Embed(color=embed_color(ctx.guild.id), title="Volume [0 at 100%]", description=f"Changes the volume of the music.")
+            embed = discord.Embed(color=embed_color(ctx.guild.id), title="Volume [0 at 1000%]", description=f"Changes the volume of the music.")
             
         elif arg == "np":
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="np", description=f"Displays information about the current music.")
@@ -90,6 +90,10 @@ class Volume(commands.Cog):
             
         elif arg == "ping":
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="Ping", description=f"Returns the ping of the bot.")
+            
+        elif arg == "bassboost":
+            embed = discord.Embed(color=embed_color(ctx.guild.id), title="Bassboost [0 at 100%]", description=f"Modifies the power of the bass.")
+            
         else:
             embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"**No help found matching at `{arg}`**")
          
@@ -100,4 +104,4 @@ class Volume(commands.Cog):
        
         
 def setup(client):
-    client.add_cog(Volume(client))
+    client.add_cog(Help(client))
