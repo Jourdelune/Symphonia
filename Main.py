@@ -29,9 +29,8 @@ def get_prefix(client, message):
         
 class Bot: 
     def __init__(self, **kwargs):
-        self.intents = discord.Intents.default()
-        self.intents.members = True
-        self.bot = commands.AutoShardedBot(command_prefix=get_prefix, intents=discord.Intents.all())        
+        self.intents = discord.Intents.all()
+        self.bot = commands.Bot(command_prefix=get_prefix, intents=discord.Intents.all())        
         self.bot.remove_command("help")
         self.bot.lavalinkpass = "yourpass"
         self.bot.lavalinkport = 6952
@@ -44,7 +43,7 @@ class Bot:
             if filename.endswith('.py'):
                 self.bot.load_extension(f'commands.{filename[:-3]}')
         print("-------------------------------\nRunning Bot!")
-        self.bot.run("ODE0NTAwMzM0ODA2MjM3MjI1.YDewjA.nQHl1UaIFSgE4io3UQ2S_bPGWIA")
+        self.bot.run("ODA1MDgyNTA1MzIwMzMzMzgz.YBVtgg.ie3BSi7q6z2SmEKSymLuA4mNj4Y")
         
 class init(commands.Cog):
     def __init__(self, bot):

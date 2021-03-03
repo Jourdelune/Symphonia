@@ -41,6 +41,19 @@ class About(commands.Cog):
         headers= {'Authorization': '955a0d28ac9a65513c11309d286dd49328f5a7844d774704bb46a6365d288f70c3ea3aff6d6f5d563affbd98327fa0f38c145a97128f5615ee9c406dd8803aff'}
         
         x = requests.post(url, headers=headers, data = myobj)
+        url = 'https://discord.bots.gg/api/v1/bots/805082505320333383/stats'
+        myobj = {'guildCount': len(list(self.client.guilds))}
+
+        headers= {'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOnRydWUsImlkIjoiNjQwNTE4MjA3MjU3NDQ0Mzc0IiwiaWF0IjoxNjE0NzIzNTcwfQ.9n2Bmmm8u7t73pYoWM9NE_tetc10gZSdcscKQ_WrRV0'}
+        
+        x = requests.post(url, headers=headers, data = myobj)
+        
+        url = 'https://discordbotlist.com/api/v1/bots/805082505320333383/stats'
+        myobj = {'guilds': len(list(self.client.guilds)), 'users': len(list(self.client.get_all_members()))}
+
+        headers= {'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoxLCJpZCI6IjgwNTA4MjUwNTMyMDMzMzM4MyIsImlhdCI6MTYxNDc4MzQ1NX0.2SFePhEe8sqx6kpk0JaEsu84tL1-OvchDYikR8Mfyqs'}
+        
+        x = requests.post(url, headers=headers, data = myobj)
         
     @commands.command(aliases=['a'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)

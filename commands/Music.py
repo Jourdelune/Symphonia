@@ -35,7 +35,7 @@ class Music(commands.Cog):
         self.bot = bot
 
         if not hasattr(bot, 'lavalink'):  # This ensures the client isn't overwritten during cog reloads.
-            bot.lavalink = lavalink.Client(814500334806237225)
+            bot.lavalink = lavalink.Client(805082505320333383)
             bot.lavalink.add_node("localhost", self.bot.lavalinkport, self.bot.lavalinkpass, 'na', 'default-node')
             bot.add_listener(bot.lavalink.voice_update_handler, 'on_socket_response')
      
@@ -60,6 +60,7 @@ class Music(commands.Cog):
         if isinstance(error, commands.CommandInvokeError):
             embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"An error has occurred, please report it on the [support discord server](https://discord.gg/qaQtvNmdm5).\n```{error}```")
             await ctx.send(embed=embed)
+            raise error
            
      
 
@@ -104,6 +105,12 @@ class Music(commands.Cog):
             await ctx.send(":mute: **Changed volume to {}%**".format(query))
         else:
             await ctx.send(":loud_sound: **Changed volume to {}%**".format(query))
+        
+     
+    @commands.command()
+    async def music(self, ctx):
+        player = self.bot.lavalink.player_manager.get(ctx.guild.id)
+        await self.bot.lavalink.player_manager.destroy(ctx.guild.id)
         
         
     @commands.command(aliases=['p'])
@@ -154,7 +161,7 @@ class Music(commands.Cog):
         if not results or not results['tracks']:
             try:
                 results = sp.track(save)
-                save = f"ytsearch:{results['name']}"
+                save = f"ytsearch:{results['album']['artists'][0]['name']} {results['name']}"
                 results = await player.node.get_tracks(save)
                 if not results or not results['tracks']:
                     return await message.edit(content="<:error:805750300450357308> **No music found.**") if message else await ctx.send(content="<:error:805750300450357308> **No music found.**")
@@ -175,7 +182,7 @@ class Music(commands.Cog):
                 playing_after+=i.duration 
             search = VideosSearch(track["info"]["uri"], limit = 1)
             search=search.result()['result']
-
+            embed = discord.Embed(color=embed_color(ctx.guild.id), description=f'[{track["info"]["title"]}]({track["info"]["uri"]})')
             embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar_url)
             if 'https://www.youtube.com/' in track["info"]["uri"]:
                 embed.set_thumbnail(url=search[0]['thumbnails'][0]['url'])       

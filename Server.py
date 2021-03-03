@@ -6,7 +6,7 @@ import mysql.connector
 import ast
 
 app = Quart(__name__)
-web_ipc = Client(host="localhost", port=8765, secret_key="secret_key")
+web_ipc = Client(host="127.0.0.1", port=8765, secret_key="secret_key")
 
 app.secret_key = b"random bytes representing quart secret key"
 
@@ -175,7 +175,16 @@ async def guild():
         cursor = conn.cursor()
         cursor.execute(f"""SELECT channel_id FROM music_guild WHERE guild_id={request.args['guild_id']}""")
         id_channel = cursor.fetchone()
-        
+        cursor.execute(f"""SELECT rgb FROM music_guild WHERE guild_id={request.args['guild_id']}""")
+        try:
+            rgb_value = cursor.fetchone()
+            
+            if rgb_value[0] is None:
+                rgb_value="#D45AFF"
+            else:
+                rgb_value=rgb_value[0]
+        except:
+            rgb_value="#D45AFF"
     
         try:
             if int(id_channel[0]) == 1:
@@ -191,26 +200,26 @@ async def guild():
                 value=value[0]
                 if value == "True" or False:              
                     if id_channel_fin is not None:
-                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value, id_channel_fin=id_channel_fin)
+                        return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value, id_channel_fin=id_channel_fin)
                     else:
-                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value)
+                        return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, comport=value)
                 else:
                     if id_channel_fin is not None:
-                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                        return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
                     else:
-                        return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                        return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
                 if id_channel_fin is not None:
-                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
+                    return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
                 else:
                     write_in_database(table_name="music_guild", data_in_name="guild_id", data_in=request.args['guild_id'],
                                 data_for_write_name="comportement_custom", data_for_write="False")
-                    return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
+                    return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin, comport=value)
         except:
             if id_channel_fin is not None:
-                return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
             else:
-                return await render_template('guild.html', user=user, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
+                return await render_template('guild.html', user=user, rgb_value=rgb_value, guild_id=request.args['guild_id'], prefix=prefix, guild_list=guild_list, id_channel_fin=id_channel_fin)
                 
             
         
@@ -228,8 +237,9 @@ async def me():
     guild_list = await web_ipc.request("get_guild_list")
     for i in guilds:     
         if i.permissions.value == 2147483647:   
-            if (str(i.id) in str(guild_list)):
+            if (i.id in guild_list):
                 common_guild.append(i)
+                
             else:
                 no_common_guild.append(i)
 
