@@ -10,7 +10,7 @@ from utils.CreateTable import CreateTable
 import datetime
 from utils.utils import *
 import os
-
+import math
   
 def get_prefix(client, message):
     data = str(read_database(table_name="config", data_in="prefix", data=f"WHERE guild_id={message.guild.id}"))
@@ -30,7 +30,7 @@ def get_prefix(client, message):
 class Bot: 
     def __init__(self, **kwargs):
         self.intents = discord.Intents.all()
-        self.bot = commands.Bot(command_prefix=get_prefix, intents=discord.Intents.all())        
+        self.bot = commands.AutoShardedBot(command_prefix=get_prefix, intents=discord.Intents.all())        
         self.bot.remove_command("help")
         self.bot.lavalinkpass = "yourpass"
         self.bot.lavalinkport = 6952

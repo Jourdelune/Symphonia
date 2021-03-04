@@ -55,6 +55,14 @@ class About(commands.Cog):
         
         x = requests.post(url, headers=headers, data = myobj)
         
+        url = 'https://shadow-bot.fr/api/public/bot/stats'
+
+        server_count = {'server_count': '45'} 
+
+        headers= {'Authorization': 'Z9hQSpFaLPOCR0urPgBDrgVNGvtvTC'}
+        
+        x = requests.post(url, headers=headers, json=server_count)
+        
     @commands.command(aliases=['a'])
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def about(self, ctx):
