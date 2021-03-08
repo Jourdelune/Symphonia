@@ -252,4 +252,4 @@ async def me():
 
 
 if __name__ == "__main__":
-    app.run(host="185.157.247.229", 8081)
+    app.run(host="185.157.247.229", port=8081)

@@ -41,7 +41,7 @@ class Music(commands.Cog):
             bot.add_listener(bot.lavalink.voice_update_handler, 'on_socket_response')
      
 
-        lavalink.add_event_hook(self.track_hook)
+       
 
     def cog_unload(self):
         """ Cog unload handler. This removes any event hooks that were registered. """
@@ -90,12 +90,27 @@ class Music(commands.Cog):
         else:
             pass
     
-    async def track_hook(self, event):
-        if isinstance(event, lavalink.events.QueueEndEvent):
-            guild_id = int(event.player.guild_id)
-            guild = self.bot.get_guild(guild_id)
-            await guild.change_voice_state(channel=None)
-      
+
+
+    @commands.Cog.listener()
+    async def on_voice_state_update(self, member, before, after):
+        if after.channel is None:
+            nbm_bot=0
+            for i in before.channel.members:
+                if i.bot:
+                    nbm_bot+=1
+            nbm_bot = int(len(before.channel.members)-nbm_bot)
+            if nbm_bot==0:
+                if (before.channel.guild.id in dict_ctx):
+                    ctx=dict_ctx[before.channel.guild.id]
+                    player = self.bot.lavalink.player_manager.get(ctx.guild.id)
+                    player.queue.clear()
+                    await player.stop()
+                    await ctx.guild.change_voice_state(channel=None)
+                    del dict_ctx[before.channel.guild.id]
+                    return await ctx.send(":arrow_left: **Songs left the voice channel for inactivity.**")
+                    
+            
         
         
             
@@ -263,7 +278,7 @@ class Music(commands.Cog):
             embed = discord.Embed(color=discord.Colour.red(), title="<:error:805750300450357308> Error", description=f"You are missing Manage Channels permission(s) to run this command. `Manage Channels`")
             return await ctx.send(embed=embed, delete_after=3.0)
 
-   
+        
         player.queue.clear()
         await player.stop()
         await ctx.guild.change_voice_state(channel=None)
@@ -705,7 +720,8 @@ class Music(commands.Cog):
             return
         
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
-    
+        if player.current == None:
+            return await ctx.send("<:error:805750300450357308> **No musique played.**")
 
         try:      
             pourcent = (player.position*100)/player.current.duration
@@ -722,23 +738,13 @@ class Music(commands.Cog):
                     else:
                         final=final+"▬"
                     error+=1     
-            search = VideosSearch(player.current.uri, limit = 1)
-            search=search.result()['result']    
+              
             embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{player.current.title}]({player.current.uri})**\n`{convert_duration(player.position/1000)}/{convert_duration(player.current.duration/1000)}`\n\n**|{final}|**""")  
         except:
             embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{player.current.title}]({player.current.uri})**""")
 
-            embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
-        try:
-            embed.set_thumbnail(url=search[0]['thumbnails'][0]['url'])
-        except:
-            pass
+        embed.set_author(name=f"Info", icon_url=ctx.author.avatar_url)
         embed.add_field(name="Author", value=f"{player.current.author}", inline=True)        
-        embed.add_field(name="Duration", value=f"{convert_duration(player.current.duration/1000)}", inline=True)
-        try:
-            embed.add_field(name="views", value=f"{search[0]['viewCount']['short']}", inline=True)
-        except:
-            pass
         embed.add_field(name="loop", value=f"{player.repeat}", inline=True)
         embed.add_field(name="time", value=f"{convert_duration(player.position/1000)}", inline=True)
         
