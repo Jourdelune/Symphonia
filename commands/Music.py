@@ -36,12 +36,12 @@ class Music(commands.Cog):
         self.bot = bot
 
         if not hasattr(bot, 'lavalink'): 
-            bot.lavalink = lavalink.Client(805082505320333383)
+            bot.lavalink = lavalink.Client(814500334806237225)
             bot.lavalink.add_node("localhost", self.bot.lavalinkport, self.bot.lavalinkpass, 'na', 'default-node')
             bot.add_listener(bot.lavalink.voice_update_handler, 'on_socket_response')
      
 
-       
+        lavalink.add_event_hook(self.track_hook)
 
     def cog_unload(self):
         """ Cog unload handler. This removes any event hooks that were registered. """
@@ -92,23 +92,19 @@ class Music(commands.Cog):
     
 
 
-    @commands.Cog.listener()
-    async def on_voice_state_update(self, member, before, after):
-        if after.channel is None:
-            nbm_bot=0
-            for i in before.channel.members:
-                if i.bot:
-                    nbm_bot+=1
-            nbm_bot = int(len(before.channel.members)-nbm_bot)
-            if nbm_bot==0:
-                if (before.channel.guild.id in dict_ctx):
-                    ctx=dict_ctx[before.channel.guild.id]
-                    player = self.bot.lavalink.player_manager.get(ctx.guild.id)
-                    player.queue.clear()
-                    await player.stop()
-                    await ctx.guild.change_voice_state(channel=None)
-                    del dict_ctx[before.channel.guild.id]
-                    return await ctx.send(":arrow_left: **Songs left the voice channel for inactivity.**")
+    async def track_hook(self, event):
+        if isinstance(event, lavalink.events.TrackStuckEvent):
+            print(" ah ah")
+        if isinstance(event, lavalink.events.QueueEndEvent):
+            print("stop")
+            # When this track_hook receives a "QueueEndEvent" from lavalink.py
+            # it indicates that there are no tracks left in the player's queue.
+            # To save on repsources, we can tell the bot to disconnect from the voicechannel.
+            guild_id = int(event.player.guild_id)
+            guild = self.bot.get_guild(guild_id)
+            player = self.bot.lavalink.player_manager.get(guild_id)
+            print(player.current)
+            await guild.change_voice_state(channel=None)
                     
             
         
@@ -199,7 +195,8 @@ class Music(commands.Cog):
                 return await message.edit(content="<:error:805750300450357308> **No music found.**") if message else await ctx.send(content="<:error:805750300450357308> **No music found.**")
             
        
-      
+        
+        
        
         if results['loadType'] == 'PLAYLIST_LOADED':
             tracks = results['tracks']
@@ -217,7 +214,7 @@ class Music(commands.Cog):
             if 'https://www.youtube.com/' in track["info"]["uri"]:
                 embed.set_thumbnail(url=search[0]['thumbnails'][0]['url'])       
             embed.add_field(name="Author", value=track["info"]['author'], inline=True)        
-            embed.add_field(name="Duration", value=convert_duration(track["info"]['length']/1000), inline=True)
+            embed.add_field(name="Duration", value=convert_duration(track["info"]['length']/1000) if track["info"]["isStream"] == False else ":red_circle: stream", inline=True)
             embed.add_field(name="Estimated time until playing", value=convert_duration(playing_after/1000) if player.current is None else convert_duration(playing_after/1000+track["info"]['length']/1000), inline=True)
             embed.add_field(name="position", value=len(player.queue) if player.current is None else len(player.queue)+1, inline=True)
             embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
@@ -226,7 +223,8 @@ class Music(commands.Cog):
             await message.edit(content=None, embed=embed)
             
         else:   
-            track = results['tracks'][0] 
+            track = results['tracks'][0]
+            
             embed = discord.Embed(color=embed_color(ctx.guild.id), description=f'[{track["info"]["title"]}]({track["info"]["uri"]})')
 
             search = VideosSearch(track["info"]["uri"], limit = 1)
@@ -241,7 +239,7 @@ class Music(commands.Cog):
             if 'https://www.youtube.com/' in track["info"]["uri"]:
                 embed.set_thumbnail(url=search[0]['thumbnails'][0]['url']) 
             embed.add_field(name="Author", value=track["info"]['author'], inline=True)        
-            embed.add_field(name="Duration", value=convert_duration(track["info"]['length']/1000), inline=True)
+            embed.add_field(name="Duration", value=convert_duration(track["info"]['length']/1000) if track["info"]["isStream"] == False else ":red_circle: stream", inline=True)
             embed.add_field(name="Estimated time until playing", value=convert_duration(playing_after/1000) if player.current is None else convert_duration(playing_after/1000+track["info"]['length']/1000), inline=True)
             embed.add_field(name="position", value=len(player.queue) if player.current is None else len(player.queue)+1, inline=True)
             embed.set_footer(icon_url="https://cdn.discordapp.com/attachments/805066192834396210/813037403731918908/Songs.png",
@@ -738,8 +736,8 @@ class Music(commands.Cog):
                     else:
                         final=final+"▬"
                     error+=1     
-              
-            embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{player.current.title}]({player.current.uri})**\n`{convert_duration(player.position/1000)}/{convert_duration(player.current.duration/1000)}`\n\n**|{final}|**""")  
+            stream="stream"
+            embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{player.current.title}]({player.current.uri})**\n`{convert_duration(player.position/1000)}/{convert_duration(player.current.duration/1000) if track["info"]["isStream"] == False else stream}`\n\n**|{final}|**""")  
         except:
             embed = discord.Embed(color=embed_color(ctx.guild.id), description=f"""**[{player.current.title}]({player.current.uri})**""")
 

@@ -6,7 +6,7 @@ import mysql.connector
 import ast
 
 app = Quart(__name__)
-web_ipc = Client(host="127.0.0.1", port=8765, secret_key="secret_key")
+web_ipc = Client(host="127.0.0.1", secret_key="secret_key")
 
 app.secret_key = b"random bytes representing quart secret key"
 
@@ -235,7 +235,6 @@ async def guild():
 @app.route("/me/")
 @requires_authorization
 async def me():
-    user = await discord.fetch_user()
     common_guild = []
     no_common_guild = []
     guilds = await discord.fetch_guilds()

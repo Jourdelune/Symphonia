@@ -22,7 +22,7 @@ class Bot(commands.Bot):
 bot = Bot(command_prefix="!", case_insensitive=True, help_command=None)
 bot.remove_command("help")
 
-bot_ipc = Server(bot, "127.0.0.1", 8765, "secret_key")
+bot_ipc = Server(bot, "127.0.0.1", "secret_key")
 
 
 

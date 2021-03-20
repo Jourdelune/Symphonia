@@ -43,7 +43,7 @@ class Bot:
             if filename.endswith('.py'):
                 self.bot.load_extension(f'commands.{filename[:-3]}')
         print("-------------------------------\nRunning Bot!")
-        self.bot.run("ODA1MDgyNTA1MzIwMzMzMzgz.YBVtgg.ie3BSi7q6z2SmEKSymLuA4mNj4Y")
+        self.bot.run("ODE0NTAwMzM0ODA2MjM3MjI1.YDewjA.nQHl1UaIFSgE4io3UQ2S_bPGWIA")
         
 class init(commands.Cog):
     def __init__(self, bot):

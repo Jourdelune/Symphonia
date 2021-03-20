@@ -25,7 +25,7 @@ class Help(commands.Cog):
         
         if arg == None:
             embed = discord.Embed(color=embed_color(ctx.guild.id), title="Song's Bot help page", description=f"""Song's Bot is a music bot **easy to use** with **a dashboard** and **a customizable behavior**.\n
-            **[Dashboard link](https://songs-bot.tk/me)\n[Documentation link](https://songs-bot.tk/commands)\n[Vote link](https://top.gg)\n[Bot invite](https://discord.com/oauth2/authorize?client_id=805082505320333383&scope=bot&permissions=70634560)\n\n**""")
+            **[Dashboard link](https://songs-bot.tk/me)\n[Documentation link](https://songs-bot.tk/commands)\n[Vote link](https://top.gg/bot/805082505320333383/vote)\n[Bot invite](https://discord.com/oauth2/authorize?client_id=805082505320333383&scope=bot&permissions=70634560)\n\n**""")
             embed.add_field(name="**:notes: Music**", value=f"`play` `search` `replay` `skip` `stop` `pause` `bassboost` `resume` `loop` `queue` `volume` `np` `leave` `join` `remove` `shuffle`\n\n", inline=False)
             embed.add_field(name="**:computer: Song's Bot**", value=f"`invite` `about` `support` `dashboard` `vote` `ping` `help`\n\n", inline=False)
             embed.add_field(name="**:tools: Gestion**", value=f"**[Go to Dashboard](https://songs-bot.tk/me)**\n", inline=False)

@@ -1,4 +1,4 @@
-2021-03-07 15:09:28.034  INFO 24146 --- [main] lavalink.server.Launcher                 : 
+2021-03-16 09:25:32.331  INFO 28285 --- [main] lavalink.server.Launcher                 : 
 
 [32m       .  [31m _                  _ _       _    [32m__ _ _
 [32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
@@ -16,204 +16,339 @@
 	JVM:            11.0.9.1
 	Lavaplayer      1.3.71
 
-2021-03-07 15:09:29.161  INFO 24146 --- [main] lavalink.server.Launcher                 : Starting Launcher on raspberrypi with PID 24146 (/home/pi/Song-s-Bot/Lavalink.jar started by pi in /home/pi/Song-s-Bot)
-2021-03-07 15:09:29.166  INFO 24146 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
-2021-03-07 15:09:30.168  WARN 24146 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
-2021-03-07 15:09:40.409  WARN 24146 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
-2021-03-07 15:09:40.631  INFO 24146 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
-2021-03-07 15:09:40.632  INFO 24146 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 11086 ms
-2021-03-07 15:09:46.241  WARN 24146 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
-2021-03-07 15:09:49.920  INFO 24146 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
-2021-03-07 15:09:57.466  INFO 24146 --- [main] lavalink.server.config.KoeConfiguration  : OS: Linux, Arch: arm
-2021-03-07 15:09:57.468  WARN 24146 --- [main] lavalink.server.config.KoeConfiguration  : This system and architecture appears to not support native audio sending! GC pauses may cause your bot to stutter during playback.
-2021-03-07 15:09:59.506  INFO 24146 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-03-07 15:10:02.462  INFO 24146 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
-2021-03-07 15:10:02.527  INFO 24146 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
-2021-03-07 15:10:02.863  INFO 24146 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 6952 (http) with context path ''
-2021-03-07 15:10:02.889  INFO 24146 --- [main] lavalink.server.Launcher                 : Started Launcher in 39.39 seconds (JVM running for 46.482)
-2021-03-07 15:10:02.895  INFO 24146 --- [main] lavalink.server.Launcher                 : You can safely ignore the big red warning about illegal reflection. See https://github.com/Frederikam/Lavalink/issues/295
-2021-03-07 15:10:11.260  INFO 24146 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-03-07 15:10:11.262  INFO 24146 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-03-07 15:10:11.306  INFO 24146 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 43 ms
-2021-03-07 15:10:11.497  INFO 24146 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:44784
-2021-03-07 15:10:11.974  INFO 24146 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:44784
-2021-03-07 15:10:12.099  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:10:22.321  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:44784 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:10:40.189  INFO 24146 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:44798
-2021-03-07 15:10:40.200  INFO 24146 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:44798
-2021-03-07 15:10:40.202  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:10:46.152  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "b222573986beef77609a8eb28a4b0dbf", "event": {"token": "5ccfd8b3e30e263e", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:11:02.906  INFO 24146 --- [XNIO-1 task-3] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.twitch.tv/beatportofficial"
-2021-03-07 15:11:05.844  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track !donate !DannyT Beatport Presents: Danny Tenaglia's 60th Birthday: Part 2
-2021-03-07 15:11:06.596  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAyAIASSFkb25hdGUgIURhbm55VCBCZWF0cG9ydCBQcmVzZW50czogRGFubnkgVGVuYWdsaWEncyA2MHRoIEJpcnRoZGF5OiBQYXJ0IDIAEGJlYXRwb3J0b2ZmaWNpYWx//////////wAmaHR0cHM6Ly93d3cudHdpdGNoLnR2L2JlYXRwb3J0b2ZmaWNpYWwBAQAmaHR0cHM6Ly93d3cudHdpdGNoLnR2L2JlYXRwb3J0b2ZmaWNpYWwABnR3aXRjaAAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:11:06.834  INFO 24146 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: loading with filter com.sedmelluq.discord.lavaplayer.natives.ConnectorNativeLibLoader$$Lambda$543/0x6e5c7a28@16eb8de
-2021-03-07 15:11:06.863  INFO 24146 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: loading with filter null
-2021-03-07 15:11:07.033  INFO 24146 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: successfully loaded.
-2021-03-07 15:11:22.324  INFO 24146 --- [pool-2-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:14:18.283  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:19:56.495  INFO 24146 --- [XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:19:56.727  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "b222573986beef77609a8eb28a4b0dbf", "event": {"token": "bc88353889c1ade0", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:19:58.617  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:19:59.586  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:44798 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:20:59.586  INFO 24146 --- [pool-3-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:34:13.141  INFO 24146 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:45902
-2021-03-07 15:34:13.153  INFO 24146 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:45902
-2021-03-07 15:34:13.155  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:34:24.162  INFO 24146 --- [XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:34:24.182  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "df944cdf44003cea7f571c91d1a14471", "event": {"token": "2a1155e55896032c", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:34:25.003  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:34:26.220  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:34:46.108  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:45902 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:34:55.971  INFO 24146 --- [XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:45942
-2021-03-07 15:34:55.995  INFO 24146 --- [XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:45942
-2021-03-07 15:34:56.000  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:35:04.397  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "33124322085711fbf2ef787659e90ee8", "event": {"token": "2a1155e55896032c", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:35:04.443  INFO 24146 --- [XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:35:05.467  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:35:06.114  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:35:46.108  INFO 24146 --- [pool-4-thread-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 15:35:55.410  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:45942 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:36:01.402  INFO 24146 --- [XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:45982
-2021-03-07 15:36:01.414  INFO 24146 --- [XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:45982
-2021-03-07 15:36:01.417  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:36:12.822  INFO 24146 --- [XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:36:12.832  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "d697bf036d567932175a2da6ffc0b257", "event": {"token": "2a1155e55896032c", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:36:13.530  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:36:14.158  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:36:55.411  INFO 24146 --- [pool-5-thread-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 15:37:30.054  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:45982 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:37:35.428  INFO 24146 --- [XNIO-1 task-16] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46016
-2021-03-07 15:37:35.438  INFO 24146 --- [XNIO-1 task-16] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46016
-2021-03-07 15:37:35.446  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:37:45.293  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "5e5cbfd403e6d2d621b0f675a408cc7b", "event": {"token": "2a1155e55896032c", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:37:45.307  INFO 24146 --- [XNIO-1 task-17] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:37:46.084  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:37:47.152  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAmAIAM1RvcCAyMCBzb25ncyBvZiBUaGVGYXRSYXQgMjAyMCAtIFRoZUZhdFJhdCBNZWdhIE1peAALTXVzaWMgU3RvcmUAAAAAAD204AALci1OYnJtRENsTEUAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1yLU5icm1EQ2xMRQAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:38:10.645  WARN 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Shutdown resumable session with key default-node because it has the same key as a newly disconnected resumable session.
-2021-03-07 15:38:10.647  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 15:38:10.658  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46016 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:38:17.093  INFO 24146 --- [XNIO-1 task-19] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46050
-2021-03-07 15:38:17.103  INFO 24146 --- [XNIO-1 task-19] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46050
-2021-03-07 15:38:17.111  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:38:22.369  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "9df85bb0097d055e30ac80ceb9e99ab0", "event": {"token": "2a1155e55896032c", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:38:22.369  INFO 24146 --- [XNIO-1 task-20] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:38:23.035  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:38:23.691  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAmAIAM1RvcCAyMCBzb25ncyBvZiBUaGVGYXRSYXQgMjAyMCAtIFRoZUZhdFJhdCBNZWdhIE1peAALTXVzaWMgU3RvcmUAAAAAAD204AALci1OYnJtRENsTEUAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1yLU5icm1EQ2xMRQAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:38:30.055  INFO 24146 --- [pool-6-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:38:57.141  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46050 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:39:03.567  INFO 24146 --- [XNIO-1 task-22] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46082
-2021-03-07 15:39:03.583  INFO 24146 --- [XNIO-1 task-22] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46082
-2021-03-07 15:39:03.592  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:39:10.031  INFO 24146 --- [XNIO-1 task-23] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:39:10.041  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "6bdf3edf471f1a2aaa5ac06b0ef3632f", "event": {"token": "2a1155e55896032c", "guild_id": "805066192603054100", "endpoint": "eu-central0040.discord.media:443"}}
-2021-03-07 15:39:10.659  INFO 24146 --- [pool-7-thread-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 15:39:10.833  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:39:11.770  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:39:57.142  INFO 24146 --- [pool-8-thread-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 15:43:21.547  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:51:53.541  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46082 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:51:57.704  INFO 24146 --- [XNIO-1 task-25] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46132
-2021-03-07 15:51:57.719  INFO 24146 --- [XNIO-1 task-25] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46132
-2021-03-07 15:51:57.721  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:52:21.283  WARN 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Shutdown resumable session with key default-node because it has the same key as a newly disconnected resumable session.
-2021-03-07 15:52:21.285  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:52:21.288  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46132 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:52:28.845  INFO 24146 --- [XNIO-1 task-26] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46148
-2021-03-07 15:52:28.854  INFO 24146 --- [XNIO-1 task-26] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46148
-2021-03-07 15:52:28.858  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:52:53.542  INFO 24146 --- [pool-9-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:53:15.704  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46148 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:53:20.068  INFO 24146 --- [XNIO-1 task-27] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46164
-2021-03-07 15:53:20.083  INFO 24146 --- [XNIO-1 task-27] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46164
-2021-03-07 15:53:20.091  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:53:21.288  INFO 24146 --- [pool-10-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:54:08.250  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46164 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:54:13.432  INFO 24146 --- [XNIO-1 task-28] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46180
-2021-03-07 15:54:13.465  INFO 24146 --- [XNIO-1 task-28] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46180
-2021-03-07 15:54:13.473  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:54:15.704  INFO 24146 --- [pool-11-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:54:53.540  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46180 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:54:58.087  INFO 24146 --- [XNIO-1 task-29] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46194
-2021-03-07 15:54:58.106  INFO 24146 --- [XNIO-1 task-29] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46194
-2021-03-07 15:54:58.137  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:55:08.251  INFO 24146 --- [pool-12-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:55:22.790  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46194 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:55:26.923  INFO 24146 --- [XNIO-1 task-30] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46210
-2021-03-07 15:55:26.947  INFO 24146 --- [XNIO-1 task-30] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46210
-2021-03-07 15:55:26.951  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:55:53.540  INFO 24146 --- [pool-13-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:55:54.350  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "62b7e469eb5f5171ee9f0aca9414e2c8", "event": {"token": "9c85b9888ccc7e4f", "guild_id": "805066192603054100", "endpoint": "eu-central610.discord.media:443"}}
-2021-03-07 15:55:54.380  INFO 24146 --- [XNIO-1 task-31] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:55:55.330  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:55:56.661  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:56:04.140  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:56:04.279  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:56:22.790  INFO 24146 --- [pool-14-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:57:17.246  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46210 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:57:23.616  INFO 24146 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46254
-2021-03-07 15:57:23.627  INFO 24146 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46254
-2021-03-07 15:57:23.632  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:57:26.424  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "bb4fd1bb5a8d1fb68438ffd35fddc56e", "event": {"token": "caac458208301920", "guild_id": "805066192603054100", "endpoint": "eu-central610.discord.media:443"}}
-2021-03-07 15:57:26.509  INFO 24146 --- [XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:57:27.235  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:57:27.874  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:57:31.755  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:57:31.885  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:58:17.247  INFO 24146 --- [pool-15-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 15:58:35.161  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46254 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 15:58:43.674  INFO 24146 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46288
-2021-03-07 15:58:43.691  INFO 24146 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46288
-2021-03-07 15:58:43.697  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 15:59:16.868  INFO 24146 --- [XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 15:59:16.901  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "1eae07dd5acacec15b3f3e32504ee39e", "event": {"token": "899a51da4872671c", "guild_id": "805066192603054100", "endpoint": "eu-central5336.discord.media:443"}}
-2021-03-07 15:59:17.666  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 15:59:19.091  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 15:59:27.733  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:59:27.861  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 15:59:35.161  INFO 24146 --- [pool-16-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 16:00:08.607  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46288 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 16:00:13.789  INFO 24146 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46338
-2021-03-07 16:00:13.800  INFO 24146 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46338
-2021-03-07 16:00:13.804  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 16:00:32.109  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "f50f41044f8685f78ba5c58d4ba7e828", "event": {"token": "c75c3e6c3c566fba", "guild_id": "805066192603054100", "endpoint": "eu-central8958.discord.media:443"}}
-2021-03-07 16:00:32.143  INFO 24146 --- [XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 16:00:32.899  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 16:00:33.515  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 16:00:40.441  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 16:00:40.573  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 16:01:08.608  INFO 24146 --- [pool-17-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 16:01:22.222  INFO 24146 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46338 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 16:01:27.735  INFO 24146 --- [XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46380
-2021-03-07 16:01:27.754  INFO 24146 --- [XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46380
-2021-03-07 16:01:27.759  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 16:01:33.920  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "17ac15421b2a05d15aa8a59f1f7e3873", "event": {"token": "cc1475ac7a73ec86", "guild_id": "805066192603054100", "endpoint": "eu-central9562.discord.media:443"}}
-2021-03-07 16:01:33.930  INFO 24146 --- [XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 16:01:34.672  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 16:01:35.975  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 16:01:37.808  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "805066192603054100"}
-2021-03-07 16:02:14.170  WARN 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Shutdown resumable session with key default-node because it has the same key as a newly disconnected resumable session.
-2021-03-07 16:02:14.171  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 16:02:14.175  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46380 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 16:02:18.958  INFO 24146 --- [XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46416
-2021-03-07 16:02:18.970  INFO 24146 --- [XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46416
-2021-03-07 16:02:18.973  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 16:02:22.223  INFO 24146 --- [pool-18-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 16:02:31.190  INFO 24146 --- [XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 16:02:31.284  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "31a4d4bd4eff5a8dde3205646d539ef6", "event": {"token": "fa5b3b3806fade86", "guild_id": "805066192603054100", "endpoint": "eu-central7324.discord.media:443"}}
-2021-03-07 16:02:31.935  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 16:02:33.188  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 16:03:14.175  INFO 24146 --- [pool-19-thread-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2021-03-07 16:03:28.811  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46416 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 16:03:34.711  INFO 24146 --- [XNIO-1 task-16] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:46472
-2021-03-07 16:03:34.721  INFO 24146 --- [XNIO-1 task-16] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:46472
-2021-03-07 16:03:34.724  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "configureResuming", "key": "default-node", "timeout": 60}
-2021-03-07 16:03:41.375  INFO 24146 --- [XNIO-1 task-17] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
-2021-03-07 16:03:41.455  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "d092c44f96cdbf632c108efcec6a52a1", "event": {"token": "fa5b3b3806fade86", "guild_id": "805066192603054100", "endpoint": "eu-central7324.discord.media:443"}}
-2021-03-07 16:03:42.115  INFO 24146 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
-2021-03-07 16:03:42.748  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAmAIAM1RvcCAyMCBzb25ncyBvZiBUaGVGYXRSYXQgMjAyMCAtIFRoZUZhdFJhdCBNZWdhIE1peAALTXVzaWMgU3RvcmUAAAAAAD204AALci1OYnJtRENsTEUAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1yLU5icm1EQ2xMRQAHeW91dHViZQAAAAAAAAAA", "startTime": 0, "endTime": 0, "noReplace": false}
-2021-03-07 16:04:28.812  INFO 24146 --- [pool-20-thread-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 16:06:57.009  INFO 24146 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:46472 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 60 seconds with key default-node
-2021-03-07 16:07:57.009  INFO 24146 --- [pool-21-thread-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
-2021-03-07 16:08:55.771  INFO 24146 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-03-07 16:08:55.776  INFO 24146 --- [Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
-2021-03-07 16:08:55.816  INFO 24146 --- [Thread-1] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2021-03-16 09:25:33.052  INFO 28285 --- [main] lavalink.server.Launcher                 : Starting Launcher on raspberrypi with PID 28285 (/home/pi/Song-s-Bot/Lavalink.jar started by pi in /home/pi/Song-s-Bot)
+2021-03-16 09:25:33.056  INFO 28285 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2021-03-16 09:25:33.695  WARN 28285 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-03-16 09:25:40.034  WARN 28285 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-03-16 09:25:40.212  INFO 28285 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2021-03-16 09:25:40.213  INFO 28285 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6871 ms
+2021-03-16 09:25:42.579  WARN 28285 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2021-03-16 09:25:44.565  INFO 28285 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2021-03-16 09:25:45.596  INFO 28285 --- [main] lavalink.server.config.KoeConfiguration  : OS: Linux, Arch: arm
+2021-03-16 09:25:45.597  WARN 28285 --- [main] lavalink.server.config.KoeConfiguration  : This system and architecture appears to not support native audio sending! GC pauses may cause your bot to stutter during playback.
+2021-03-16 09:25:47.057  INFO 28285 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-16 09:25:49.304  INFO 28285 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
+2021-03-16 09:25:49.370  INFO 28285 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2021-03-16 09:25:49.669  INFO 28285 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 6952 (http) with context path ''
+2021-03-16 09:25:49.694  INFO 28285 --- [main] lavalink.server.Launcher                 : Started Launcher in 20.324 seconds (JVM running for 24.047)
+2021-03-16 09:25:49.703  INFO 28285 --- [main] lavalink.server.Launcher                 : You can safely ignore the big red warning about illegal reflection. See https://github.com/Frederikam/Lavalink/issues/295
+2021-03-16 09:26:08.999  INFO 28285 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-03-16 09:26:09.000  INFO 28285 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-03-16 09:26:09.034  INFO 28285 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 33 ms
+2021-03-16 09:26:09.129  INFO 28285 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:32960
+2021-03-16 09:26:09.382  INFO 28285 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:32960
+2021-03-16 09:26:51.714  INFO 28285 --- [XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 09:26:56.498  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 09:26:57.163  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-03-16 09:26:57.398  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "610496188b644863e10a876933ab085d", "event": {"token": "842b2df0eb3e56af", "guild_id": "805066192603054100", "endpoint": "eu-central5736.discord.media:443"}}
+2021-03-16 09:27:52.371  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:32960 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:27:52.372  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-03-16 09:27:57.439  INFO 28285 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:32994
+2021-03-16 09:27:57.462  INFO 28285 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:32994
+2021-03-16 09:28:09.021  INFO 28285 --- [XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 09:28:09.798  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 09:28:10.306  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-03-16 09:28:10.759  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "aba53022cf1862c3982c7ca92844ff84", "event": {"token": "842b2df0eb3e56af", "guild_id": "805066192603054100", "endpoint": "eu-central5736.discord.media:443"}}
+2021-03-16 09:28:28.678  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:32994 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:28:28.679  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-03-16 09:28:33.977  INFO 28285 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:33018
+2021-03-16 09:28:33.991  INFO 28285 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:33018
+2021-03-16 09:28:36.944  INFO 28285 --- [XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 09:28:37.783  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 09:28:38.219  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-03-16 09:28:38.297  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "b0fc1ae7120b29a0834f96b480eae834", "event": {"token": "842b2df0eb3e56af", "guild_id": "805066192603054100", "endpoint": "eu-central5736.discord.media:443"}}
+2021-03-16 09:28:57.999  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:33018 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:28:58.001  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-03-16 09:29:03.198  INFO 28285 --- [XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:33034
+2021-03-16 09:29:03.223  INFO 28285 --- [XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:33034
+2021-03-16 09:29:08.108  INFO 28285 --- [XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 09:29:08.686  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 09:29:09.284  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "5992d6ecca9b2984d6d1a6d385d26cbb", "event": {"token": "842b2df0eb3e56af", "guild_id": "805066192603054100", "endpoint": "eu-central5736.discord.media:443"}}
+2021-03-16 09:30:23.873  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:33034 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:30:23.874  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 09:30:29.027  INFO 28285 --- [XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:33054
+2021-03-16 09:30:29.100  INFO 28285 --- [XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:33054
+2021-03-16 09:30:39.268  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:33054 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:30:39.270  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 09:31:32.018  INFO 28285 --- [XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:33110
+2021-03-16 09:31:32.075  INFO 28285 --- [XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:33110
+2021-03-16 09:31:37.918  INFO 28285 --- [XNIO-1 task-15] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://www.twitch.tv/zoofilini"
+2021-03-16 09:31:38.195  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:32:03.276  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:33110 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:32:03.277  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 09:32:07.932  INFO 28285 --- [XNIO-1 task-17] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:33122
+2021-03-16 09:32:07.945  INFO 28285 --- [XNIO-1 task-17] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:33122
+2021-03-16 09:32:13.277  INFO 28285 --- [XNIO-1 task-18] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.twitch.tv/zoofilini"
+2021-03-16 09:32:14.080  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Драгонбол Z
+2021-03-16 09:32:14.535  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAfgIAFNCU0YDQsNCz0L7QvdCx0L7QuyBaAAl6b29maWxpbml//////////wAfaHR0cHM6Ly93d3cudHdpdGNoLnR2L3pvb2ZpbGluaQEBAB9odHRwczovL3d3dy50d2l0Y2gudHYvem9vZmlsaW5pAAZ0d2l0Y2gAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2021-03-16 09:32:14.550  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "05abfdd91d6928c350e75534f1e14939", "event": {"token": "842b2df0eb3e56af", "guild_id": "805066192603054100", "endpoint": "eu-central5736.discord.media:443"}}
+2021-03-16 09:32:14.646  INFO 28285 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: loading with filter com.sedmelluq.discord.lavaplayer.natives.ConnectorNativeLibLoader$$Lambda$551/0x6eb2ec28@135314c
+2021-03-16 09:32:14.672  INFO 28285 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: loading with filter null
+2021-03-16 09:32:14.840  INFO 28285 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: successfully loaded.
+2021-03-16 09:32:41.156  INFO 28285 --- [XNIO-1 task-20] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "the fat rat"
+2021-03-16 09:32:41.158  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:35:33.884  INFO 28285 --- [XNIO-1 task-22] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "th efat rat"
+2021-03-16 09:35:33.888  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:36:20.481  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:33122 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:36:20.483  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 09:36:25.230  INFO 28285 --- [XNIO-1 task-24] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:34418
+2021-03-16 09:36:25.243  INFO 28285 --- [XNIO-1 task-24] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:34418
+2021-03-16 09:36:26.741  INFO 28285 --- [XNIO-1 task-25] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "the fat rat"
+2021-03-16 09:36:26.744  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:36:26.800  INFO 28285 --- [XNIO-1 task-27] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 09:36:27.633  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 09:36:28.094  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-03-16 09:36:28.120  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "9d7ed539ef0cb345cbad3fac3ff8acce", "event": {"token": "409cb6d5d333405a", "guild_id": "805066192603054100", "endpoint": "eu-central8773.discord.media:443"}}
+2021-03-16 09:39:05.713  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:34418 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:39:05.715  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-03-16 09:39:36.335  INFO 28285 --- [XNIO-1 task-29] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:34446
+2021-03-16 09:39:36.382  INFO 28285 --- [XNIO-1 task-29] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:34446
+2021-03-16 09:40:10.904  INFO 28285 --- [XNIO-1 task-30] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:40:12.168 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Load failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:40:12.182 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] l.server.player.AudioLoaderRestHandler   : Track loading failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:40:12.216  INFO 28285 --- [XNIO-1 task-32] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:40:12.972  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:40:13.694  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "91d43de42b0a4febb33151d2585feeb6", "event": {"token": "409cb6d5d333405a", "guild_id": "805066192603054100", "endpoint": "eu-central8773.discord.media:443"}}
+2021-03-16 09:41:06.451  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:34446 -- CloseStatus[code=1006, reason=]
+2021-03-16 09:41:06.452  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 09:41:12.082  INFO 28285 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:34504
+2021-03-16 09:41:12.096  INFO 28285 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:34504
+2021-03-16 09:41:14.691  INFO 28285 --- [XNIO-1 task-3] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:41:15.237 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Load failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:41:15.250 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] l.server.player.AudioLoaderRestHandler   : Track loading failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:41:15.312  INFO 28285 --- [XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:41:15.589  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:41:15.921  INFO 28285 --- [XNIO-1 task-7] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Gooseworx Slutty Spider Polka Pop (Angel Dust Theme)"
+2021-03-16 09:41:16.562  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Gooseworx Slutty Spider Polka Pop (Angel Dust Theme)
+2021-03-16 09:41:17.083  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAnQIAOlNMVVRUWSBTUElERVIgUE9MS0EgUE9QLSBBbmdlbCBEdXN0IFRoZW1lLSBHb29zZXdvcnggTXVzaWMACVZpdnppZXBvcAAAAAAABAsoAAtfT1k5T1lhTXhvZwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PV9PWTlPWWFNeG9nAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2021-03-16 09:41:17.110  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "5a34dd3d12882c5f990c325414791599", "event": {"token": "409cb6d5d333405a", "guild_id": "805066192603054100", "endpoint": "eu-central8773.discord.media:443"}}
+2021-03-16 09:47:23.329  INFO 28285 --- [XNIO-1 task-9] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:47:24.080 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Load failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:47:24.087 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] l.server.player.AudioLoaderRestHandler   : Track loading failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:47:24.116  INFO 28285 --- [XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:47:24.548  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:47:24.843  INFO 28285 --- [XNIO-1 task-13] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Gooseworx Slutty Spider Polka Pop (Angel Dust Theme)"
+2021-03-16 09:47:25.367  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Gooseworx Slutty Spider Polka Pop (Angel Dust Theme)
+2021-03-16 09:47:25.631  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAnQIAOlNMVVRUWSBTUElERVIgUE9MS0EgUE9QLSBBbmdlbCBEdXN0IFRoZW1lLSBHb29zZXdvcnggTXVzaWMACVZpdnppZXBvcAAAAAAABAsoAAtfT1k5T1lhTXhvZwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PV9PWTlPWWFNeG9nAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2021-03-16 09:54:13.048  INFO 28285 --- [XNIO-1 task-15] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "the fat rat"
+2021-03-16 09:54:13.053  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:54:13.105  INFO 28285 --- [XNIO-1 task-17] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 09:54:14.047  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 09:54:14.387  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-03-16 09:54:38.775  INFO 28285 --- [XNIO-1 task-19] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:54:39.326 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Load failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:54:39.364 ERROR 28285 --- [lava-daemon-pool-info-loader-2-thread-1] l.server.player.AudioLoaderRestHandler   : Track loading failed
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Unknown file format.
+	at com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager.handleLoadResult(ProbingAudioSourceManager.java:34) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager.loadItem(HttpAudioSourceManager.java:81) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItemOnce(DefaultAudioPlayerManager.java:436) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.checkSourcesForItem(DefaultAudioPlayerManager.java:418) ~[lavaplayer-1.3.71.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$createItemLoader$0(DefaultAudioPlayerManager.java:217) ~[lavaplayer-1.3.71.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.71
+  os.arch: arm
+  os.name: Linux
+  os.version: 5.4.83-v7l+
+  java.vendor: Raspbian
+  java.version: 11.0.9.1
+  java.runtime.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+  java.vm.version: 11.0.9.1+1-post-Raspbian-1deb10u2
+
+2021-03-16 09:54:39.401  INFO 28285 --- [XNIO-1 task-21] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://open.spotify.com/track/2Um2DA6F0Qppo00J1E4nRH?si=288221564b69431f"
+2021-03-16 09:54:39.765  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 09:54:40.058  INFO 28285 --- [XNIO-1 task-23] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Gooseworx Slutty Spider Polka Pop (Angel Dust Theme)"
+2021-03-16 09:54:40.800  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Gooseworx Slutty Spider Polka Pop (Angel Dust Theme)
+2021-03-16 09:54:41.327  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAnQIAOlNMVVRUWSBTUElERVIgUE9MS0EgUE9QLSBBbmdlbCBEdXN0IFRoZW1lLSBHb29zZXdvcnggTXVzaWMACVZpdnppZXBvcAAAAAAABAsoAAtfT1k5T1lhTXhvZwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PV9PWTlPWWFNeG9nAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2021-03-16 10:00:07.605  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:34504 -- CloseStatus[code=1006, reason=]
+2021-03-16 10:00:07.607  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 10:00:13.307  INFO 28285 --- [XNIO-1 task-25] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:34832
+2021-03-16 10:00:16.984  INFO 28285 --- [XNIO-1 task-25] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:34832
+2021-03-16 10:00:21.238  INFO 28285 --- [XNIO-1 task-26] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "the fat rat"
+2021-03-16 10:00:21.246  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 10:00:21.277  INFO 28285 --- [XNIO-1 task-28] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 10:00:22.353  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 10:00:22.848  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "e79950df19efc1e724c9a1f154a5c9ec", "event": {"token": "409cb6d5d333405a", "guild_id": "805066192603054100", "endpoint": "eu-central8773.discord.media:443"}}
+2021-03-16 10:02:40.001  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:34832 -- CloseStatus[code=1006, reason=]
+2021-03-16 10:02:40.002  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 10:02:45.683  INFO 28285 --- [XNIO-1 task-30] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:34858
+2021-03-16 10:02:45.704  INFO 28285 --- [XNIO-1 task-30] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:34858
+2021-03-16 10:02:53.641  INFO 28285 --- [XNIO-1 task-31] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "the fat rat"
+2021-03-16 10:02:53.642  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 10:02:53.669  INFO 28285 --- [XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 10:02:54.369  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 10:02:55.211  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "cd36e0793830b655be5c2fb4c4731cbd", "event": {"token": "409cb6d5d333405a", "guild_id": "805066192603054100", "endpoint": "eu-central8773.discord.media:443"}}
+2021-03-16 10:03:03.815  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:34858 -- CloseStatus[code=1006, reason=]
+2021-03-16 10:03:03.818  INFO 28285 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 10:03:09.112  INFO 28285 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:34876
+2021-03-16 10:03:09.137  INFO 28285 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:34876
+2021-03-16 10:03:11.181  INFO 28285 --- [XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "the fat rat"
+2021-03-16 10:03:11.185  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 10:03:11.218  INFO 28285 --- [XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the fat rat"
+2021-03-16 10:03:11.964  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the fat rat
+2021-03-16 10:03:12.411  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "805066192603054100", "track": "QAAAdAIAEVRoZUZhdFJhdCAtIFVuaXR5AAlUaGVGYXRSYXQAAAAAAAPMqAALbjhYOV9NZ0VkQ2cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uOFg5X01nRWRDZwAHeW91dHViZQAAAAAAAAAA", "noReplace": true, "startTime": "0"}
+2021-03-16 10:03:12.491  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "805066192603054100", "sessionId": "bfb15d57ce785286da2cb073fee73432", "event": {"token": "409cb6d5d333405a", "guild_id": "805066192603054100", "endpoint": "eu-central8773.discord.media:443"}}
+2021-03-16 10:03:20.548  INFO 28285 --- [XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "bob"
+2021-03-16 10:03:20.550  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 10:03:20.596  INFO 28285 --- [XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:bob"
+2021-03-16 10:03:21.308  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: bob
+2021-03-16 10:04:49.602  INFO 28285 --- [XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "pub 10 seconders"
+2021-03-16 10:04:49.606  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2021-03-16 10:04:49.635  INFO 28285 --- [XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:pub 10 seconders"
+2021-03-16 10:04:50.446  INFO 28285 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: pub 10 seconders
+2021-03-16 10:25:21.814  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:34876 -- CloseStatus[code=1006, reason=]
+2021-03-16 10:25:21.817  INFO 28285 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-03-16 11:34:26.788  INFO 28285 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-16 11:34:26.800  INFO 28285 --- [Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2021-03-16 11:34:26.836  INFO 28285 --- [Thread-1] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'

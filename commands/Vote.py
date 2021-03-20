@@ -24,7 +24,7 @@ class Vote(commands.Cog):
             return
         
         """Vote link"""
-        embed = discord.Embed(color=embed_color(ctx.guild.id), description="[top.gg link](https://top.gg)")
+        embed = discord.Embed(color=embed_color(ctx.guild.id), description="[top.gg link](https://top.gg/bot/805082505320333383/vote)")
         embed.set_author(name=f"Vote song's Bot", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
             
